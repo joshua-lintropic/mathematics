@@ -22,169 +22,164 @@ References: Rudin \tit{Real and Complex Analysis}, Chapter 6.
 \subsection{Total Variation}
 
 \begin{definition}{Complex Measure}*
-    Let $(X, \fr{M})$ be a measurable space. A complex measure $\mu : \fr{M} \to \bb{C}$ satisfies \tit{countable additivity}, in the sense that if $E \in \fr{M}$ is partitioned into $\{E_n\}_{n} \subseteq \fr{M}$, then 
-    $$
+    Let \((X, \fr{M})\) be a measurable space. A complex measure \(\mu : \fr{M} \to \bb{C}\) satisfies \tit{countable additivity}, in the sense that if \(E \in \fr{M}\) is partitioned into \(\{E_n\}_{n} \subseteq \fr{M}\), then 
+    \[
         \mu(E) = \sum_{n=1}^\infty \mu(E_n)
         \qquad (E \in \fr{M})
-    $$
+    \]
 \end{definition}
 
 The series must converge \tit{absolutely}, since the partition does not depend on the order of the sum. Neither does it depend on the particular choice of partition. This motivates the following definition. 
 
 \begin{definition}{Total Variation Measure}*
-    Let $(X, \fr{M}, \mu)$ be a complex measure space. For $E \in \fr{M}$, let $\fr{P}(E)$ denote the collection of (measurable) partitions of $E$. The \tit{total variation measure} is
-    $$
+    Let \((X, \fr{M}, \mu)\) be a complex measure space. For \(E \in \fr{M}\), let \(\fr{P}(E)\) denote the collection of (measurable) partitions of \(E\). The \tit{total variation measure} is
+    \[
         |\mu|(E) := \sup_{\{E_n\}_n \in \fr{P}(E)} \, \sum_{n=1}^\infty |\mu(E_n)|
         \equiv \sup \sum_{n=1}^\infty |\mu(E_n)|
-    $$
+    \]
 
-    and the \tit{total variation} of $\mu$ is $|\mu|(X)$. 
+    and the \tit{total variation} of \(\mu\) is \(|\mu|(X)\). 
 \end{definition}
 
-The total variation measure $|\mu|$ can be thought of as the smallest positive measure which dominates a (complex) measure $\mu$. If $\mu$ is a positive measure, though, of course $|\mu| = \mu$. 
+The total variation measure \(|\mu|\) can be thought of as the smallest positive measure which dominates a (complex) measure \(\mu\). If \(\mu\) is a positive measure, though, of course \(|\mu| = \mu\). 
 \stdvspace
 
 \begin{theorem}{Total Variation Measure}*
-    The total variation $|\mu|$ of a complex measure $\mu : \fr{M} \to \bb{C}$ is a positive measure. 
+    The total variation \(|\mu|\) of a complex measure \(\mu : \fr{M} \to \bb{C}\) is a positive measure. 
 \end{theorem}
 
 \begin{proof}
-    To show countable additivity, first consider the forward direction $\sum_n |\mu|(E_n) \leq |\mu|(E)$. The idea is to partition each of the $E_n$, which collectively forms a new partition of $E$. For each $E_n$, there exists $t_n \in \bb{R}$ such that $|\mu|(E_n) > t_n$. By the approximation property of the supremum, there exists a partition $\{E_{nm}\}_m$ such that 
-    $$
+    To show countable additivity, first consider the forward direction \(\sum_n |\mu|(E_n) \leq |\mu|(E)\). The idea is to partition each of the \(E_n\), which collectively forms a new partition of \(E\). For each \(E_n\), there exists \(t_n \in \bb{R}\) such that \(|\mu|(E_n) > t_n\). By the approximation property of the supremum, there exists a partition \(\{E_{nm}\}_m\) such that 
+    \[
         t_n < \sum_{m=1}^\infty |\mu(E_{nm})|
         \implies
         \sum_{n=1}^\infty t_n \leq \sum_{n,m=1}^\infty |\mu(E_{nm})|
         \leq |\mu|(E) 
-    $$
+    \]
 
-    since $\{E_{nm}\}_{n,m}$ partitions $E$. However, taking the supremum over $t_n$ yields $\sum_n |\mu|(E_n) \leq |\mu|(E)$. For the reverse direction, we want to show that $|\mu|(E) \leq \sum_n |\mu|(E_n)$. If we can show that
-    $$
+    since \(\{E_{nm}\}_{n,m}\) partitions \(E\). However, taking the supremum over \(t_n\) yields \(\sum_n |\mu|(E_n) \leq |\mu|(E)\). For the reverse direction, we want to show that \(|\mu|(E) \leq \sum_n |\mu|(E_n)\). If we can show that
+    \[
         \sum_{m=1}^\infty |\mu(A_m)| \leq \sum_{n=1}^\infty |\mu|(E_n)
-    $$
+    \]
 
-    for any partition $\{A_m\}_m$ of $E$, then the claim will follow. The only way to make these two distinct partitions comparable is to look at their pairwise intersections $\{E_n \cap A_m\}_{n,m}$, e.g. as follows: 
+    for any partition \(\{A_m\}_m\) of \(E\), then the claim will follow. The only way to make these two distinct partitions comparable is to look at their pairwise intersections \(\{E_n \cap A_m\}_{n,m}\), e.g. as follows: 
     \begin{align*}
         \sum_{m=1}^\infty |\mu(A_m)|
         &= \sum_{m=1}^\infty \left| \sum_{n=1}^\infty \mu(E_n \cap A_m) \right| 
-        \leq \sum_{m=1}^\infty \sum_{n=1}^\infty |\mu(E_n \cap A_m) \\
+        \leq \sum_{m=1}^\infty \sum_{n=1}^\infty |\mu(E_n \cap A_m)| \\
         &= \sum_{n=1}^\infty \sum_{m=1}^\infty |\mu(E_n \cap A_m)|
         \leq \sum_{n=1}^\infty |\mu|(E_n)
     \end{align*}
 
-    so $|\mu|(E) \leq \sum_n |\mu|(E_n)$. Hence actually $|\mu|(E) = \sum_n |\mu|(E_n)$, proving countable additivity. Finally, to show that there exists a set $F \in \fr{M}$ for which $|\mu|(F) < \infty$, we can take $F = \varnothing$. Since the only partition of $\varnothing$ is $\{\varnothing\}_n$ and $\mu(\varnothing) = 0$, we conclude that $|\mu|(\varnothing) = 0$. 
+    so \(|\mu|(E) \leq \sum_n |\mu|(E_n)\). Hence actually \(|\mu|(E) = \sum_n |\mu|(E_n)\), proving countable additivity. Finally, to show that there exists a set \(F \in \fr{M}\) for which \(|\mu|(F) < \infty\), we can take \(F = \varnothing\). Since the only partition of \(\varnothing\) is \(\{\varnothing\}_n\) and \(\mu(\varnothing) = 0\), we conclude that \(|\mu|(\varnothing) = 0\). 
 \end{proof}
 
 \subsection{Bounded Variation}
 
 \begin{lemma}{Average Modulus}*
-    If $\{z_i\}_{i=1}^N \subseteq \bb{C}$ then there is $S \subseteq \{1, \dots, N\}$ such that 
-    $$
+    If \(\{z_i\}_{i=1}^N \subseteq \bb{C}\) then there is \(S \subseteq \{1, \dots, N\}\) such that 
+    \[
         \left| \sum_{k \in S} z_k \right| \geq \frac{1}{\pi} \sum_{k=1}^N |z_k|
-    $$
+    \]
 \end{lemma}
 
 \begin{proof}
-    Represent each $z_k$ as $|z_k| e^{i\alpha_k}$ for $\alpha_k \in [-\pi, \pi]$. For each $\theta \in [-\pi, \pi]$, we define $S(\theta)$ to be the indices of the $z_k$ which are ``aligned'' with $\theta$, in the sense that 
-    $$
+    Represent each \(z_k\) as \(|z_k| e^{i\alpha_k}\) for \(\alpha_k \in [-\pi, \pi]\). For each \(\theta \in [-\pi, \pi]\), we define \(S(\theta)\) to be the indices of the \(z_k\) which are “aligned” with \(\theta\), in the sense that 
+    \[
         S(\theta) = \{k \mid \cos(\alpha_k - \theta) > 0\}
-    $$
+    \]
 
     By taking the real part, we can bound
     \begin{align*}
         \left| \sum_{k \in S(\theta)} z_k \right| 
-        &\geq \Re \left| \sum_{k \in S(\theta)} |z_k| e^{i \alpha_k} \right|
+        &\geq \Re \left( \sum_{k \in S(\theta)} |z_k| e^{i \alpha_k} \right)
         \geq \sum_{k \in S(\theta)} |z_k| \cos(\alpha_k - \theta)
         = \sum_{k=1}^N |z_k| \cos^+(\alpha_k - \theta)
         =: \varphi(\theta)
     \end{align*}
 
-    Let $\theta_0$ be the value of $\theta$ which maximizes $\varphi(\theta)$ on the compact interval $[-\pi, \pi]$. This value is at least as large as the average, $\varphi(\theta_0) \geq \overline{\varphi(\theta)}$. But the average with respect to $\theta$ is 
+    Let \(\theta_0\) be the value of \(\theta\) which maximizes \(\varphi(\theta)\) on the compact interval \([- \pi, \pi]\). This value is at least as large as the average, \(\varphi(\theta_0) \geq \overline{\varphi(\theta)}\). But the average with respect to \(\theta\) is 
     \begin{align*}
         \overline{\varphi(\theta)} 
         &= \sum_{k=1}^N |z_k| \overline{\cos^+(\alpha_k - \theta)}
-        = \sum_{k=1}^N \left( |z_k| \cdot \frac{1}{2\pi} \int_{-\pi}^\pi \cos^+(\alpha_k - \theta) \, \mr{d}\theta \right) \\
-        &= \sum_{k=1}^N |z_k| \cdot \frac{1}{2\pi} \int_{-\pi}^\pi \cos^+\theta \, \mr{d}\theta
-        = \sum_{k=1}^N |z_k| \cdot \int_{-\pi/2}^{\pi/2} \cos\theta \, \mr{d}\theta
+        = \sum_{k=1}^N \Bigl( |z_k| \cdot \tfrac{1}{2\pi} \int_{-\pi}^\pi \cos^+(\alpha_k - \theta) \, d\theta \Bigr) \\
+        &= \sum_{k=1}^N |z_k| \cdot \tfrac{1}{2\pi} \int_{-\pi}^\pi \cos^+ \theta \, d\theta
+        = \sum_{k=1}^N |z_k| \cdot \int_{-\pi/2}^{\pi/2} \cos \theta \, d\theta
         = \frac{1}{\pi} \sum_{k=1}^N |z_k| 
     \end{align*}
 
-    Assigning $S := S(\theta_0)$ therefore completes the proof. 
+    Assigning \(S := S(\theta_0)\) therefore completes the proof. 
 \end{proof}
 
 \begin{theorem}{Bounded Variation}*
-    If $\mu$ is a complex measure on $X$, then $|\mu|(X) < \infty$.
+    If \(\mu\) is a complex measure on \(X\), then \(|\mu|(X) < \infty\).
 \end{theorem}
 
 \begin{proof}
-    TODO: The intuition for why $|\mu|$ must be finite is that 
+    TODO: The intuition for why \(|\mu|\) must be finite is that 
 \end{proof}
 
 Now we can give some structure to complex measures on a measurable space. 
 
 \begin{definition}{Complex Measures Form a Normed Space}*
-    Let $(X, \fr{M})$ be a measurable space. The set of complex measures $\{\mu : \fr{M} \to \bb{C}\}$ forms a normed vector space, with norm $\|\mu\| := |\mu|(X)$. 
+    Let \((X, \fr{M})\) be a measurable space. The set of complex measures \(\{\mu : \fr{M} \to \bb{C}\}\) forms a normed vector space, with norm \(\|\mu\| := |\mu|(X)\). 
 \end{definition}
 
 \begin{definition}{Jordan Decomposition of Signed Measures}*
-    Let $(X, \fr{M})$ be a measurable space, and suppose $\mu : \fr{M} \to \bb{R}$ is a \tit{signed measure}. Then the \tit{positive and negative variations} of $\mu$ are 
-    $$
-        \mu^+ = \frac{1}{2}(|\mu| + \mu), 
+    Let \((X, \fr{M})\) be a measurable space, and suppose \(\mu : \fr{M} \to \bb{R}\) is a \tit{signed measure}. Then the \tit{positive and negative variations} of \(\mu\) are 
+    \[
+        \mu^+ = \tfrac{1}{2}(|\mu| + \mu), 
         \quad 
-        \mu^- = \frac{1}{2}(|\mu| - \mu)
-    $$
+        \mu^- = \tfrac{1}{2}(|\mu| - \mu)
+    \]
 
-    which are both bounded positive measures, since $\mu^+, \mu^- : \fr{M} \to [0, \infty)$. Furthermore, 
-    $$
+    which are both bounded positive measures, since \(\mu^+, \mu^- : \fr{M} \to [0, \infty)\). Furthermore, 
+    \[
         \mu = \mu^+ - \mu^-, 
         \quad
         |\mu| = \mu^+ + \mu^-
-    $$
+    \]
 
-    and this representation of $\mu$ is its \tit{Jordan decomposition}. 
+    and this representation of \(\mu\) is its \tit{Jordan decomposition}. 
 \end{definition}
 
 \subsection{Absolute Continuity}
 
 \begin{definition}{Absolute Continuity}*
-    Let $(X, \fr{M})$ be a measurable space. Let $\mu$ be a positive measure, and let $\lambda$ be an arbitrary measure. Then $\lambda$ is \tit{absolutely continuous with respect to} $\mu$ if 
-    $$
+    Let \((X, \fr{M})\) be a measurable space. Let \(\mu\) be a positive measure, and let \(\lambda\) be an arbitrary measure. Then \(\lambda\) is \tit{absolutely continuous with respect to} \(\mu\) if 
+    \[
         \mu(E) = 0 \implies \lambda(E) = 0
         \qquad (E \in \fr{M})
-    $$
-
-    which is denoted by $\lambda \ll \mu$. 
+    \]
+    which is denoted by \(\lambda \ll \mu\). 
 \end{definition}
 
 \begin{definition}{Concentration of Measure}*
-    Let $(X, \fr{M}, \lambda)$ be a measure space. If there exists $A \in \fr{M}$ such that
-    $$
+    Let \((X, \fr{M}, \lambda)\) be a measure space. If there exists \(A \in \fr{M}\) such that
+    \[
         \lambda(E) = \lambda(A \cap E)
         \qquad (E \in \fr{M})
-    $$
-
-    then $\lambda$ is \tit{concentrated} on $A$. This is equivalent to saying $\lambda(E) = 0$ whenever $E \cap A = \varnothing$.
+    \]
+    then \(\lambda\) is \tit{concentrated} on \(A\). This is equivalent to saying \(\lambda(E) = 0\) whenever \(E \cap A = \varnothing\).
 \end{definition}
 
 \begin{proposition}{Basic Concentration Properties}*
-    Suppose $\mu, \lambda, \lambda_1, \lambda_2$ are measures on $(X, \fr{M})$ and $\mu$ is positive. Then the following hold:
+    Suppose \(\mu, \lambda, \lambda_1, \lambda_2\) are measures on \((X, \fr{M})\) and \(\mu\) is positive. Then the following hold:
     \begin{enumerate}[(a)]
         \itemsep0em
-        \item If $\lambda$ is concentrated on $A$, so is $|\lambda|$. 
-        \item If $\lambda_1 \perp \lambda_2$, then $|\lambda_1| \perp |\lambda_2|$. 
-        \item If $\lambda_1 \perp \mu$ and $\lambda_2 \perp \mu$, then $\lambda_1 + \lambda_2 \perp \mu$.
-        \item If $\lambda \ll \mu$ and $\lambda_2 \ll \mu$, then $\lambda_1 + \lambda_2 \ll \mu$.
-        \item If $\lambda \ll \mu$, then $|\lambda| \ll \mu$.
-        \item If $\lambda_1 \ll \mu$ and $\lambda_2 \perp \mu$, then $\lambda_1 \perp \lambda_2$. 
-        \item If $\lambda \ll \mu$ and $\lambda \perp \mu$, then $\lambda = 0$. 
+        \item If \(\lambda\) is concentrated on \(A\), so is \(|\lambda|\). 
+        \item If \(\lambda_1 \perp \lambda_2\), then \(|\lambda_1| \perp |\lambda_2|\). 
+        \item If \(\lambda_1 \perp \mu\) and \(\lambda_2 \perp \mu\), then \(\lambda_1 + \lambda_2 \perp \mu\).
+        \item If \(\lambda_1 \ll \mu\) and \(\lambda_2 \ll \mu\), then \(\lambda_1 + \lambda_2 \ll \mu\).
+        \item If \(\lambda \ll \mu\), then \(|\lambda| \ll \mu\).
+        \item If \(\lambda_1 \ll \mu\) and \(\lambda_2 \perp \mu\), then \(\lambda_1 \perp \lambda_2\). 
+        \item If \(\lambda \ll \mu\) and \(\lambda \perp \mu\), then \(\lambda = 0\). 
     \end{enumerate}
 \end{proposition}
 
-\begin{remark}{HI}*
-\end{remark}
-
-
-
-
+\begin{proof}
+    \tit{Part (a).} If \(E \cap A = \varnothing\), then
+\end{proof}
 
 
 
@@ -196,31 +191,31 @@ Now we can give some structure to complex measures on a measurable space.
 References: Rudin \tit{Real and Complex Analysis}, Chapter 7. 
 \stdvspace
 
-\tit{Remark.} The goal of this section is to motivate a definition of the derivative (of a measure) which will act as an ``inverse'' to Lebesgue integration.
+\tit{Remark.} The goal of this section is to motivate a definition of the derivative (of a measure) which will act as an “inverse” to Lebesgue integration.
 \stdvspace
 
-\tit{Convention.} The Lebesgue measure will be denoted $m$, with the appropriate dimension up to specification. 
+\tit{Convention.} The Lebesgue measure will be denoted \(m\), with the appropriate dimension up to specification. 
 
 \begin{theorem}{Motivation for the Derivative}*
-    Let $\mu : \fr{M} \to \bb{C}$ be a complex Borel measure on $\bb{R}$. Define 
-    $$
+    Let \(\mu : \fr{M} \to \bb{C}\) be a complex Borel measure on \(\bb{R}\). Define 
+    \[
         f(x) = \mu((-\infty, x)) 
         \qquad (x \in \bb{R})
-    $$
+    \]
 
     Then the following are equivalent: 
     \begin{enumerate}[(a)]
-        \item $f$ is differentiable at $x$ with $f'(x) = w \in \bb{C}$. 
-        \item For each $\varepsilon > 0$ there exists $\delta > 0$ such that for any open interval $I \ni x$, 
-        $$
+        \item \(f\) is differentiable at \(x\) with \(f'(x) = w \in \bb{C}\). 
+        \item For each \(\varepsilon > 0\) there exists \(\delta > 0\) such that for any open interval \(I \ni x\), 
+        \[
             m(I) < \delta 
             \implies
             \left| \frac{\mu(I)}{m(I)} - w \right| < \varepsilon
-        $$
+        \]
     \end{enumerate}
 \end{theorem}
 
-This theorem suggests defining the derivative of a measure as the limit of quotients $\mu(I) / m(I)$. 
+This theorem suggests defining the derivative of a measure as the limit of quotients \(\mu(I) / m(I)\). 
 
 \begin{definition}{Symmetric Derivative}*
 \end{definition}
