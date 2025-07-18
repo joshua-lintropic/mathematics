@@ -1,0 +1,158 @@
+\usepackage{titlesec}
+\usepackage[many]{tcolorbox}
+
+% Adjust spacing after the chapter title
+\titlespacing*{\chapter}{0cm}{-2.0cm}{0.50cm}
+\titlespacing*{\section}{0cm}{0.50cm}{0.25cm}
+
+\titleformat*{\section}   {\bfseries\sffamily\Large}
+\titleformat*{\subsection}{\bfseries\sffamily\large}
+\titleformat*{\subsubsection}{\bfseries\sffamily\normalsize}
+\titleformat*{\paragraph} {\bfseries\sffamily\normalsize}
+\titleformat*{\subparagraph}{\bfseries\sffamily\normalsize}
+
+% Indent 
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1ex}
+
+% --- Theorems, lemma, corollary, postulate, definition ---
+\usepackage[dvipsnames]{xcolor}
+\usepackage{titlesec}
+\usepackage[many]{tcolorbox}
+\tcbuselibrary{theorems,skins,breakable}
+
+% Custom colors
+\definecolor{MyBlue}{HTML}{37CDDE}
+\definecolor{MyGreen}{HTML}{50C878}
+\definecolor{MyPurple}{HTML}{7851A9}
+\definecolor{MyGold}{HTML}{D4AF37}
+\definecolor{MyGray}{HTML}{808080}
+
+\newtcbtheorem[]{theorem}{Theorem}%
+  {enhanced,
+   colback        = red!20,
+   colbacktitle   = red!30,
+   coltitle       = black,
+   boxrule        = 0pt,
+   frame hidden,
+   arc            = 2mm,
+   before skip    = 3ex,
+   after skip     = 3ex,
+   before title   = {\vspace{2mm}},
+   after title    = {\vspace{2mm}},
+   fonttitle      = \bfseries\sffamily,
+   breakable
+  }{theorem}
+
+\newtcbtheorem[]{proposition}{Proposition}%
+  {enhanced,
+   colback        = MyGold!20,
+   colbacktitle   = MyGold!30,
+   coltitle       = black,
+   boxrule        = 0pt,
+   frame hidden,
+   arc            = 2mm,
+   before skip    = 3ex,
+   after skip     = 3ex,
+   before title   = {\vspace{2mm}},
+   after title    = {\vspace{2mm}},
+   fonttitle      = \bfseries\sffamily,
+   breakable
+  }{proposition}
+
+\newtcbtheorem[]{lemma}{Lemma}%
+  {enhanced,
+   colback        = MyBlue!20,
+   colbacktitle   = MyBlue!30,
+   coltitle       = black,
+   boxrule        = 0pt,
+   frame hidden,
+   arc            = 2mm,
+   before skip    = 3ex,
+   after skip     = 3ex,
+   before title   = {\vspace{2mm}},
+   after title    = {\vspace{2mm}},
+   fonttitle      = \bfseries\sffamily,
+   breakable
+  }{lemma}
+
+\newtcbtheorem[]{corollary}{Corollary}%
+  {enhanced,
+   colback        = MyGreen!20,
+   colbacktitle   = MyGreen!30,
+   coltitle       = black,
+   boxrule        = 0pt,
+   frame hidden,
+   arc            = 2mm,
+   before skip    = 3ex,
+   after skip     = 3ex,
+   before title   = {\vspace{2mm}},
+   after title    = {\vspace{2mm}},
+   fonttitle      = \bfseries\sffamily,
+   breakable
+  }{corollary}
+
+\newtcbtheorem[]{definition}{Definition}%
+  {enhanced,
+   colback        = MyPurple!20,
+   colbacktitle   = MyPurple!30,
+   coltitle       = black,
+   boxrule        = 0pt,
+   frame hidden,
+   arc            = 2mm,
+   before skip    = 3ex,
+   after skip     = 3ex,
+   before title   = {\vspace{2mm}},
+   after title    = {\vspace{2mm}},
+   fonttitle      = \bfseries\sffamily,
+   breakable
+  }{definition}
+
+\newtcbtheorem[]{remark}{Remark}%
+  {enhanced,
+   colback        = MyGray!20,
+   colbacktitle   = MyGray!30,
+   coltitle       = black,
+   boxrule        = 0pt,
+   frame hidden,
+   arc            = 2mm,
+   before skip    = 3ex,
+   after skip     = 3ex,
+   before title   = {\vspace{2mm}},
+   after title    = {\vspace{2mm}},
+   fonttitle      = \bfseries\sffamily,
+   breakable
+  }{remark}
+
+\newtcbtheorem[]{algorithm}{Algorithm}%
+  {enhanced,
+   colback        = Violet!20,
+   colbacktitle   = Violet!30,
+   coltitle       = black,
+   boxrule        = 0pt,
+   frame hidden,
+   arc            = 2mm,
+   before skip    = 3ex,
+   after skip     = 3ex,
+   before title   = {\vspace{2mm}},
+   after title    = {\vspace{2mm}},
+   fonttitle      = \bfseries\sffamily,
+   breakable
+  }{algorithm}
+
+% problems unchanged
+\newtcbtheorem[]{problem}{Problem}%
+  {enhanced,
+   colback        = black!5,
+   colbacktitle   = black!5,
+   coltitle       = black,
+   boxrule        = 0pt,
+   frame hidden,
+   arc            = 2mm,
+   before skip    = 3ex,
+   after skip     = 3ex,
+   before title   = {\vspace{2mm}},
+   after title    = {\vspace{2mm}},
+   fonttitle      = \bfseries\sffamily,
+   breakable
+  }{problem}
