@@ -116,14 +116,37 @@ The total variation measure \(|\mu|\) can be thought of as the smallest positive
 \end{theorem}
 
 \begin{proof}
-    TODO: The intuition for why \(|\mu|\) must be finite is that 
+    The idea is that we can bisect any measurable set \(E\) into halves with measure absolutely greater than 1. Recursing this process will yield a partition of \(E\) whose members have measure absolutely greater than 1, which will violate additivty since \(\mu\) is complex and thus finite. 
+    \stdvspace
+
+    For contradiction, take any \(E \in \fr{M}\) such that \(|\mu|(E) = \infty\). Define \(t = \pi(1 + |\mu(E)|)\), so \(t < \infty = |\mu|(E)\). By the approximation property of the supremum, there exists a partition \(\{E_n\}_n \in \fr{P}(E)\) such that \(\sum_n |\mu(E_n)| > t\). By definition of the limit, there exists \(N\) such that \(\sum_{i=1}^N |\mu(E_i)| > t\).
+    \stdvspace
+
+    Let \(z_i = \mu(E_i)\) and apply the previous lemma to obtain a subset \(S \subseteq \{1, \dots, N\}\) such that
+    \[
+        \left| \sum_{k \in S} \mu(E_k) \right| \geq \frac{1}{\pi} \sum_{i=1}^N |\mu(E_i)|
+        \implies A := \bigcup_{k \in S} E_k
+        \implies |\mu(A)| > \frac{t}{\pi} > 1
+    \]
+    where the last equality follows from additivity. Now, let \(B := E \setminus A\). Then 
+    \[
+        |\mu(B)| = |\mu(E) - \mu(A)| 
+        \geq |\mu(A)| - |\mu(E)|
+        > 1 + |\mu(E)| - |\mu(E)|
+        = 1
+    \]
+    So, we have a partition \(\{A, B\}\) of \(E\) whose members have measure absolutely greater than 1. Now, either \(|\mu|(A) = \infty\) or \(|\mu|(B) = \infty\), since \(|\mu|\) is countably additive. Without loss of generality, assume \(|\mu|(B) = \infty\). Repeating this process yields a partition \(\{A_n\}_n\) of \(E\) such that \(|\mu(A_n)| > 1\) for all \(n\). But then
+    \[
+        \mu(E) = \sum_{n=1}^\infty \mu(A_n)
+    \]
+    cannot converge, as \(|\mu(A_n)|\) does not tend to \(0\). So every set \(E \in \fr{M}\) must have finite total variation, and in particular this holds for \(E = X\) as well.
 \end{proof}
 
 Now we can give some structure to complex measures on a measurable space. 
 
-\begin{definition}{Complex Measures Form a Normed Space}*
+\begin{proposition}{Complex Measures Form a Normed Vector Space}*
     Let \((X, \fr{M})\) be a measurable space. The set of complex measures \(\{\mu : \fr{M} \to \bb{C}\}\) forms a normed vector space, with norm \(\|\mu\| := |\mu|(X)\). 
-\end{definition}
+\end{proposition}
 
 \begin{definition}{Jordan Decomposition of Signed Measures}*
     Let \((X, \fr{M})\) be a measurable space, and suppose \(\mu : \fr{M} \to \bb{R}\) is a \tit{signed measure}. Then the \tit{positive and negative variations} of \(\mu\) are 
@@ -139,7 +162,6 @@ Now we can give some structure to complex measures on a measurable space.
         \quad
         |\mu| = \mu^+ + \mu^-
     \]
-
     and this representation of \(\mu\) is its \tit{Jordan decomposition}. 
 \end{definition}
 
@@ -163,6 +185,13 @@ Now we can give some structure to complex measures on a measurable space.
     then \(\lambda\) is \tit{concentrated} on \(A\). This is equivalent to saying \(\lambda(E) = 0\) whenever \(E \cap A = \varnothing\).
 \end{definition}
 
+\begin{definition}{Mutually Singular Measures}*
+    Let \((X, \fr{M})\) be a measurable space. Two measures \(\lambda_1, \lambda_2\) are \tit{mutually singular} if there exists \(A, B \in \fr{M}\) disjoint such that \(\lambda_1\) is concentrated on \(A\) and \(\lambda_2\) is concentrated on \(B\), denoted
+    \[
+        \lambda_1 \perp \lambda_2
+    \]
+\end{definition}
+
 \begin{proposition}{Basic Concentration Properties}*
     Suppose \(\mu, \lambda, \lambda_1, \lambda_2\) are measures on \((X, \fr{M})\) and \(\mu\) is positive. Then the following hold:
     \begin{enumerate}[(a)]
@@ -177,48 +206,120 @@ Now we can give some structure to complex measures on a measurable space.
     \end{enumerate}
 \end{proposition}
 
+% \begin{proof}
+%     \tit{Part (a).} If \(E \cap A = \varnothing\), then
+%     \[
+%         |\lambda|(E) = \sup \sum_{n=1}^\infty |\lambda(E_n)| 
+%         = \sup \sum_{n=1}^\infty |\lambda(A \cap E_n)|
+%         = |\lambda|(A \cap E)
+%     \]
+%     so that \(|\lambda|\) is concentrated on \(A\).
+% \end{proof}
+% 
+% \begin{proof}
+%     \tit{Part (b).} Since \(\lambda_1 \perp \lambda_2\), there exist \(A, B \in \fr{M}\) disjoint such that \(\lambda_1\) is concentrated on \(A\) and \(\lambda_2\) is concentrated on \(B\). From the previous part, \(|\lambda_1|\) is concentrated on \(A\) and \(|\lambda_2|\) is concentrated on \(B\), so \(|\lambda_1| \perp |\lambda_2|\).
+% \end{proof}
+% 
+% \begin{proof}
+%     \tit{Part (c).} There exists \(A_1, B_1\) disjoint such that \(\lambda_1\) is concentrated on \(A_1\) and \(\mu\) is concentrated on \(B_1\). Similarly, there exists \(A_2, B_2\) disjoint such that \(\lambda_2\) is concentrated on \(A_2\) and \(\mu\) is concentrated on \(B_2\). Let \(A = A_1 \cup A_2\) and \(B = B_1 \cap B_2\). Note that \(\lambda_1 + \lambda_2\) is concentrated on \(A\), and also \(\mu\) is concentrated on \(B\). Since \(A\) and \(B\) are disjoint, we conclude that \(\lambda_1 + \lambda_2 \perp \mu\).
+% \end{proof}
+% 
+% \begin{proof}
+%     \tit{Part (d).} This is obvious.
+% \end{proof}
+% 
+% \begin{proof}
+%     \tit{Part (e).} Suppose \(\mu(E) = 0\) for \(E \in \fr{M}\). Take any partition \(\{E_n\}_n\) of \(E\). Note \(\mu(E_n) = 0 \implies \lambda(E_n) = 0\) for all \(n\), since \(\mu\) is positive. Hence \(|\lambda| \ll \mu\). 
+% \end{proof}
+% 
+% \begin{proof}
+%     \tit{Part (f).} Let \(\lambda_2\) be concentrated on \(A\) and \(\mu\) be concentrated on \(B\). Since \(\mu(E) = 0 \implies \lambda_1(E) = 0\) whenever \(E \cap B = \varnothing\), \(\lambda_1\) is concentrated on \(B\). Hence \(\lambda_1 \perp \lambda_2\).
+% \end{proof}
+% 
+% \begin{proof}
+%     \tit{Part (g).} From the previous part, \(\lambda \perp \lambda\). Hence \(\lambda = 0\).
+% \end{proof}
+
+\begin{lemma}{Reduction of \(\sigma\)-Finite Measures}*
+    Let \(X, \fr{M}\) be a measurable space, and let \(\mu\) be a positive \(\sigma\)-finite) measure. Then there exists \(w \in L^1(\mu)\) such that \(\oname{range}(w) \subseteq (0, 1)\). 
+\end{lemma}
+
 \begin{proof}
-    \tit{Part (a).} If \(E \cap A = \varnothing\), then
-\end{proof}
-
-
-
-
-
-\newpage
-\section{Differentiation}
-
-References: Rudin \tit{Real and Complex Analysis}, Chapter 7. 
-\stdvspace
-
-\tit{Remark.} The goal of this section is to motivate a definition of the derivative (of a measure) which will act as an “inverse” to Lebesgue integration.
-\stdvspace
-
-\tit{Convention.} The Lebesgue measure will be denoted \(m\), with the appropriate dimension up to specification. 
-
-\begin{theorem}{Motivation for the Derivative}*
-    Let \(\mu : \fr{M} \to \bb{C}\) be a complex Borel measure on \(\bb{R}\). Define 
+    Let \(X = \bigcup_n X_n\) where \(X_n\) are finite under \(\mu\). Define 
     \[
-        f(x) = \mu((-\infty, x)) 
-        \qquad (x \in \bb{R})
+        w(x) = \sum_{n=1}^\infty \frac{1}{2^n(1 + \mu(X_n))} \cl{X}_{X_n}(x)
     \]
 
-    Then the following are equivalent: 
+    Note that \(w\) is the limit of measurable functions and thus measurable. It satisfies \(0 < w(x) < 1\) for all \(x\), and it is integrable and \(L^1\) thanks to the Monotone Convergence Theorem. 
+\end{proof}
+
+\begin{remark}{Finite Measures Suffice}*
+    The point of the preceeding lemma is that any \(\sigma\)-finite \(\mu\) can be replaced by a finite measure \(\tilde{\mu}\), namely \(d \tilde{\mu} = w \, d\mu\). It is finite since 
+    \[
+        \tilde{\mu}(E) = \left| \int_E \, \mr{d}\tilde{\mu} \right| 
+        = \left| \int_E w \, \mr{d}\mu \right|
+        \leq \int_X w \, \mr{d}\mu
+        < \infty
+    \]
+
+    since \(w \in L^1(\mu)\).
+\end{remark}
+
+\begin{theorem}{Lebesgue-Radon-Nikodym}*
+    Let \(X, \fr{M}\) be a measurable space, with measures \(\mu\) positive and \(\sigma\)-finite, \(\lambda\) complex. Then 
     \begin{enumerate}[(a)]
-        \item \(f\) is differentiable at \(x\) with \(f'(x) = w \in \bb{C}\). 
-        \item For each \(\varepsilon > 0\) there exists \(\delta > 0\) such that for any open interval \(I \ni x\), 
+        \itemsep0em
+        \item There eixst unique \(\lambda_a, \lambda_s\) complex measures such that \(\lambda = \lambda_a + \lambda_s\), satisfying \(\lambda_a \ll \mu\) and \(\lambda_s \perp \mu\).
+        \item There exists a unique \(\frac{d\lambda_a}{d\mu} \in L^1(\mu)\) such that
         \[
-            m(I) < \delta 
-            \implies
-            \left| \frac{\mu(I)}{m(I)} - w \right| < \varepsilon
+            \lambda_a(E) = \int_E \frac{d\lambda_a}{d\mu} \, \mr{d}\mu
+            \quad (E \in \fr{M})
         \]
     \end{enumerate}
 \end{theorem}
 
-This theorem suggests defining the derivative of a measure as the limit of quotients \(\mu(I) / m(I)\). 
+\begin{proof}
+    TODO: revisit after Chapter 4, Hilbert Spaces. 
+\end{proof}
 
-\begin{definition}{Symmetric Derivative}*
-\end{definition}
+\begin{remark}{Generaliziation to \(\sigma\)-finite Measures}*
+    If \(\mu\) and \(\lambda\) are \(\sigma\)-finite, then 
+\end{remark}
+
+% \newpage
+% \section{Differentiation}
+% 
+% References: Rudin \tit{Real and Complex Analysis}, Chapter 7. 
+% \stdvspace
+% 
+% \tit{Remark.} The goal of this section is to motivate a definition of the derivative (of a measure) which will act as an “inverse” to Lebesgue integration.
+% \stdvspace
+% 
+% \tit{Convention.} The Lebesgue measure will be denoted \(m\), with the appropriate dimension up to specification. 
+% 
+% \begin{theorem}{Motivation for the Derivative}*
+%     Let \(\mu : \fr{M} \to \bb{C}\) be a complex Borel measure on \(\bb{R}\). Define 
+%     \[
+%         f(x) = \mu((-\infty, x)) 
+%         \qquad (x \in \bb{R})
+%     \]
+% 
+%     Then the following are equivalent: 
+%     \begin{enumerate}[(a)]
+%         \item \(f\) is differentiable at \(x\) with \(f'(x) = w \in \bb{C}\). 
+%         \item For each \(\varepsilon > 0\) there exists \(\delta > 0\) such that for any open interval \(I \ni x\), 
+%         \[
+%             m(I) < \delta 
+%             \implies
+%             \left| \frac{\mu(I)}{m(I)} - w \right| < \varepsilon
+%         \]
+%     \end{enumerate}
+% \end{theorem}
+% 
+% This theorem suggests defining the derivative of a measure as the limit of quotients \(\mu(I) / m(I)\). 
+% 
+% \begin{definition}{Symmetric Derivative}*
+% \end{definition}
 
 \end{document}
 
