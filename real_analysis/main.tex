@@ -14,140 +14,142 @@
 \textsf{\textbf{Lecturer:}} Jacob Shapiro
 
 \vspace{2ex}
-
 Problems are derived largely from \textit{Integration Theory and Hilbert Spaces} by Stein and Shakarchi and \textit{Real and Complex Analysis} by Rudin. Some solutions are not my own, but rather thanks to the MAT425 TAs at Princeton (Spring 2025). 
+\stdvspace
+
+Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \section{Measures}
 
 \begin{problem}{Topology of the Cantor Set}*
-[S\&S E1.1.] Prove that the Cantor set $\cl{C}$ constructed in the text is nowhere dense but perfect. In other words, given two distinct points $x, y \in \cl{C}$, there is a point $z \not\in \cl{C}$ that lies between $x$ and $y$, and yet $\cl{C}$ has no isolated points. 
+[S\&S E1.1.] Prove that the Cantor set \(\cl{C}\) constructed in the text is nowhere dense but perfect. In other words, given two distinct points \(x, y \in \cl{C}\), there is a point \(z \not\in \cl{C}\) that lies between \(x\) and \(y\), and yet \(\cl{C}\) has no isolated points. 
 \end{problem}
 
 \begin{proof}
-    We begin by showing that $\cl{C}$ is nowhere dense. Consider any distinct $x, y \in \cl{C}$, and let $d := |x - y|$. Furthermore, select $k$ such that $3^{-k} < d$. At each step of Cantor's process $\cl{C}_k$ (starting with $\cl{C}_0 := [0, 1]$), the remaining disjoint intervals are each of length $3^{-k}$. Hence by construction, $x$ and $y$ lie in different intervals of $\cl{C}_k$, so there is some $z \not\in \cl{C}_k$ between them. But $\cl{C}_k \supseteq \cl{C}$, so $z$ is not in $\cl{C}$ either. 
+    We begin by showing that \(\cl{C}\) is nowhere dense. Consider any distinct \(x, y \in \cl{C}\), and let \(d := |x - y|\). Furthermore, select \(k\) such that \(3^{-k} < d\). At each step of Cantor's process \(\cl{C}_k\) (starting with \(\cl{C}_0 := [0, 1]\)), the remaining disjoint intervals are each of length \(3^{-k}\). Hence by construction, \(x\) and \(y\) lie in different intervals of \(\cl{C}_k\), so there is some \(z \not\in \cl{C}_k\) between them. But \(\cl{C}_k \supseteq \cl{C}\), so \(z\) is not in \(\cl{C}\) either. 
     \stdvspace
 
-    Now, we show $\cl{C}$ has no isolated points. Choose any $x \in \cl{C}$, and any ball $B_{\varepsilon}(x)$ around it. Choose some $k$ such that $3^{-k} < \varepsilon$. Since $x \in \cl{C} \implies x \in \cl{C}_k$, it must be that $x$ and a (distinct) endpoint of some interval in $\cl{C}_k$ --- call it $y$ --- satisfy $|x - y| < \varepsilon$, so $y \in B_{\varepsilon}(x)$. But since the endpoints of such intervals are never removed, we have $y \in \cl{C}$. 
+    Now, we show \(\cl{C}\) has no isolated points. Choose any \(x \in \cl{C}\), and any ball \(B_{\varepsilon}(x)\) around it. Choose some \(k\) such that \(3^{-k} < \varepsilon\). Since \(x \in \cl{C} \implies x \in \cl{C}_k\), it must be that \(x\) and a (distinct) endpoint \(y\) of some interval in \(\cl{C}_k\) satisfy \(|x - y| < \varepsilon\), so \(y \in B_{\varepsilon}(x)\). But since the endpoints of such intervals are never removed, we have \(y \in \cl{C}\). 
 \end{proof}
 
 \begin{problem}{Ternary Expansions of the Cantor Set}*
-[S\&S E1.2.] The Cantor set $\cl{C}$ can also be described in terms of ternary expansions.
+[S\&S E1.2.] The Cantor set \(\cl{C}\) can also be described in terms of ternary expansions.
 
 \begin{enumerate}[(a)]
-    \item Every number in $[0,1]$ has a ternary expansion
-    $$
-    x = \sum_{k=1}^\infty a_k 3^{-k}, \quad \text{where } a_k = 0, 1, \text{ or } 2.
-    $$
+    \item Every number in \([0,1]\) has a ternary expansion
+    \[
+        x = \sum_{k=1}^\infty a_k 3^{-k}, \quad \text{where } a_k = 0, 1, \text{ or } 2.
+    \]
 
-    Note that this decomposition is not unique since, for example, $1/3 = \sum_{k=2}^\infty 2/3^k$.
+    Note that this decomposition is not unique since, for example, \(1/3 = \sum_{k=2}^\infty 2/3^k\).
 
-    Prove that $x \in \cl{C}$ if and only if $x$ has a representation where every $a_k$ is either $0$ or $2$.
+    Prove that \(x \in \cl{C}\) if and only if \(x\) has a representation where every \(a_k\) is either \(0\) or \(2\).
     
-    \item The \textbf{Cantor function} is defined on $\cl{C}$ by
-    $$
-    F(x) = \sum_{k=1}^\infty \frac{b_k}{2^k} \quad \text{if } x = \sum_{k=1}^\infty a_k 3^{-k}, \text{ where } b_k = a_k / 2.
-    $$
+    \item The \textbf{Cantor function} is defined on \(\cl{C}\) by
+    \[
+        F(x) = \sum_{k=1}^\infty \frac{b_k}{2^k} \quad \text{if } x = \sum_{k=1}^\infty a_k 3^{-k}, \text{ where } b_k = a_k / 2.
+    \]
 
-    In this definition, we choose the expansion of $x$ in which $a_k = 0$ or $2$.
+    In this definition, we choose the expansion of \(x\) in which \(a_k = 0\) or \(2\).
 
-    Show that $F$ is well defined and continuous on $\cl{C}$, and moreover $F(0) = 0$ as well as $F(1) = 1$.
+    Show that \(F\) is well defined and continuous on \(\cl{C}\), and moreover \(F(0) = 0\) as well as \(F(1) = 1\).
 
-    \item Prove that $F : \cl{C} \to [0,1]$ is surjective, that is, for every $y \in [0,1]$ there exists $x \in \cl{C}$ such that $F(x) = y$.
+    \item Prove that \(F : \cl{C} \to [0,1]\) is surjective, that is, for every \(y \in [0,1]\) there exists \(x \in \cl{C}\) such that \(F(x) = y\).
 
-    \item One can also extend $F$ to be a continuous function on $[0,1]$ as follows. Note that if $(a,b)$ is an open interval of the complement of $\cl{C}$, then $F(a) = F(b)$. Hence we may define $F$ to have the constant value $F(a)$ in that interval.
+    \item One can also extend \(F\) to be a continuous function on \([0,1]\) as follows. Note that if \((a,b)\) is an open interval of the complement of \(\cl{C}\), then \(F(a) = F(b)\). Hence we may define \(F\) to have the constant value \(F(a)\) in that interval.
 \end{enumerate}
 \end{problem}
 
 \begin{proof}
-    \textit{Part (a).} Consider $x \in \cl{C}$. We will construct a sequence of ternary numbers $\{a_k\}_k$ such that $x = \sum_k a_k 3^{-k}$ as desired. First, define $a_1$ to be the smallest ternary number satisfying 
-    $$
+    \textit{Part (a).} Consider \(x \in \cl{C}\). We will construct a sequence of ternary numbers \(\{a_k\}_k\) such that \(x = \sum_k a_k 3^{-k}\) as desired. First, define \(a_1\) to be the smallest ternary number satisfying 
+    \[
         \frac{a_1}{3} \leq x \leq \frac{a_1}{3} + \frac{1}{3}
-    $$
+    \]
 
-    Now, suppose the first $n-1$ ternary numbers $\{a_k\}_{k=1}^{n-1}$ have been constructed as such, so that 
-    $$
+    Now, suppose the first \(n-1\) ternary numbers \(\{a_k\}_{k=1}^{n-1}\) have been constructed as such, so that 
+    \[
     \sum_{k=1}^{n-1} \frac{a_k}{3^k} \leq x \leq \sum_{k=1}^{n-1} \frac{a_k}{3^k} + \frac{1}{3^{n-1}}
-    $$
+    \]
 
-    Then, select $a_n$ as the smallest ternary number satisfying 
-    $$
+    Then, select \(a_n\) as the smallest ternary number satisfying 
+    \[
     \sum_{k=1}^{n} \frac{a_k}{3^k} \leq x \leq \sum_{k=1}^n \frac{a_k}{3^k} + \frac{1}{3^n}
-    $$
+    \]
 
-    Thus we have a ternary sequence $\{a_n\}$ satisfying the above inequalities. Taking the limit $n \to \infty$ on both sides, $x = \sum_k a_k 3^{-k}$ as desired. 
+    Thus we have a ternary sequence \(\{a_n\}\) satisfying the above inequalities. Taking the limit \(n \to \infty\) on both sides, \(x = \sum_k a_k 3^{-k}\) as desired. 
     \stdvspace
 
-    For the reverse direction, take any $x$ with such a ternary representation. We will show by induction that it is contained in all $\cl{C}_n$. Let $x = \sum_k a_k 3^{-k}$ for $a_k\in \{0, 2\}$. If $a_1 = 0$, then $x < 1/3$ so $x \in \cl{C}_1$; on the other hand if $a_1 = 2$, then $x \geq 2/3$ so $x \in \cl{C}_1$. Now suppose $x \in \cl{C}_{n-1}$; then by construction of the Cantor set, it must be in some interval $I_{n-1} = [i_{n-1}, i_{n-1} + 3^{-(n-1)}]$. If $a_n = 0$, then $x < i_{n-1} + 3^{-n}$ so $x \in \cl{C}_n$, and if $a_n = 2$, then $x \geq i_{n-1} + 2 \cdot 3^{-n}$ so $x \in \cl{C}_n$ as well. Hence
-    $$
+    For the reverse direction, take any \(x\) with such a ternary representation. We will show by induction that it is contained in all \(\cl{C}_n\). Let \(x = \sum_k a_k 3^{-k}\) for \(a_k\in \{0, 2\}\). If \(a_1 = 0\), then \(x < 1/3\) so \(x \in \cl{C}_1\); on the other hand if \(a_1 = 2\), then \(x \geq 2/3\) so \(x \in \cl{C}_1\). Now suppose \(x \in \cl{C}_{n-1}\); then by construction of the Cantor set, it must be in some interval \(I_{n-1} = [i_{n-1}, i_{n-1} + 3^{-(n-1)}]\). If \(a_n = 0\), then \(x < i_{n-1} + 3^{-n}\) so \(x \in \cl{C}_n\), and if \(a_n = 2\), then \(x \geq i_{n-1} + 2 \cdot 3^{-n}\) so \(x \in \cl{C}_n\) as well. Hence
+    \[
     \forall n \in \bb{N} : x \in \cl{C}_n \implies x \in \bigcap_{n=1}^\infty \cl{C}_n = \cl{C}
-    $$
+    \]
 
     and that completes the proof. 
 \end{proof}
 
 \begin{proof}
-    \textit{Part (b).} Clearly $F : \cl{C} \to [0, 1]$ is well-defined. To show continuity on $\cl{C}$, for any $x \in \cl{C}$ and $\varepsilon > 0$ we must show existence of some $\delta > 0$ such that $|x - y| < \delta \implies |f(x) - f(y)| < \varepsilon$. First, select some $n \in \bb{N}$ such that $2^{-n} < \varepsilon$, and let $\delta = 2 \cdot 3^{-n}$. If $|x - y| < \delta$, then in their ternary $\{0, 2\}$ representations the first $n$ digits must agree. Hence $|F(x) - F(y)| < 2^{-n} < \varepsilon$ as desired. 
+    \textit{Part (b).} Clearly \(F : \cl{C} \to [0, 1]\) is well-defined. To show continuity on \(\cl{C}\), for any \(x \in \cl{C}\) and \(\varepsilon > 0\) we must show existence of some \(\delta > 0\) such that \(|x - y| < \delta \implies |f(x) - f(y)| < \varepsilon\). First, select some \(n \in \bb{N}\) such that \(2^{-n} < \varepsilon\), and let \(\delta = 2 \cdot 3^{-n}\). If \(|x - y| < \delta\), then in their ternary \(\{0, 2\}\) representations the first \(n\) digits must agree. Hence \(|F(x) - F(y)| < 2^{-n} < \varepsilon\) as desired. 
     \stdvspace
 
     Finally, we can write 
-    $$
+    \[
     0 = \sum_{k \in \bb{N}} 0 \cdot 3^{-k}, \quad 1 = \sum_{k \in \bb{N}} 2 \cdot 3^{-k}
     \implies F(0) = 0, F(1) = 1
-    $$
+    \]
 
     thus completing the proof. 
 \end{proof}
 
 \begin{proof}
-    \textit{Part (c).} Write $y = \sum_k b_k 2^{-k}$. Clearly $x = \sum_k (2a_k) \cdot 3^{-k}$ satisfies $F(x) = y$. 
+    \textit{Part (c).} Write \(y = \sum_k b_k 2^{-k}\). Clearly \(x = \sum_k (2a_k) \cdot 3^{-k}\) satisfies \(F(x) = y\). 
 \end{proof}
 
 \begin{proof}
-    \textit{Part (d).} The precise definition of the extension is $\tilde{F}(x) = \sup_{y \in \cl{C}, y \leq x} F(y)$ for $\tilde{F} : [0, 1] \to [0, 1]$. Clearly $\tilde{F}$ is continuous at each $x \in \cl{C}$, from part (b). So, take any $x \not\in \cl{C}$. Since $[0,1] \setminus \cl{C}$ is open, there exists a ball $B_{\delta}(x) \subseteq [0,1] \setminus \cl{C}$ containing $x$. For any $\varepsilon > 0$, clearly $|x - y| < \delta \implies |\tilde{F}(x) - \tilde{F}(y)| = 0 < \varepsilon$, so $\tilde{F}$ is continuous at all $x \not\in \cl{C}$ as well. 
+    \textit{Part (d).} The precise definition of the extension is \(\tilde{F}(x) = \sup_{y \in \cl{C}, y \leq x} F(y)\) for \(\tilde{F} : [0, 1] \to [0, 1]\). Clearly \(\tilde{F}\) is continuous at each \(x \in \cl{C}\), from part (b). So, take any \(x \not\in \cl{C}\). Since \([0,1] \setminus \cl{C}\) is open, there exists a ball \(B_{\delta}(x) \subseteq [0,1] \setminus \cl{C}\) containing \(x\). For any \(\varepsilon > 0\), clearly \(|x - y| < \delta \implies |\tilde{F}(x) - \tilde{F}(y)| = 0 < \varepsilon\), so \(\tilde{F}\) is continuous at all \(x \not\in \cl{C}\) as well. 
 \end{proof}
 
-\begin{problem}{Cardinality of $\sigma$-algebras}*
-    [RCA E1.1.] Does there exist an infinite $\sigma$-algebra with only countably many elements? 
+\begin{problem}{Cardinality of \(\sigma\)-algebras}*
+    [RCA E1.1.] Does there exist an infinite \(\sigma\)-algebra with only countably many elements? 
 \end{problem}
 
 \begin{proof}
-    No. Consider, for contradiction, an infinite $\sigma$-algebra $\fr{M}$ with countably many elements. The key observation is that $\fr{M}$ must have a countable sequence of non-empty, pairwise disjoint subsets. To see why, suppose that a largest collection of non-empty, pairwise disjoint elements is $\{D_i\}_{i=1}^N$ for $N>1$ (since $A$ and $X \setminus A$ are disjoint for $A \neq \varnothing, X$). We will show that there are at least $N+1$ non-empty pairwise disjoint elements, contradicting. 
+    No. Consider, for contradiction, an infinite \(\sigma\)-algebra \(\fr{M}\) with countably many elements. The key observation is that \(\fr{M}\) must have a countable sequence of non-empty, pairwise disjoint subsets. To see why, suppose that a largest collection of non-empty, pairwise disjoint elements is \(\{D_i\}_{i=1}^N\) for \(N>1\) (since \(A\) and \(X \setminus A\) are disjoint for \(A \neq \varnothing, X\)). We will show that there are at least \(N+1\) non-empty pairwise disjoint elements, contradicting. 
     \stdvspace
     
-    Since $\fr{M}$ has infinitely many elements, there exists a non-empty set $D$ which cannot be written as a union of some of these $D_i$, as only finitely many such unions exist. If $D$ is disjoint to all $D_i$, then we are done, since $\{D_i\}_i \cup D$ forms $N+1$ non-empty pairwise disjoint elements of $\fr{M}$. So, instead suppose $D$ intersects some subset $\{D_{i_j}\}_j$. Because $D$ is not just a union of the $D_i$, there exists a set $D_{k}$ for which $D' := D \cap D_{k} \subsetneq D_{k}$ is non-empty. Defining $D'' := D_{k} \setminus D'$, we see $\{D_i\}_{i \neq k} \cup D' \cup D''$ is a collection of $N+1$ non-empty pairwise disjoint elements of $\fr{M}$, a contradiction. 
+    Since \(\fr{M}\) has infinitely many elements, there exists a non-empty set \(D\) which cannot be written as a union of some of these \(D_i\), as only finitely many such unions exist. If \(D\) is disjoint to all \(D_i\), then we are done, since \(\{D_i\}_i \cup D\) forms \(N+1\) non-empty pairwise disjoint elements of \(\fr{M}\). So, instead suppose \(D\) intersects some subset \(\{D_{i_j}\}_j\). Because \(D\) is not just a union of the \(D_i\), there exists a set \(D_{k}\) for which \(D' := D \cap D_{k} \subsetneq D_{k}\) is non-empty. Defining \(D'' := D_{k} \setminus D'\), we see \(\{D_i\}_{i \neq k} \cup D' \cup D''\) is a collection of \(N+1\) non-empty pairwise disjoint elements of \(\fr{M}\), a contradiction. 
     \stdvspace
 
-    Thus take a countable sequence of non-empty pairwise disjoint elements $\{ E_n \}_n \subseteq \fr{M}$. For each binary number $b \in [0, 1)$, write $b = 0.\overline{b_1 b_2 b_3 \dots}$ and take $b \mapsto \bigcup_{n \mid b_n = 1} E_n$. This map is a bijection, since the $E_n$ are pairwise disjoint and non-empty. Thus $|\fr{M}| \geq |[0, 1)| = 2^{\aleph_0}$, so $\fr{M}$ is not countable, contradicting our original assumption. 
+    Thus take a countable sequence of non-empty pairwise disjoint elements \(\{ E_n \}_n \subseteq \fr{M}\). For each binary number \(b \in [0, 1)\), write \(b = 0.\overline{b_1 b_2 b_3 \dots}\) and take \(b \mapsto \bigcup_{n \mid b_n = 1} E_n\). This map is a bijection, since the \(E_n\) are pairwise disjoint and non-empty. Thus \(|\fr{M}| \geq |[0, 1)| = 2^{\aleph_0}\), so \(\fr{M}\) is not countable, contradicting our original assumption. 
 \end{proof}
 
 \begin{problem}{Comparison Sets are Measurable}*
-    [RCA E1.5(a).] Suppose $f,g : X \to \overline{\bb{R}}$ are measurable. Then the comparison sets 
-    $$
+    [RCA E1.5(a).] Suppose \(f,g : X \to \overline{\bb{R}}\) are measurable. Then the comparison sets 
+    \[
         \{x \mid f(x) < g(x)\}, \quad \{x \mid f(x) = g(x)\}
-    $$
+    \]
 
-    are measurable. [Hint: Look at the rationals between $f$ and $g$.]
+    are measurable. [Hint: Look at the rationals between \(f\) and \(g\).]
 \end{problem}
 
 \begin{proof}
-    If we can show that $\{x \mid f(x) < g(x)\}$ is measurable, then 
-    $$
+    If we can show that \(\{x \mid f(x) < g(x)\}\) is measurable, then 
+    \[
         \{x \mid f(x) = g(x)\} = X \setminus (\{x \mid f(x) < g(x)\} \cup \{x \mid f(x) > g(x)\})
-    $$ 
+    \] 
 
-    is also measurable. If $f(x) < g(x)$, then there exists a rational $q$ such that $f(x) < q < g(x)$. The idea is to form preimages of intervals using all such $q$, since 
-    $$
+    is also measurable. If \(f(x) < g(x)\), then there exists a rational \(q\) such that \(f(x) < q < g(x)\). The idea is to form preimages of intervals using all such \(q\), since 
+    \[
     \{x \mid f(x) < g(x) \}
     = \bigcup_{q \in \bb{Q}} \{x \mid f(x) < q < g(x)\}
     = \bigcup_{q \in \bb{Q}} f^{-1}([-\infty, q)) \cap g^{-1}((q, \infty])
     \in \fr{M}
-    $$
+    \]
 
     since intervals are measurable and thus their preimages as well. 
 \end{proof}
 
 \begin{problem}{High-Dimensional Volumes}*
-    [S\&S E1.6.] Using translations and dilations, prove the following: for any ball $B_r \subseteq \bb{R}^d$ of radius $r$, its volume is $\lambda(B) = v_d r^d$, where $v_d = \lambda(B_1)$. 
+    [S\&S E1.6.] Using translations and dilations, prove the following: for any ball \(B_r \subseteq \bb{R}^d\) of radius \(r\), its volume is \(m(B) = v_d r^d\), where \(v_d = m(B_1)\). 
 \end{problem}
 
 \begin{proof}
@@ -155,7 +157,7 @@ Problems are derived largely from \textit{Integration Theory and Hilbert Spaces}
 \end{proof}
 
 \begin{problem}{Boundary of Closure with Positive Measure}*
-    [S\&S E1.9.] Give an example of an open set $\cl{O}$ with the following property: the boundary of the closure of $\cl{O}$ has positive Lebesgue measure; i.e., $\lambda(\partial \overline{\cl{O}}) > 0$. 
+    [S\&S E1.9.] Give an example of an open set \(\cl{O}\) with the following property: the boundary of the closure of \(\cl{O}\) has positive Lebesgue measure; i.e., \(m(\partial \overline{\cl{O}}) > 0\). 
 \end{problem}
 
 \begin{proof}
@@ -163,215 +165,215 @@ Problems are derived largely from \textit{Integration Theory and Hilbert Spaces}
 \end{proof}
 
 \begin{problem}{Borel-Cantelli Lemma}*
-    [S\&S E1.16.] Suppose $\{E_k\}_k$ is a countable family of measurable subsets of $\bb{R}^d$ and that $\sum_k \lambda(E_k) < \infty$. Let 
-    $$
+    [S\&S E1.16.] Suppose \(\{E_k\}_k\) is a countable family of measurable subsets of \(\bb{R}^d\) and that \(\sum_k m(E_k) < \infty\). Let 
+    \[
     E := \{x \in \bb{R}^d : x \in E_k, \text{ for infinitely many } k\}
     \equiv \limsup_{k \to \infty} (E_k)
-    $$
+    \]
 
     \begin{enumerate}[(a)]
-        \item Show that $E$ is measurable. 
-        \item Prove $\lambda(E) = 0$. 
+        \item Show that \(E\) is measurable. 
+        \item Prove \(m(E) = 0\). 
     \end{enumerate}
-    In particular, if the sum of the individual probabilities of infinitely many events is finite, then the probability that infinitely many of them occur is zero. [Hint: Write $E = \bigcap_n \bigcup_{k \geq n} E_k$.]
+    In particular, if the sum of the individual probabilities of infinitely many events is finite, then the probability that infinitely many of them occur is zero. [Hint: Write \(E = \bigcap_n \bigcup_{k \geq n} E_k\).]
 \end{problem}
 
 \begin{proof}
-    \textit{Part (a).} Observe $x \in E_k$ for infinitely many $k$ if and only if for each $n \in \bb{N}$, $x$ resides in at least one $E_k$ for $k \geq n$. So, $E = \bigcap_n \bigcup_{k \geq n} E_k$. Then measurability follows since 
-    $$
+    \textit{Part (a).} Observe \(x \in E_k\) for infinitely many \(k\) if and only if for each \(n \in \bb{N}\), \(x\) resides in at least one \(E_k\) for \(k \geq n\). So, \(E = \bigcap_n \bigcup_{k \geq n} E_k\). Then measurability follows since 
+    \[
     \{E_k\}_k \subseteq \cl{L}(\bb{R}^d)
     \implies \bigcup_{k = n}^\infty E_k \in \cl{L}(\bb{R}^d) \quad (n \in \bb{N})
     \implies E = \bigcap_{n=1}^\infty \bigcup_{k = n}^\infty E_k \in \cl{L}(\bb{R}^d)
-    $$
+    \]
 
     and that completes the proof.
 \end{proof}
 
 \begin{proof}
-    \textit{Part (b).} Observe that for all $n \in \bb{N}$, $E \subseteq \bigcup_{k \geq n} E_k$. By monotonicity, thus 
-    $$
-    \lambda(E) 
-    \leq \lambda \left( \bigcup_{k = n}^\infty E_k \right)
-    \implies 
-    \lambda(E) 
-    \leq \lim_{n \to \infty} \lambda\left(\bigcup_{k = n}^\infty E_k \right) 
-    = \lambda\left(\lim_{n \to \infty} \bigcup_{k = n}^\infty E_k \right) 
-    = \lambda(\varnothing) 
-    = 0
-    $$
+    \textit{Part (b).} Observe that for all \(n \in \bb{N}\), \(E \subseteq \bigcup_{k \geq n} E_k\). By monotonicity, thus 
+    \[
+        m(E) 
+        \leq m \left( \bigcup_{k = n}^\infty E_k \right)
+        \implies 
+        m(E) 
+        \leq \lim_{n \to \infty} m\left(\bigcup_{k = n}^\infty E_k \right) 
+        = m\left(\lim_{n \to \infty} \bigcup_{k = n}^\infty E_k \right) 
+        = m(\varnothing) 
+        = 0
+    \]
 
-    and so $E$ has Lebesgue-measure zero. 
+    and so \(E\) has Lebesgue-measure zero. 
 \end{proof}
 
 \begin{problem}{Dominating Almost-Finite Functions with Constants}*
-    [S\&S E1.17.] Let $\{f_n : [0, 1] \to \widehat{\bb{C}}\}_n$ be a sequence of measurable functions with $|f_n(x)|<\infty$ for almost every $x$. Show that there exists a sequence $c_n$ of positive real numbers such that $f_n(x) / c_n \to 0$ for almost every $x$. [Hint: Pick $c_n$ such that $\lambda(\{x : |f_n(x) / c_n| > 1/n\}) < 2^{-n}$, and apply the Borel-Cantelli Lemma.]
+    [S\&S E1.17.] Let \(\{f_n : [0, 1] \to \widehat{\bb{C}}\}_n\) be a sequence of measurable functions with \(|f_n(x)|<\infty\) for almost every \(x\). Show that there exists a sequence \(c_n\) of positive real numbers such that \(f_n(x) / c_n \to 0\) for almost every \(x\). [Hint: Pick \(c_n\) such that \(m(\{x : |f_n(x) / c_n| > 1/n\}) < 2^{-n}\), and apply the Borel-Cantelli Lemma.]
 \end{problem}
 
 \begin{proof}
-    By replacing $f_n$ with $|f_n|$, without loss of generality let $f_n : [0,1] \to [0, \infty]$. Since $f_n < \infty$ almost everywhere, 
-    $$
-    \lambda \left( \bigcap_{M = 1}^\infty \left\{ x \in [0, 1] \st f_n(x) > M \right\} \right) = 0
+    By replacing \(f_n\) with \(|f_n|\), without loss of generality let \(f_n : [0,1] \to [0, \infty]\). Since \(f_n < \infty\) almost everywhere, 
+    \[
+    m\left( \bigcap_{M = 1}^\infty \left\{ x \in [0, 1] \st f_n(x) > M \right\} \right) = 0
     \qquad (n \in \bb{N})
-    $$
+    \]
 
-    Therefore, fix any $n$, and choose $M_n$ large enough such that 
-    $$
-    \lambda \left( \left\{ x \in [0, 1] \st f_n(x) > M_n \right\} \right) < \frac{1}{2^n}
+    Therefore, fix any \(n\), and choose \(M_n\) large enough such that 
+    \[
+    m\left( \left\{ x \in [0, 1] \st f_n(x) > M_n \right\} \right) < \frac{1}{2^n}
     \implies 
-    \lambda \left( \left\{ x \in [0, 1] \st \frac{f_n(x)}{c_n} > \frac{1}{n} \right\} \right) < \frac{1}{2^n}
-    $$
+    m\left( \left\{ x \in [0, 1] \st \frac{f_n(x)}{c_n} > \frac{1}{n} \right\} \right) < \frac{1}{2^n}
+    \]
 
-    by writing $c_n := nM_n$. Let $E_n$ denote the set in the last step. Since $\sum_{n} \lambda(E_n) = 1 < \infty$, by the Borel-Cantelli Lemma it must be that $\lambda(E) = 0$ where $E := \limsup_n E_n$. Thus every $x \in [0, 1] \setminus E$ is in at most finitely many $E_n$, so for $n$ large enough (depending on $x$), 
-    $$
+    by writing \(c_n := nM_n\). Let \(E_n\) denote the set in the last step. Since \(\sum_{n} m(E_n) = 1 < \infty\), by the Borel-Cantelli Lemma it must be that \(m(E) = 0\) where \(E := \limsup_n E_n\). Thus every \(x \in [0, 1] \setminus E\) is in at most finitely many \(E_n\), so for \(n\) large enough (depending on \(x\)), 
+    \[
     \frac{f_n(x)}{c_n} \leq \frac{1}{n} \implies \lim_{n \to \infty} \frac{f_n(x)}{c_n} = 0
-    $$
+    \]
 
-    and thus this property holds for almost every $x$. 
+    and thus this property holds for almost every \(x\). 
 \end{proof}
 
 \begin{problem}{Measurable Functions as Continuous Limits}*
-    [S\&S E1.18.] Suppose $f : \bb{R} \to \bb{C}$ is a measurable function. Then there exist $\{f_n : \bb{R} \to \bb{C}\}$ continuous and a set $E$ of Lebesgue-measure zero such that 
-    $$
+    [S\&S E1.18.] Suppose \(f : \bb{R} \to \bb{C}\) is a measurable function. Then there exist \(\{f_n : \bb{R} \to \bb{C}\}\) continuous and a set \(E\) of Lebesgue-measure zero such that 
+    \[
     \lim_{n \to \infty} f_n(x) = f(x) \qquad (x \in \bb{R} \setminus E)
-    $$
+    \]
 
     In other words, every measurable function is the limit pointwise almost everywhere of a sequence of continuous functions. 
 \end{problem}
 
 \begin{proof}
-    Let the ``good'' functions $\cl{G}$ be the functions which satisfy the desired property. Let the ``good'' subsets of $\bb{R}$ be those whose characteristic functions satisfy the property. The proof will be deconstructed into eight steps. 
+    Let the ``good'' functions \(\cl{G}\) be the functions which satisfy the desired property. Let the ``good'' subsets of \(\bb{R}\) be those whose characteristic functions satisfy the property. The proof will be deconstructed into eight steps. 
 
-    \textbf{Step 1.} \textit{The intervals $(a, \infty)$ are good.}
+    \textbf{Step 1.} \textit{The intervals \((a, \infty)\) are good.}
 
     Explicitly construct the continuous functions
-    $$
+    \[
     f_n : \bb{R} \to \bb{C}, \quad 
     f_n(x) = \begin{cases}
     0 & x < a \\
     n(x - a) & a \leq x < a + \frac{1}{n} \\
     1 & a + \frac{1}{n} \leq x
     \end{cases}
-    $$
+    \]
 
-    Observe that $f_n \to \cl{X}_{(a, \infty)}$ everywhere, so the intervals $(a, \infty)$ are good. 
+    Observe that \(f_n \to \cl{X}_{(a, \infty)}\) everywhere, so the intervals \((a, \infty)\) are good. 
 
-    \textbf{Step 2.} \textit{The good functions $\cl{G}$ form a commutative ring.}
+    \textbf{Step 2.} \textit{The good functions \(\cl{G}\) form a commutative ring.}
 
-    Suppose $f, f' \in \cl{G}$. Then, respectively, there exists $\{f_n\}_n$ and $\{f_n'\}_n$ continuous such that $f_n \to f$ and $f_n' \to f'$ except on null sets $E$ and $E'$. Thus $\{f_n + f_n'\}_n$ tend to $f+f'$ except on the null set $E \cup E'$, so $f + f' \in \cl{G}$. Similarly, $f_n f_n' \to ff'$ on the same set, so $f f' \in \cl{G}$. Thus $\cl{G}$ is closed under addition and multiplication.
+    Suppose \(f, f' \in \cl{G}\). Then, respectively, there exists \(\{f_n\}_n\) and \(\{f_n'\}_n\) continuous such that \(f_n \to f\) and \(f_n' \to f'\) except on null sets \(E\) and \(E'\). Thus \(\{f_n + f_n'\}_n\) tend to \(f+f'\) except on the null set \(E \cup E'\), so \(f + f' \in \cl{G}\). Similarly, \(f_n f_n' \to ff'\) on the same set, so \(f f' \in \cl{G}\). Thus \(\cl{G}\) is closed under addition and multiplication.
 
-    Then, suppose $f \in \cl{G}$ and $\alpha \in \bb{C}$. Clearly $\alpha f_n \to \alpha f$ except on a null set $E$, so $\alpha f \in \cl{G}$. Hence $\cl{G}$ is closed under scalar multiplication. It follows that $\cl{G}$ is a commutative ring. 
+    Then, suppose \(f \in \cl{G}\) and \(\alpha \in \bb{C}\). Clearly \(\alpha f_n \to \alpha f\) except on a null set \(E\), so \(\alpha f \in \cl{G}\). Hence \(\cl{G}\) is closed under scalar multiplication. It follows that \(\cl{G}\) is a commutative ring. 
 
-    \textbf{Step 3.} \textit{Every set in the Lebesgue algebra $\cl{A}$ is good.}
+    \textbf{Step 3.} \textit{Every set in the Lebesgue algebra \(\cl{A}\) is good.}
 
-    Recall that the Lebesgue elementary family (as defined in Folland) is the collection of sets $\cl{E} = \{ \varnothing \} \cup \{ (a, b] \subseteq \bb{R} \} \cup \{ (a, \infty) \subseteq \bb{R} \}$, and that the Lebesgue algebra $\cl{A}$ is constructed via finite disjoint unions of elements of $\cl{E}$. 
+    Recall that the Lebesgue elementary family (as defined in Folland) is the collection of sets \(\cl{E} = \{ \varnothing \} \cup \{ (a, b] \subseteq \bb{R} \} \cup \{ (a, \infty) \subseteq \bb{R} \}\), and that the Lebesgue algebra \(\cl{A}\) is constructed via finite disjoint unions of elements of \(\cl{E}\). 
     
-    It suffices to show that every set in $\cl{E}$ is good: by Step 2, if $S_1, \dots, S_n$ are disjoint and good, then $\cl{X}_{\bigcup_{i=1}^n S_i} = \sum_{i=1}^n \cl{X}_{S_i}$ is good as well. Clearly $\varnothing$ is good, and Step 1 shows that $(a, \infty)$ is as well. But also $\cl{X}_{(a, b]} = \cl{X}_{(a, \infty)} + (-1) \cdot \cl{X}_{(b, \infty)}$ is good by Step 2, so actually every set in $\cl{E}$ is good. 
+    It suffices to show that every set in \(\cl{E}\) is good: by Step 2, if \(S_1, \dots, S_n\) are disjoint and good, then \(\cl{X}_{\bigcup_{i=1}^n S_i} = \sum_{i=1}^n \cl{X}_{S_i}\) is good as well. Clearly \(\varnothing\) is good, and Step 1 shows that \((a, \infty)\) is as well. But also \(\cl{X}_{(a, b]} = \cl{X}_{(a, \infty)} + (-1) \cdot \cl{X}_{(b, \infty)}\) is good by Step 2, so actually every set in \(\cl{E}\) is good. 
 
     \textbf{Step 4.} \textit{The pointwise limit of a sequence of good functions, if it exists, is good.}
 
-    Suppose $f_n \to f$ for $\{f_n\}$ good. For each $n$, there exists $\{f_{nm}\}_m$ continuous which tend to $f_n$ pointwise almost everywhere. We wil show that $f_k' \to f$ where $k$ is indexed according to the triangular numbers as in Cantor's diagonalization argument, 
-    $$
+    Suppose \(f_n \to f\) for \(\{f_n\}\) good. For each \(n\), there exists \(\{f_{nm}\}_m\) continuous which tend to \(f_n\) pointwise almost everywhere. We wil show that \(f_k' \to f\) where \(k\) is indexed according to the triangular numbers as in Cantor's diagonalization argument, 
+    \[
     k := T_{n+m-1} + n = \frac{(n+m-1)(n+m)}{2} + n, 
     \quad 
     f_k' := f_{nm}
-    $$
+    \]
     
-    Observe that $k$ is increasing in both $n$ and $m$, so for any $\varepsilon > 0$ and $k$ large enough, 
-    $$
+    Observe that \(k\) is increasing in both \(n\) and \(m\), so for any \(\varepsilon > 0\) and \(k\) large enough, 
+    \[
     |f_k' - f| 
     \leq |f_k' - f_n| + |f_n - f|
     = |f_{nm} - f_n| + |f_n - f|
     \leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2}
     = \varepsilon
-    $$
+    \]
 
-    outside at most $E := \bigcup_{n,m} E_{nm}$. Thus $f_k' \to f$ except on $E$, but by Cantor's diagonalization theorem, this union is countable and thus has measure zero. 
+    outside at most \(E := \bigcup_{n,m} E_{nm}\). Thus \(f_k' \to f\) except on \(E\), but by Cantor's diagonalization theorem, this union is countable and thus has measure zero. 
 
-    \textbf{Step 5.} \textit{The good sets form a $\sigma$-algebra.}
+    \textbf{Step 5.} \textit{The good sets form a \(\sigma\)-algebra.}
 
-    Let $\fr{M}$ be the collection of all good sets. It's clear that $\bb{R} \in \fr{M}$ since $\cl{X}_{\bb{R}}$ is continuous. Moreover, if $E \in \fr{M}$, then $\bb{R} \setminus E \in \fr{M}$ since $\cl{X}_{\bb{R} \setminus E} = \cl{X}_{\bb{R}} + (-1) \cdot \cl{X}_E \in \fr{M}$ from Step 2. Finally, take $\{E_n\}_n \subseteq \fr{M}$, and without loss of generality suppose they are pairwise disjoint (otherwise, write $E_n' := E_n \setminus \bigcup_{k<n}E_k$). Then, 
-    $$
+    Let \(\fr{M}\) be the collection of all good sets. It's clear that \(\bb{R} \in \fr{M}\) since \(\cl{X}_{\bb{R}}\) is continuous. Moreover, if \(E \in \fr{M}\), then \(\bb{R} \setminus E \in \fr{M}\) since \(\cl{X}_{\bb{R} \setminus E} = \cl{X}_{\bb{R}} + (-1) \cdot \cl{X}_E \in \fr{M}\) from Step 2. Finally, take \(\{E_n\}_n \subseteq \fr{M}\), and without loss of generality suppose they are pairwise disjoint (otherwise, write \(E_n' := E_n \setminus \bigcup_{k<n}E_k\)). Then, 
+    \[
     \cl{X}_{\bigcup_{n=1}^\infty E_n} 
     = \sum_{n=1}^\infty \cl{X}_{E_n} 
     = \lim_{N \to \infty} \sum_{n=1}^N \cl{X}_{E_n}
     \in \cl{G}
-    $$
+    \]
 
-    since each partial sum is good by Step 2, and the resulting limit is good by Step 4. Hence $\fr{M}$ is a $\sigma$-algebra. 
+    since each partial sum is good by Step 2, and the resulting limit is good by Step 4. Hence \(\fr{M}\) is a \(\sigma\)-algebra. 
 
     \textbf{Step 6.} \textit{The Lebesgue-measurable sets are good.}
 
-    Denote the Lebesgue-measurable sets by $\cl{L}(\bb{R})$. Since $\cl{A} \subseteq \fr{M}$ and $\fr{M}$ is a $\sigma$-algebra by Step 5, we have $\sigma(\cl{A}) = \cl{B}(\bb{R}) \subseteq \fr{M}$ as well. Since $\cl{L}(\bb{R})$ is the completion of $\cl{B}(\bb{R})$, it suffices that the sets with Lebesgue-measure zero are good. But since $f_n = 0$ converges pointwise a.e. to $\cl{X}_N$ for any such null set $N$, this fact is immediate. 
+    Denote the Lebesgue-measurable sets by \(\cl{L}(\bb{R})\). Since \(\cl{A} \subseteq \fr{M}\) and \(\fr{M}\) is a \(\sigma\)-algebra by Step 5, we have \(\sigma(\cl{A}) = \cl{B}(\bb{R}) \subseteq \fr{M}\) as well. Since \(\cl{L}(\bb{R})\) is the completion of \(\cl{B}(\bb{R})\), it suffices that the sets with Lebesgue-measure zero are good. But since \(f_n = 0\) converges pointwise a.e. to \(\cl{X}_N\) for any such null set \(N\), this fact is immediate. 
 
-    \textbf{Step 7.} \textit{The measurable functions $f : \bb{R} \to [0, \infty)$ are good.}
+    \textbf{Step 7.} \textit{The measurable functions \(f : \bb{R} \to [0, \infty)\) are good.}
 
-    There exists a sequence of simple functions $\{s_n\}_n$ such that $s_n \to f$ pointwise. By Step 6, every simple function is good since it is the sum of characteristic functions of Lebesgue-measurable sets, and thus by Step 4, $f$ is good. 
+    There exists a sequence of simple functions \(\{s_n\}_n\) such that \(s_n \to f\) pointwise. By Step 6, every simple function is good since it is the sum of characteristic functions of Lebesgue-measurable sets, and thus by Step 4, \(f\) is good. 
 
-    \textbf{Step 8.} \textit{The measurable functions $f : \bb{R} \to \bb{C}$ are good.}
+    \textbf{Step 8.} \textit{The measurable functions \(f : \bb{R} \to \bb{C}\) are good.}
 
-    Since $\Re(f)^+, \Re(f)^-, \Im(f)^+, \Im(f)^- : \bb{R} \to [0, \infty)$ are measurable and thus good, so is $f$. 
+    Since \(\Re(f)^+, \Re(f)^-, \Im(f)^+, \Im(f)^- : \bb{R} \to [0, \infty)\) are measurable and thus good, so is \(f\). 
 \end{proof}
 
 \begin{problem}{Measure of the Minkowski Sum}*
-    [S\&S E1.20.] Show that there exist closed sets $A,B \subseteq \bb{R}^n$ with $\lambda(A) = \lambda(B) = 0$, but $\lambda(A+B) > 0$:
+    [S\&S E1.20.] Show that there exist closed sets \(A,B \subseteq \bb{R}^n\) with \(m(A) = m(B) = 0\), but \(m(A+B) > 0\):
     \begin{enumerate}[(a)]
-        \item In $\bb{R}$, let $A = \cl{C}$ and $B = \cl{C}/2$. Note that $A+B \supseteq [0, 1]$.
-        \item In $\bb{R}^2$, observe that if $A = I \times \{0,1\}$ and $B = \{0\} \times I$ for $I = [0,1]$, then $A+B = I \times I$. 
+        \item In \(\bb{R}\), let \(A = \cl{C}\) and \(B = \cl{C}/2\). Note that \(A+B \supseteq [0, 1]\).
+        \item In \(\bb{R}^2\), observe that if \(A = I \times \{0,1\}\) and \(B = \{0\} \times I\) for \(I = [0,1]\), then \(A+B = I \times I\). 
     \end{enumerate}
 \end{problem}
 
 \begin{proof}
-    The first observation is that if $A,B$ are closed, then $A+B$ is measurable. Since $\bb{R}^d$ is $\sigma$-compact, we can write 
-    $$
+    The first observation is that if \(A,B\) are closed, then \(A+B\) is measurable. Since \(\bb{R}^d\) is \(\sigma\)-compact, we can write 
+    \[
     A = \bigcup_{n=1}^\infty \, (A \cap K_n), \quad B = \bigcup_{n=1}^\infty \, (B \cap K_n) \qquad (K_n := [-n, n]^d)
-    $$
+    \]
 
-    If we label $A_n := A \cap K_n$ and $B_n := B \cap K_n$, then each $A_n$ and $B_n$ is closed. Therefore, 
-    $$
+    If we label \(A_n := A \cap K_n\) and \(B_n := B \cap K_n\), then each \(A_n\) and \(B_n\) is closed. Therefore, 
+    \[
     A + B
     = \left( \bigcup_{n=1}^\infty A_n \right) + \left( \bigcup_{n=1}^\infty B_n \right)
     = \bigcup_{n, m=1}^\infty \, (A_n + B_m)
-    $$
+    \]
 
-    which is a countable union thanks to Cantor's diagonalization argument. Thus $A+B$ is $F_\sigma$ and so it is measurable. 
+    which is a countable union thanks to Cantor's diagonalization argument. Thus \(A+B\) is \(F_\sigma\) and so it is measurable. 
 
-    \textit{Part (a).} Let $A = \cl{C}$ and $B = \cl{C} / 2$, where $\cl{C}$ is the Cantor set. Clearly $A$ is closed, since its complement is a union of intervals and thus open. But $B$ is also closed, since $f : \bb{R} \to \bb{R}$ with $x \mapsto 2x$ is continuous and $f^{-1}(A) = B$. We can characterize $A$ as the ternary numbers in $[0,1]$ which consist of digits $0$ or $2$, so $B$ is the ternary numbers in $[0,1]$ which consist of digits $0$ or $1$. Since $A+B \supseteq A \cup B \supseteq [0,1]$, and $A+B$ is measurable from above, we have $\lambda(A+B) > 0$. 
+    \textit{Part (a).} Let \(A = \cl{C}\) and \(B = \cl{C} / 2\), where \(\cl{C}\) is the Cantor set. Clearly \(A\) is closed, since its complement is a union of intervals and thus open. But \(B\) is also closed, since \(f : \bb{R} \to \bb{R}\) with \(x \mapsto 2x\) is continuous and \(f^{-1}(A) = B\). We can characterize \(A\) as the ternary numbers in \([0,1]\) which consist of digits \(0\) or \(2\), so \(B\) is the ternary numbers in \([0,1]\) which consist of digits \(0\) or \(1\). Since \(A+B \supseteq A \cup B \supseteq [0,1]\), and \(A+B\) is measurable from above, we have \(m(A+B) > 0\). 
 
-    \textit{Part (b).} Let $A = I \times \{0\}$ and $B = \{0\} \times I$ for $I = [0,1]$. Both $\lambda(A) = \lambda(B) = 0$. But since $A+B = I \times I$, $\lambda(A+B) = 1 > 0$. 
+    \textit{Part (b).} Let \(A = I \times \{0\}\) and \(B = \{0\} \times I\) for \(I = [0,1]\). Both \(m(A) = m(B) = 0\). But since \(A+B = I \times I\), \(m(A+B) = 1 > 0\). 
 \end{proof}
 
 \begin{problem}{Continuous Transformations Do Not Preserve Measurability}*
-    [S\&S E1.21.] Prove that there is a continuous function that maps a Lebesgue measurable set to a non-measurable set. [Hint: Consider a non-measurable subset of $[0,1]$ and its preimage in $\cl{C}$ by the Cantor function.]
+    [S\&S E1.21.] Prove that there is a continuous function that maps a Lebesgue measurable set to a non-measurable set. [Hint: Consider a non-measurable subset of \([0,1]\) and its preimage in \(\cl{C}\) by the Cantor function.]
 \end{problem}
 
 \begin{proof}
-    Take any non-measurable subset of $[0,1]$, such as the Vitali set $\cl{V}$. Let $f : [0,1] \to [0,1]$ be the Cantor function, which is continuous on this domain. Observe that $\cl{C} \cap f^{-1}(\cl{V})$ is measurable since the Lebesgue measure is complete. But since $f \vert_{\cl{C}}$ is surjective, 
-    $$
+    Take any non-measurable subset of \([0,1]\), such as the Vitali set \(\cl{V}\). Let \(f : [0,1] \to [0,1]\) be the Cantor function, which is continuous on this domain. Observe that \(\cl{C} \cap f^{-1}(\cl{V})\) is measurable since the Lebesgue measure is complete. But since \(f \vert_{\cl{C}}\) is surjective, 
+    \[
     f(\cl{C} \cap f^{-1}(\cl{V}))
     = f(f\vert_{\cl{C}}^{-1}(\cl{V}))
     = f\vert_{\cl{C}}(f\vert_{\cl{C}}^{-1}(\cl{V})) \cup f\vert_{[0,1] \setminus \cl{C}} (f\vert_{\cl{C}}^{-1}(\cl{V}))
     = (\cl{V} \cap f\vert_{\cl{C}}(\cl{C})) \cup \varnothing
      = \cl{V}
-    $$
+    \]
 
-    using the fact that $h(h^{-1}(E)) = E \cap h(X)$ for any map $h : X \to Y$, on $h = f\vert_{\cl{C}}$. 
+    using the fact that \(h(h^{-1}(E)) = E \cap h(X)\) for any map \(h : X \to Y\), on \(h = f\vert_{\cl{C}}\). 
 \end{proof}
 
 \begin{problem}{Characteristic Functions Without Continuous Representatives}*
-    [S\&S E1.22.] Show that there is no continuous function $f : \bb{R} \to \bb{R}$ such that $f = \cl{X}_{[0,1]}$ almost everywhere.
+    [S\&S E1.22.] Show that there is no continuous function \(f : \bb{R} \to \bb{R}\) such that \(f = \cl{X}_{[0,1]}\) almost everywhere.
 \end{problem}
 
 \begin{proof}
-    Let $\Delta(f, \cl{X}_{[0,1]}) = \{x \in \bb{R} \mid f(x) \neq \cl{X}_{[0,1]}(x)\}$. We will show that $\Delta(f, \cl{X}_{[0,1]})$ has non-empty interior whenever $f$ is continuous. Choose $a \in (-1,0)$ and $b \in [0,1]$ such that $f(a) = \cl{X}_{[0,1]}(a)$ and $f(b) = \cl{X}_{[0,1]}(b)$. If such $a$ and $b$ do not exist, we are done. By the Intermediate Value Theorem, there exists $c \in (a, b)$ such that $f(c) = 1/2$. But because $f$ is continuous, for any $0 < \varepsilon < 1/2$, there exists some $\delta > 0$ such that $|x - c| < \delta \implies |f(x) - f(c)| < \varepsilon \implies f(x) \in (0, 1)$. Thus, $(c - \delta, c + \delta) \subseteq \Delta(f, \cl{X}_{[0,1]})$, so the set of disagreements has nonzero Lebesgue measure. 
+    Let \(\Delta(f, \cl{X}_{[0,1]}) = \{x \in \bb{R} \mid f(x) \neq \cl{X}_{[0,1]}(x)\}\). We will show that \(\Delta(f, \cl{X}_{[0,1]})\) has non-empty interior whenever \(f\) is continuous. Choose \(a \in (-1,0)\) and \(b \in [0,1]\) such that \(f(a) = \cl{X}_{[0,1]}(a)\) and \(f(b) = \cl{X}_{[0,1]}(b)\). If such \(a\) and \(b\) do not exist, we are done. By the Intermediate Value Theorem, there exists \(c \in (a, b)\) such that \(f(c) = 1/2\). But because \(f\) is continuous, for any \(0 < \varepsilon < 1/2\), there exists some \(\delta > 0\) such that \(|x - c| < \delta \implies |f(x) - f(c)| < \varepsilon \implies f(x) \in (0, 1)\). Thus, \((c - \delta, c + \delta) \subseteq \Delta(f, \cl{X}_{[0,1]})\), so the set of disagreements has nonzero Lebesgue measure. 
 \end{proof}
 
 \begin{problem}{Positive Outer-Measurable Sets (Almost) Contain Intervals}*
-    [S\&S E1.28.] Let $E$ be a subset of $\bb{R}$ with $\lambda_*(E) > 0$, where $\lambda_*$ is the Lebesgue outer-measure. Prove that for each $0 < \alpha < 1$, there exists an open interval $I$ so that 
-    $$
-        \lambda_*(E \cap I) \geq \alpha \lambda_*(I)
-    $$
+    [S\&S E1.28.] Let \(E\) be a subset of \(\bb{R}\) with \(m*(E) > 0\), where \(m*\) is the Lebesgue outer-measure. Prove that for each \(0 < \alpha < 1\), there exists an open interval \(I\) so that 
+    \[
+        m*(E \cap I) \geq \alpha m*(I)
+    \]
 
-    Loosely speaking, this estimate shows that $E$ contains almost a whole interval. [Hint: choose an open set $\cl{O}$ that contains $E$, and such that $\lambda_*(E) \geq \alpha \lambda_*(\cl{O})$. Write $\cl{O}$ as the countable union of disjoint open intervals, and show that one of these intervals must satisfy the desired property.]
+    Loosely speaking, this estimate shows that \(E\) contains almost a whole interval. [Hint: choose an open set \(\cl{O}\) that contains \(E\), and such that \(m*(E) \geq \alpha m*(\cl{O})\). Write \(\cl{O}\) as the countable union of disjoint open intervals, and show that one of these intervals must satisfy the desired property.]
 \end{problem}
 
 \begin{proof}
@@ -379,8 +381,8 @@ Problems are derived largely from \textit{Integration Theory and Hilbert Spaces}
 \end{proof}
 
 \begin{problem}{Composition Fails to Preserve Lebesgue Measurability}*
-    [S\&S E1.35.] Prove that if $\varphi$ is continuous and $f$ is Lebesgue-measurable, then $\varphi \circ f$ is Lebesgue-measurable. However, show that the reverse need not be true: find an example of where $f \circ \varphi$ is non-measurable.\footnote{The nuance here is that the composition of \textit{Borel}-measurable functions is Borel!} Use the construction in the hint to show that there exists a Lebesgue-measurable set that is not a Borel set. 
-    [Hint: Let $\varphi : \hat{\cl{C}} \to \cl{C}$ where $\hat{\cl{C}}$ is the fat Cantor set and $\cl{C}$ is the Cantor set. Let $N \subseteq \hat{\cl{C}}$ be non-measurable, and take $f = \cl{X}_{\varphi(N)}$.]
+    [S\&S E1.35.] Prove that if \(\varphi\) is continuous and \(f\) is Lebesgue-measurable, then \(\varphi \circ f\) is Lebesgue-measurable. However, show that the reverse need not be true: find an example of where \(f \circ \varphi\) is non-measurable.\footnote{The nuance here is that the composition of \textit{Borel}-measurable functions is Borel!} Use the construction in the hint to show that there exists a Lebesgue-measurable set that is not a Borel set. 
+    [Hint: Let \(\varphi : \hat{\cl{C}} \to \cl{C}\) where \(\hat{\cl{C}}\) is the fat Cantor set and \(\cl{C}\) is the Cantor set. Let \(N \subseteq \hat{\cl{C}}\) be non-measurable, and take \(f = \cl{X}_{\varphi(N)}\).]
 \end{problem}
 
 \begin{proof}
@@ -392,13 +394,13 @@ Problems are derived largely from \textit{Integration Theory and Hilbert Spaces}
 \end{problem}
 
 \begin{proof}
-    Let $f : I \to \bb{R}$ be bounded for an interval $I = [a, b)$, and define $I_n := a + [n, n+1) \frac{b-a}{N}$ for $N$ subdivisions of the interval on $n \in \{0, \dots, N-1\}$. The lower and upper Darboux sums are
-    $$
+    Let \(f : I \to \bb{R}\) be bounded for an interval \(I = [a, b)\), and define \(I_n := a + [n, n+1) \frac{b-a}{N}\) for \(N\) subdivisions of the interval on \(n \in \{0, \dots, N-1\}\). The lower and upper Darboux sums are
+    \[
     L_N(f) = \frac{b-a}{N} \sum_{n=0}^{N-1} \inf f(I_n), \quad 
     U_N(f) = \frac{b-a}{N} \sum_{n=0}^{N-1} \sup f(I_n)
-    $$
+    \]
 
-    First, suppose $f$ is Riemann integrable. Then both $L_N(f)$ and $U_N(f)$ exist and agree. TODO: WRITE THE PROBLEM FROM STEIN. 
+    First, suppose \(f\) is Riemann integrable. Then both \(L_N(f)\) and \(U_N(f)\) exist and agree. TODO: WRITE THE PROBLEM FROM STEIN. 
 \end{proof}
 
 \begin{problem}{Axiom of Choice is Equivalent to Well-Ordering Principle}*
@@ -416,58 +418,58 @@ Problems are derived largely from \textit{Integration Theory and Hilbert Spaces}
     \textbf{(a) The Equivalence Relation}
 
     \begin{itemize}
-    \item[(i)] Let $\sim$ be the relation on $[0,1]$ defined by
-    $$
+    \item[(i)] Let \(\sim\) be the relation on \([0,1]\) defined by
+    \[
         x \sim y \quad \text{if and only if} \quad x - y \in \bb{Q}.
-    $$
+    \]
 
-    Prove that $\sim$ is an equivalence relation on $[0,1]$.
+    Prove that \(\sim\) is an equivalence relation on \([0,1]\).
 
-    \item[(ii)] Show that each equivalence class is countable. [Hint: For any fixed $x \in [0,1]$, the equivalence class of $x$ is given by $\{x + q : q \in \bb{Q} \} \cap [0,1]$, and $\bb{Q}$ is countable.]
+    \item[(ii)] Show that each equivalence class is countable. [Hint: For any fixed \(x \in [0,1]\), the equivalence class of \(x\) is given by \(\{x + q : q \in \bb{Q} \} \cap [0,1]\), and \(\bb{Q}\) is countable.]
     \end{itemize}
 
     \stdvspace
     \textbf{(b) Existence of a Vitali Set}
     \stdvspace
 
-    Using the Axiom of Choice, show that there exists a subset $V \subset [0,1]$ (the Vitali set) such that $V$ contains exactly one element from each equivalence class defined by $\sim$. \\
+    Using the Axiom of Choice, show that there exists a subset \(V \subset [0,1]\) (the Vitali set) such that \(V\) contains exactly one element from each equivalence class defined by \(\sim\). \\
 
     \stdvspace
     \textbf{(c) Translates of the Vitali Set}
     \stdvspace
 
-    For each rational number $r \in \bb{Q} \cap [-1,1]$, define the translated set
-    $$
+    For each rational number \(r \in \bb{Q} \cap [-1,1]\), define the translated set
+    \[
     V_r = \{ v + r : v \in V \}.
-    $$
+    \]
 
-    Prove that the sets $\{V_r : r \in \bb{Q} \cap [-1,1]\}$ are pairwise disjoint. [Hint: Suppose that for $r_1 \ne r_2$, there exist $v_1, v_2 \in V$ such that $v_1 + r_1 = v_2 + r_2$. Use the definition of the equivalence classes to reach a contradiction.] \\
+    Prove that the sets \(\{V_r : r \in \bb{Q} \cap [-1,1]\}\) are pairwise disjoint. [Hint: Suppose that for \(r_1 \ne r_2\), there exist \(v_1, v_2 \in V\) such that \(v_1 + r_1 = v_2 + r_2\). Use the definition of the equivalence classes to reach a contradiction.] \\
 
     \stdvspace
     \textbf{(d) Covering a Finite Interval}
     \stdvspace
 
     Show that
-    $$
+    \[
     \bigcup_{r \in \bb{Q} \cap [-1,1]} V_r \subset [-1,2].
-    $$
+    \]
 
-    [Hint: If $v \in V \subset [0,1]$ and $r \in [-1,1]$, then $v + r \in [-1,2]$.] \\
+    [Hint: If \(v \in V \subset [0,1]\) and \(r \in [-1,1]\), then \(v + r \in [-1,2]\).] \\
 
     \stdvspace
     \textbf{(e) Non-measurability of the Vitali Set}
     \stdvspace
 
-    Assume, for the sake of contradiction, that $V$ is Lebesgue measurable with measure $m(V)$. Using the translation invariance and countable additivity of Lebesgue measure, show that this assumption leads to a contradiction.
+    Assume, for the sake of contradiction, that \(V\) is Lebesgue measurable with measure \(m(V)\). Using the translation invariance and countable additivity of Lebesgue measure, show that this assumption leads to a contradiction.
 
     \begin{itemize}
     \item[(i)] Express the measure of the union
-    $$
+    \[
         U = \bigcup_{r \in \bb{Q} \cap [-1,1]} V_r,
-    $$
-    in terms of $m(V)$.
+    \]
+    in terms of \(m(V)\).
 
-    \item[(ii)] Explain why this leads to a contradiction given that $U$ is contained in the finite interval $[-1,2]$. [Hint: Consider the cases $m(V) = 0$ and $m(V) > 0$, and show that each case contradicts the finiteness of the measure of $[-1,2]$.]
+    \item[(ii)] Explain why this leads to a contradiction given that \(U\) is contained in the finite interval \([-1,2]\). [Hint: Consider the cases \(m(V) = 0\) and \(m(V) > 0\), and show that each case contradicts the finiteness of the measure of \([-1,2]\).]
     \end{itemize}
 \end{problem}
 
@@ -483,146 +485,146 @@ Problems are derived largely from \textit{Integration Theory and Hilbert Spaces}
 \section{Integration}
 
 \begin{problem}{Absolute Continuity of the Integral}*
-    [MAT425 P2.4.] Suppose that $f \in L^1(X \to \bb{C}, \mu)$. For any $\varepsilon > 0$, there exists some $\delta > 0$ such that if $\mu(E) \leq \delta$ then $\int_E |f| \, \mr{d}\mu \leq \varepsilon$. 
+    [MAT425 P2.4.] Suppose that \(f \in L^1(X \to \bb{C}, \mu)\). For any \(\varepsilon > 0\), there exists some \(\delta > 0\) such that if \(\mu(E) \leq \delta\) then \(\int_E |f| \, \mr{d}\mu \leq \varepsilon\). 
 \end{problem}
 
 \begin{proof}
-    Fix any $\varepsilon > 0$. Let $E_n := \{x \mid f(x) \leq n\}$ and $f_n := \cl{X}_{E_n}f$. Then by the Monotone Convergence Theorem, for any set $E \in \fr{M}$, we can \textit{fix} some $N$ large enough such that
-    $$
+    Fix any \(\varepsilon > 0\). Let \(E_n := \{x \mid f(x) \leq n\}\) and \(f_n := \cl{X}_{E_n}f\). Then by the Monotone Convergence Theorem, for any set \(E \in \fr{M}\), we can \textit{fix} some \(N\) large enough such that
+    \[
     \int_E |f_N - f| \, \mr{d}\mu \leq \frac{\varepsilon}{2}
-    $$
+    \]
 
-    Define $\delta := \varepsilon / 2N$. If $\mu(E) \leq \delta$, then by the triangle inequality, 
-    $$
+    Define \(\delta := \varepsilon / 2N\). If \(\mu(E) \leq \delta\), then by the triangle inequality, 
+    \[
     \int_E |f| \, \mr{d}\mu 
     \leq \int_E |f - f_N| \, \mr{d}\mu + \int_E |f_N| \, \mr{d}\mu
     \leq \frac{\varepsilon}{2} + N \cdot \frac{\varepsilon}{2N}
     \leq \varepsilon
-    $$
+    \]
 
     as desired. 
 \end{proof}
 
 \begin{problem}{Uniform Convergence for Limits of Integrals}*
-    [RCA E1.10.] Suppose $\mu(X) < \infty$ and $\{f_n : X \to \bb{C}\}_n$ are bounded, and $f_n \to f$ uniformly on $X$. Then 
-    $$
+    [RCA E1.10.] Suppose \(\mu(X) < \infty\) and \(\{f_n : X \to \bb{C}\}_n\) are bounded, and \(f_n \to f\) uniformly on \(X\). Then 
+    \[
     \lim_{n \to \infty} \int_X f_n \, \mr{d}\mu = \int_X f \, \mr{d}\mu
-    $$
+    \]
 
-    Furthermore, show that the result may fail if $\mu(X) < \infty$ is not true. 
+    Furthermore, show that the result may fail if \(\mu(X) < \infty\) is not true. 
 \end{problem}
 
 \begin{proof}
-    If $f_n \to f$ uniformly, then for all $\varepsilon > 0$ there exists $N$ large enough such that $\sup_{x \in X} |f_n(x) - f(x)| \leq \varepsilon / \mu(X)$ whenever $n \geq N$, since $X$ has finite measure. Therefore, for such $n \geq N$, 
-    $$
+    If \(f_n \to f\) uniformly, then for all \(\varepsilon > 0\) there exists \(N\) large enough such that \(\sup_{x \in X} |f_n(x) - f(x)| \leq \varepsilon / \mu(X)\) whenever \(n \geq N\), since \(X\) has finite measure. Therefore, for such \(n \geq N\), 
+    \[
     \left| \int_X f_n \, \mr{d}\mu - \int_X f \, \mr{d}\mu \right| 
     \leq \int_X |f_n - f| \, \mr{d}\mu 
     \leq \mu(x) \sup_{x \in X} |f_n(x) - f(x)|
     \leq \mu(X) \cdot \frac{\varepsilon}{\mu(X)}
     = \varepsilon
-    $$
+    \]
 
-    and thus we conclude. For a counterexample when $\mu(X) = \infty$, take $f = 0$ and $f_n = \frac{1}{n} \cl{X}_{[0, n)}$ with the Lebesgue measure. Then $\int_{\bb{R}} f_n \, \mr{d}\lambda = 1 \neq 0 = \int_{\bb{R}} f \, \mr{d}\lambda$ for all $n$, even though $f_n \to f$ uniformly. 
+    and thus we conclude. For a counterexample when \(\mu(X) = \infty\), take \(f = 0\) and \(f_n = \frac{1}{n} \cl{X}_{[0, n)}\) with the Lebesgue measure. Then \(\int_{\bb{R}} f_n \, \mr{d}m = 1 \neq 0 = \int_{\bb{R}} f \, \mr{d}m \) for all \(n\), even though \(f_n \to f\) uniformly. 
 \end{proof}
 
-\begin{problem}{Convergence in $L^1$}*
-    [S\&S E2.2.] If $f \in L^1(\bb{R}^d \to \bb{R}, \lambda)$ and $\delta > 0$, then $f_\delta(x) := f(\delta x)$ converges to $f$ in the $L^1$ norm. In other words, 
-    $$
-    \lim_{\delta \to 1} \| f - f_\delta \|_{L^1} 
-    \equiv \lim_{\delta \to 1} \int_{\bb{R}^d} |f - f_\delta| \, \mr{d}\lambda = 0
-    $$
+\begin{problem}{Convergence in \(L^1\)}*
+    [S\&S E2.2.] If \(f \in L^1(\bb{R}^d \to \bb{R}, m)\) and \(\delta > 0\), then \(f_\delta(x) := f(\delta x)\) converges to \(f\) in the \(L^1\) norm. In other words, 
+    \[
+    \lim_{\delta \to 1} \norm{ f - f_\delta }_{L^1} 
+    \equiv \lim_{\delta \to 1} \int_{\bb{R}^d} |f - f_\delta| \, \mr{d}m = 0
+    \]
 \end{problem}
 
 \begin{proof}
-    Since the continuous functions of compact support are dense in $L^1(\mu)$ [S\&S Thm 2.2.4], there exists a function $g \in L^1(\lambda)$ such that $\|f - g\|_{L^1} \leq \varepsilon / 4$. Write $f - f_{\delta} = (f-g) + (g-g_{\delta}) + (g_{\delta} - f_{\delta})$. Then by the triangle inequality, 
-    $$
-    \|f - f_{\delta}\|_{L^1} \leq \|f - g\|_{L^1} + \|g - g_{\delta}\|_{L^1} + \|g_{\delta} - f_{\delta}\|_{L^1}
-    $$
+    Since the continuous functions of compact support are dense in \(L^1(\mu)\) [S\&S Thm 2.2.4], there exists a function \(g \in L^1(m)\) such that \(\norm{f - g}_{L^1} \leq \varepsilon / 4\). Write \(f - f_{\delta} = (f-g) + (g-g_{\delta}) + (g_{\delta} - f_{\delta})\). Then by the triangle inequality, 
+    \[
+    \norm{f - f_{\delta}}_{L^1} \leq \norm{f - g}_{L^1} + \norm{g - g_{\delta}}_{L^1} + \norm{g_{\delta} - f_{\delta}}_{L^1}
+    \]
 
-    Since $g$ is continuous with compact support, it is uniformly continuous.\footnote{See this \href{https://math.stackexchange.com/questions/2086124/continuous-with-compact-support-implies-uniform-continuity}{Mathematics Stack Exchange} post.} Consider $\delta > 0$ such that $|x - \delta x| = |(1 - \delta)x| \leq \varepsilon / 4 \lambda(\oname{supp}(g))$ for all $x \in \oname{supp}(g)$, which exists by compactness. Then 
-    $$
-    \|g - g_{\delta}\|_{L^1} 
-    = \int_{\bb{R}^d} |g - g_{\delta}| \, \mr{d}\lambda 
-    \leq \int_{\oname{supp}(g)} \frac{\varepsilon}{4 \lambda(\oname{supp}(g))} \, \mr{d}\lambda
+    Since \(g\) is continuous with compact support, it is uniformly continuous.\footnote{See this \href{https://math.stackexchange.com/questions/2086124/continuous-with-compact-support-implies-uniform-continuity}{Mathematics Stack Exchange} post.} Consider \(\delta > 0\) such that \(|x - \delta x| = |(1 - \delta)x| \leq \varepsilon / 4 m(\oname{supp}(g))\) for all \(x \in \oname{supp}(g)\), which exists by compactness. Then 
+    \[
+    \norm{g - g_{\delta}}_{L^1} 
+    = \int_{\bb{R}^d} |g - g_{\delta}| \, \mr{d}m
+    \leq \int_{\oname{supp}(g)} \frac{\varepsilon}{4 m(\oname{supp}(g))} \, \mr{d}m
     = \frac{\varepsilon}{4}
-    $$
+    \]
 
-    since compact sets have finite measure thanks to Heine-Borel. Next, apply change of variables on $g_{\delta} - f_{\delta}$ so that  
-    $$
-    \|g_{\delta} - f_{\delta}\|_{L^1}
-    = \int_{\bb{R}^d} |g_{\delta} - f_{\delta}| \, \mr{d}\lambda 
-    = \delta^{-d} \int_{\bb{R}^d} |g - f| \, \mr{d}\lambda
-    = \delta^{-d} \|g - f\|_{L^1}
+    since compact sets have finite measure thanks to Heine-Borel. Next, apply change of variables on \(g_{\delta} - f_{\delta}\) so that  
+    \[
+    \norm{g_{\delta} - f_{\delta}}_{L^1}
+    = \int_{\bb{R}^d} |g_{\delta} - f_{\delta}| \, \mr{d}m
+    = \delta^{-d} \int_{\bb{R}^d} |g - f| \, \mr{d}m
+    = \delta^{-d} \norm{g - f}_{L^1}
     \leq \frac{\delta^{-d} \varepsilon}{4}
     \leq \frac{2\varepsilon}{4}
     < \frac{\varepsilon}{2}
-    $$
+    \]
 
-    where $\delta^{-d} \leq 2$ for $\delta$ close enough to 1. Altogether, we have that 
-    $$
-        \|f - f_{\delta}\|_{L^1} \leq \frac{\varepsilon}{4} + \frac{\varepsilon}{4} + \frac{\varepsilon}{2}
+    where \(\delta^{-d} \leq 2\) for \(\delta\) close enough to 1. Altogether, we have that 
+    \[
+        \norm{f - f_{\delta}}_{L^1} \leq \frac{\varepsilon}{4} + \frac{\varepsilon}{4} + \frac{\varepsilon}{2}
         = \varepsilon
-    $$
+    \]
     
-    and thus $f_\delta \stackrel{\delta \to 1}{\longrightarrow} f$ in the $L^1$-norm. 
+    and thus \(f_\delta \stackrel{\delta \to 1}{\longrightarrow} f\) in the \(L^1\)-norm. 
 \end{proof}
 
-\begin{problem}{$L^1$ Does Not Imply Tail Convergence}*
-    [S\&S E2.6.] Integrability of $f$ on $\bb{R}$ does not necessarily imply $f(x) \to 0$ as $x \to \infty$. 
+\begin{problem}{\(L^1\) Does Not Imply Tail Convergence}*
+    [S\&S E2.6.] Integrability of \(f\) on \(\bb{R}\) does not necessarily imply \(f(x) \to 0\) as \(x \to \infty\). 
     \begin{enumerate}[(a)]
-        \item There exists a positive continuous function $f \in L^1(\bb{R} \to [0, \infty), \lambda)$, and yet it tends to infinity for large $x$: $\limsup_{x \to \infty} f(x) = \infty$. 
-        \item However, if we additionally assume $f \in L^1(\bb{R} \to \bb{R}, \lambda)$ is uniformly continuous, then actually $\lim_{|x| \to \infty} f(x) = 0$. 
+        \item There exists a positive continuous function \(f \in L^1(\bb{R} \to [0, \infty), m)\), and yet it tends to infinity for large \(x\): \(\limsup_{x \to \infty} f(x) = \infty\). 
+        \item However, if we additionally assume \(f \in L^1(\bb{R} \to \bb{R}, m)\) is uniformly continuous, then actually \(\lim_{|x| \to \infty} f(x) = 0\). 
     \end{enumerate}
 \end{problem}
 
 \begin{proof}
-    \textit{Part (a).} Look at the function $f = \sum_{n} n \cl{X}_{[n, n+1/n^3)}$. Clearly it is positive, and it is $L^1(\lambda)$ since by the Monotone Convergence Theorem, 
-    $$
-        \int_{\bb{R}} f \, \mr{d}\lambda
-        = \int_{\bb{R}} \sum_{n=1}^\infty n \cl{X}_{[n, n + 1/n^3)} \, \mr{d}\lambda
-        = \sum_{n=1}^\infty \int_{\bb{R}} n \cl{X}_{[n, n + 1/n^3)} \, \mr{d}\lambda
+    \textit{Part (a).} Look at the function \(f = \sum_{n} n \cl{X}_{[n, n+1/n^3)}\). Clearly it is positive, and it is \(L^1(m)\) since by the Monotone Convergence Theorem, 
+    \[
+        \int_{\bb{R}} f \, \mr{d}m
+        = \int_{\bb{R}} \sum_{n=1}^\infty n \cl{X}_{[n, n + 1/n^3)} \, \mr{d}m
+        = \sum_{n=1}^\infty \int_{\bb{R}} n \cl{X}_{[n, n + 1/n^3)} \, \mr{d}m
         = \sum_{n=1}^\infty \frac{1}{n^2}
         < \infty
-    $$
+    \]
 
-    and yet $\limsup_{x \to \infty} f(x) = \infty$. 
+    and yet \(\limsup_{x \to \infty} f(x) = \infty\). Note that while \(f\) itself is not continuous, we can replace the discontinuous points with steep line segments, of which the \(k^{\text{th}}\) segment will increase the area by \(2^{-k}\). This new function \(\tilde{f} \in L^1(m)\) still tends to infinity, but it is now continuous. 
 \end{proof}
 
 \begin{proof}
-    \textit{Part (b).} Suppose $f \in L^1(\bb{R} \to \bb{R}, \lambda)$ but that $\lim_{|x| \to \infty} f(x) \neq 0$. The latter means that either $\lim_{x \to \infty} f(x) \neq 0$ or $\lim_{x \to -\infty} f(x) \neq 0$, so without loss of generality suppose $\lim_{x \to \infty} \neq 0$. Then fix any $\varepsilon > 0$; there exists a sequence $\{x_n\}_n$ such that $|f(x_n)| \geq \varepsilon$ for all $n$. But by uniform continuity, there exists a $\delta > 0$ such that 
-    $$
+    \textit{Part (b).} Suppose \(f \in L^1(\bb{R} \to \bb{R}, m)\) but that \(\lim_{|x| \to \infty} f(x) \neq 0\). The latter means that either \(\lim_{x \to \infty} f(x) \neq 0\) or \(\lim_{x \to -\infty} f(x) \neq 0\), so without loss of generality suppose \(\lim_{x \to \infty} \neq 0\). Then fix any \(\varepsilon > 0\); there exists a sequence \(\{x_n\}_n\) such that \(|f(x_n)| \geq \varepsilon\) for all \(n\). But by uniform continuity, there exists a \(\delta > 0\) such that 
+    \[
         |x - x_n| \leq \delta \implies |f(x) - f(x_n)| \leq \frac{\varepsilon}{2} \implies |f(x)| \geq \frac{\varepsilon}{2}
         \qquad (n \in \bb{N})
-    $$
+    \]
 
     It thus follows that 
-    $$
-    \int_{B_{\delta}(x_n)} |f| \, \mr{d}\lambda \geq 2\delta \cdot \frac{\varepsilon}{2} = \delta \varepsilon
-    \implies \int_{\bb{R}} |f| \, \mr{d}\lambda \geq \sum_{n \geq 1} \delta \varepsilon = \infty
-    $$
+    \[
+    \int_{B_{\delta}(x_n)} |f| \, \mr{d}m \geq 2\delta \cdot \frac{\varepsilon}{2} = \delta \varepsilon
+    \implies \int_{\bb{R}} |f| \, \mr{d}m \geq \sum_{n \geq 1} \delta \varepsilon = \infty
+    \]
 
     a contradiction, and that completes the proof. 
 \end{proof}
 
 \begin{problem}{Function Graphs Are Measure Zero}*
-    [S\&S E2.7.] Let $\Gamma = \{(x, y) \in \bb{R}^d \times \bb{R} \mid y = f(x) \}$ for $f : \bb{R}^d \to \bb{R}$ measurable. Then $\Gamma$ is measurable in $\bb{R}^{d+1}$ and $\lambda(\Gamma) = 0$.
+    [S\&S E2.7.] Let \(\Gamma = \{(x, y) \in \bb{R}^d \times \bb{R} \mid y = f(x) \}\) for \(f : \bb{R}^d \to \bb{R}\) measurable. Then \(\Gamma\) is measurable in \(\bb{R}^{d+1}\) and \(m(\Gamma) = 0\).
 \end{problem}
 
 \begin{proof}
-    To show that $\Gamma$ is measurable, we exploit finiteness of $f$. Denote $g(x, y) = |y - f(x)|$ for $g : \bb{R}^{d+1} \to \bb{R}$ which is measurable, so that
-    $$
+    To show that \(\Gamma\) is measurable, we exploit finiteness of \(f\). Denote \(g(x, y) = |y - f(x)|\) for \(g : \bb{R}^{d+1} \to \bb{R}\) which is measurable, so that
+    \[
         \Gamma 
         = \bigcap_{n=1}^\infty \left\{ (x, y) \in \bb{R}^d \times \bb{R} \st |y - f(x)| < \frac{1}{n} \right\}
         = \bigcap_{n=1}^\infty g^{-1}\left(\left[0, \frac{1}{n}\right)\right)
-    $$
+    \]
 
-    is measurable in $\bb{R}^{d+1}$. Now, let $\lambda_d$ denote the Lebesgue measure on $\bb{R}^d$. Integrating over sections, 
-    $$
-        (\lambda_d \times \lambda)(\Gamma)
-        = \int_{\bb{R}^d} \lambda(\Gamma_2(x)) \, \mr{d}\lambda_d(x)
-        = \int_{\bb{R}^d} \lambda(\{f(x)\}) \, \mr{d}\lambda_d(x)
+    is measurable in \(\bb{R}^{d+1}\). Now, let \(m_d\) denote the Lebesgue measure on \(\bb{R}^d\). Integrating over sections, 
+    \[
+        (m_d \times m)(\Gamma)
+        = \int_{\bb{R}^d} m(\Gamma_2(x)) \, \mr{d}m_d(x)
+        = \int_{\bb{R}^d} m(\{f(x)\}) \, \mr{d}m_d(x)
         = 0
-    $$
+    \]
 
     as desired. 
 \end{proof}
@@ -632,220 +634,129 @@ Problems are derived largely from \textit{Integration Theory and Hilbert Spaces}
 \end{problem}
 
 \begin{proof}
-    Take the Cantor function $h : \cl{C} \to [0, 1]$, which is bicontinuous. Thus its product map $H := h \times h : \cl{C} \times \cl{C} \to [0,1] \times [0,1]$ is bicontinuous as well, where $H(x) = (h(x), h(x))$. Now we show that there exists a bicontinuous map $g : \cl{C} \to \cl{C} \times \cl{C}$. Define
-    $$
+    Take the Cantor function \(h : \cl{C} \to [0, 1]\), which is bicontinuous. Thus its product map \(H := h \times h : \cl{C} \times \cl{C} \to [0,1] \times [0,1]\) is bicontinuous as well, where \(H(x) = (h(x), h(x))\). Now we show that there exists a bicontinuous map \(g : \cl{C} \to \cl{C} \times \cl{C}\). Define
+    \[
         g \left( \sum_{n=1}^\infty \frac{a_n}{3^n} \right) 
         = \left( \sum_{n=1}^\infty \frac{a_{2n-1}}{3^n}, \sum_{n=1}^\infty \frac{a_{2n}}{3^n} \right)
-    $$
+    \]
 
-    where the representation is the standard $\{a_n\}_n \subseteq \{0, 2\}$ form. Clearly $g$ is a bijection. To show it is continuous, fix any $\varepsilon > 0$. Choose $k$ such that $\sqrt{2} \cdot 3^{-k} < \varepsilon$. Let $\delta = 2 \cdot 3^{-k}$ and note that if $|x - y| < \delta$ for $x,y \in \cl{C}$ then $x$ and $y$ have the same first $k$ digits, and 
-    $$
+    where the representation is the standard \(\{a_n\}_n \subseteq \{0, 2\}\) form. Clearly \(g\) is a bijection. To show it is continuous, fix any \(\varepsilon > 0\). Choose \(k\) such that \(\sqrt{2} \cdot 3^{-k} < \varepsilon\). Let \(\delta = 2 \cdot 3^{-k}\) and note that if \(|x - y| < \delta\) for \(x,y \in \cl{C}\) then \(x\) and \(y\) have the same first \(k\) digits, and 
+    \[
         |f(x) - f(y)|
         \leq \left| \left( \sum_{n > k} \frac{|a_{2n-1} - b_{2n-1}|}{3^n}, \sum_{n > k} \frac{|a_{2n} - b_{2n}|}{3^n} \right) \right| 
         \leq \sqrt{\left(\frac{1}{3^k}\right)^2 + \left(\frac{1}{3^k} \right)^2}
         = \sqrt{2} \cdot \frac{1}{3^k} 
         < \varepsilon
-    $$
+    \]
 
-    Finally, since $g$ is bicontinuous, $f := H \circ g : \cl{C} \to [0, 1]^2$ is a bicontinuous map as well. But similarly to the Cantor function, we can extend $f$ to a function $F : [0, 1] \to [0, 1]^2$ as follows: for each deleted interval $(a, b)$ in a step of the Cantor construction, let $F(\theta a + (1 - \theta)b) = \theta F(a) + (1 - \theta) F(b)$, where $\theta \in (0, 1)$. First we show continuity at each $x \not\in \cl{C}$. Take $x, y \in (a, b)$ parametrized by $\theta, \varphi$ respectively and note that if
-    $$
+    Finally, since \(g\) is bicontinuous, \(f := H \circ g : \cl{C} \to [0, 1]^2\) is a bicontinuous map as well. But similarly to the Cantor function, we can extend \(f\) to a function \(F : [0, 1] \to [0, 1]^2\) as follows: for each deleted interval \((a, b)\) in a step of the Cantor construction, let \(F(\theta a + (1 - \theta)b) = \theta F(a) + (1 - \theta) F(b)\), where \(\theta \in (0, 1)\). First we show continuity at each \(x \not\in \cl{C}\). Take \(x, y \in (a, b)\) parametrized by \(\theta, \varphi\) respectively and note that if
+    \[
         |x - y| = |(\theta - \varphi)a + (\varphi - \theta)b| 
         < \frac{|a - b|}{|f(a) - f(b)|} \varepsilon
         \implies |\theta - \varphi| < \frac{1}{|f(a) - f(b)|} \varepsilon
-    $$
+    \]
 
     then 
-    $$
+    \[
         |F(x) - F(y)|
         = |(\theta - \varphi) F(a) + (\varphi - \theta) F(b)|
         = |\theta - \varphi| |F(a) - F(b)|
         < \varepsilon
-    $$
+    \]
 
-    so $F$ is continuous on $[0,1] \setminus \cl{C}$. To show $F$ is continuous on $\cl{C}$, fix any $x \in \cl{C}$ and $\varepsilon > 0$. There exists $\delta > 0$ such that whenever $|c - x| < \delta$ for $c \in \cl{C}$, then $|f(x) - f(c)| < \varepsilon / 2$. Now, fix $m \not\in \cl{C}$ such that $|x - m| < \min(\delta, (|y - z| / 2|F(y) - F(z)|) \cdot \varepsilon)$, where $y$ and $z$ are the endpoints of the deleted interval containing $m$, and $y$ is the endpoint between $x$ and $m$. Then, 
+    so \(F\) is continuous on \([0,1] \setminus \cl{C}\). To show \(F\) is continuous on \(\cl{C}\), fix any \(x \in \cl{C}\) and \(\varepsilon > 0\). There exists \(\delta > 0\) such that whenever \(|c - x| < \delta\) for \(c \in \cl{C}\), then \(|f(x) - f(c)| < \varepsilon / 2\). Now, fix \(w \not\in \cl{C}\) such that \(|x - w| < \min(\delta, (|y - z| / 2|F(y) - F(z)|) \cdot \varepsilon)\), where \(y\) and \(z\) are the endpoints of the deleted interval containing \(w\), and \(y\) is the endpoint between \(x\) and \(w\). Then, 
     \begin{align*}
-        |F(x) - F(m)|
-        &< |F(x) - F(y)| + |F(y) - F(m)|
-        < \frac{\varepsilon}{2} + \frac{|y - m|}{|y - z|} |F(y) - F(z)| \\
-        &\leq \frac{\varepsilon}{2} + \frac{|x -m|}{|y - z|} |F(y) - F(z)|
+        |F(x) - F(w)|
+        &< |F(x) - F(y)| + |F(y) - F(w)|
+        < \frac{\varepsilon}{2} + \frac{|y - w|}{|y - z|} |F(y) - F(z)| \\
+        &\leq \frac{\varepsilon}{2} + \frac{|x -w|}{|y - z|} |F(y) - F(z)|
         < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} 
         = \varepsilon
     \end{align*}
 
-    Therefore $F$ is surjective and continuous (though not injective since $f$ is already surjective), and that completes the proof. 
+    Therefore \(F\) is surjective and continuous (though not injective since \(f\) is already surjective), and that completes the proof. 
 \end{proof}
 
 \begin{problem}{Uniform Continuity of the Riemann Integral}*
-    [S\&S E2.8.] If $f \in L^1(\bb{R} \to \bb{R}, \lambda)$, then $F(x) = \int_{-\infty}^x f(t) \, \mr{d}t$ is uniformly continuous.
+    [S\&S E2.8.] If \(f \in L^1(\bb{R} \to \bb{R}, m)\), then \(F(x) = \int_{-\infty}^x f(t) \, \mr{d}t\) is uniformly continuous.
 \end{problem}
 
 \begin{proof}
-    Fix any $\varepsilon > 0$. Without loss of generality, let $x \leq y$. Then
+    Fix any \(\varepsilon > 0\). Without loss of generality, let \(x \leq y\). Then
     \begin{align*}
         |F(x) - F(y)| 
         &= \left| \int_{-\infty}^x f(t) \, \mr{d}t - \int_{-\infty}^y f(t) \, \mr{d}t \right| 
         = \left| \lim_{N \to \infty} \int_{-N}^x f(t) \,\mr{d}t - \lim_{N \to \infty} \int_{-N}^y f(t) \, \mr{d}t \right|  \\
         &= \left| \int_x^y f(t) \, \mr{d}t \right| 
-        = \left| \int_{[x, y]} f \, \mr{d} \lambda \right| 
+        = \left| \int_{[x, y]} f \, \mr{d} m \right| 
     \end{align*}
 
-    thanks to the equality of the Riemann and Lebesgue integrals. However, by absolute continuity of the Lebesgue integral, there exists $\delta$ such that if $|x - y| \leq \delta$, then the integral is at most $\varepsilon$.
+    thanks to the equality of the Riemann and Lebesgue integrals. However, by absolute continuity of the Lebesgue integral, there exists \(\delta\) such that if \(|x - y| \leq \delta\), then the integral is at most \(\varepsilon\).
 \end{proof}
 
 \begin{problem}{Tchebychev's Inequality}*
-    [S\&S E2.9.] Suppose $f \in L^1(X \to \overline{\bb{R}}, \mu)$. Then
-    $$
+    [S\&S E2.9.] Suppose \(f \in L^1(X \to \overline{\bb{R}}, \mu)\). Then
+    \[
     \mu(\{x \mid f(x) > \alpha\}) \leq \frac{1}{\alpha} \int_{X} f \, \mr{d}\mu \qquad (\alpha > 0)
-    $$
+    \]
 \end{problem}
 
 \begin{proof}
-    Let $E_{\alpha} := \{x \mid f(x) > \alpha\}$. The key observation is that $f \geq \alpha \cl{X}_{E_\alpha}$, since then
-    $$
+    Let \(E_{\alpha} := \{x \mid f(x) > \alpha\}\). The key observation is that \(f \geq \alpha \cl{X}_{E_\alpha}\), since then
+    \[
         \mu(E_\alpha) = \int_X \cl{X}_{E_\alpha} \, \mr{d}\mu 
         \leq \int_X \frac{1}{\alpha} f \, \mr{d} \mu 
         = \frac{1}{\alpha} \int_X f \, \mr{d} \mu
-    $$
+    \]
 
     as desired. 
 \end{proof}
 
-\begin{problem}{Convergence in $L^1$ but Pointwise Nowhere}*
-    Show that there exists $f, f_n \in L^1(\bb{R}^d \to \bb{R}, \lambda)$ such that $\|f - f_n\|_{L^1} \to 0$ as $n \to \infty$, but $f_n(x) \to f(x)$ for no $x \in \bb{R}^d$ at all. [Hint: in $\bb{R}$, let $f_n = \cl{X}_{I_n}$, where $I_n$ is an appropriately chosen sequence of intervals with $\lambda(I_n) \to 0$.]
+\begin{problem}{Convergence in \(L^1\) but Pointwise Nowhere}*
+    Show that there exists \(f, f_n \in L^1(\bb{R}^d \to \bb{R}, m)\) such that \(\norm{f - f_n}_{L^1} \to 0\) as \(n \to \infty\), but \(f_n(x) \to f(x)\) for no \(x \in \bb{R}^d\) at all. [Hint: in \(\bb{R}\), let \(f_n = \cl{X}_{I_n}\), where \(I_n\) is an appropriately chosen sequence of intervals with \(m(I_n) \to 0\).]
 \end{problem}
 
 \begin{proof}
     TODO. 
 \end{proof}
 
-\newpage
-\section{Differentiation}
 
-\begin{problem}{Chain Rule for the Radon-Nikodym Derivative}*
-    [MAT425 P6.2.] Let $(X, \fr{M})$ be a measurable space. Let $\mu : \fr{M} \to [0, \infty]$ be $\sigma$-finite, $\nu : \fr{M} \to [0, \infty)$ and $\eta : \fr{M} \to \bb{C}$ be measures such that $\eta \ll \nu \ll \mu$. Prove that $\eta \ll \mu$ and that 
-    $$
-        \frac{\mr{d}\eta}{\mr{d}\mu} = \frac{\mr{d}\eta}{\mr{d}\nu} \frac{\mr{d}\nu}{\mr{d}\mu}
-    $$
-\end{problem}
 
-\begin{proof}
-    To show $\eta \ll \mu$, note that $\mu(E) = 0 \implies \nu(E) = 0 \implies \eta(E) = 0$ for any $E \in \fr{M}$. The key observation is that for any positive $g \in L^1(\nu)$, 
-    $$
-        \int_X g \, \mr{d}\nu = \int_X g \frac{\mr{d}\nu}{\mr{d}\mu} \, \mr{d}\mu
-    $$
 
-    Indeed, the equality is certainly true for characteristics and thus simple functions, so taking an increasing sequence of simple functions $s_n \to g$ for any positive $g \in L^1(\nu)$ we find it must hold for such $g$ as well. But since $\mr{d}\eta / \mr{d}\nu \in L^1(\nu)$ is positive, we have 
-    $$
-        \eta(E) = \int_E \frac{\mr{d}\eta}{\mr{d}\nu} \, \mr{d}\nu = \int_E \frac{\mr{d}\eta}{\mr{d}\nu} \frac{\mr{d}\nu}{\mr{d}\mu} \, \mr{d}\mu
-    $$
-
-    as well, and so uniqueness of the Radon-Nikodym derivative concludes the proof. 
-\end{proof}
-
-\begin{problem}{Inverse of the Radon-Nikodym Derivative}*
-    [MAT425 P6.3.] If $\mu \ll \nu$ and $\nu \ll \mu$ are positive finite measures then 
-    $$
-        \frac{\mr{d}\mu}{\mr{d}\nu} = \left( \frac{\mr{d}\nu}{\mr{d}\mu} \right)^{-1}
-    $$
-\end{problem}
-
-\begin{proof}
-    From the Chain Rule, we have that since $\mu \ll \nu \ll \mu$, 
-    $$
-        \frac{\mr{d}\mu}{\mr{d}\nu}\frac{\mr{d}\nu}{\mr{d}\mu} = \frac{\mr{d}\mu}{\mr{d}\mu} = 1
-        \implies 
-        \frac{\mr{d}\mu}{\mr{d}\nu} = \left( \frac{\mr{d}\nu}{\mr{d}\mu} \right)^{-1} 
-    $$
-
-    again by uniqueness of the Radon-Nikodym derivative. 
-\end{proof}
-
-\begin{problem}{Linearity of the Radon-Nikodym Derivative}*
-    [MAT425 P6.4.] Let $(X, \fr{M})$ be a measurable space. Let $\mu : \fr{M} \to [0, \infty]$ be $\sigma$-finite, and let $\{\nu_i\}_{i=1}^n : \fr{M} \to \bb{C}$ be measures such that $\nu_i \ll \mu$ for all $i$. Then 
-    $$
-        \sum_{i=1}^n \nu_i \ll \mu
-        \quad \text{and} \quad 
-        \frac{\mr{d} \sum_{i=1}^n \nu_i}{\mr{d} \mu} = \sum_{i=1}^n \frac{\mr{d} \nu_i}{\mr{d}\mu}
-    $$
-\end{problem}
-
-\begin{proof}
-    For any $E \in \fr{M}$, it's clear that $\mu(E) = 0 \implies \forall i: \nu_i(E) = 0 \implies \sum_{i=1}^n \nu_i(E) = 0$. Thus $\sum_{i=1}^n \nu_i \ll \mu$. Following that, it's also immediate that 
-    $$
-        \int_E \sum_{i=1}^n \frac{\mr{d}\nu_i}{\mr{d}\mu} \, \mr{d}\mu
-        = \sum_{i=1}^n \int_E \frac{\mr{d}\nu_i}{\mr{d}\mu} \, \mr{d}\mu
-        = \sum_{i=1}^n \nu_i(E)
-        = \left( \sum_{i=1}^n \nu_i \right) (E)
-    $$
-
-    so we conclude once more by uniqueness of the Radon-Nikodym derivative. 
-\end{proof}
-
-\begin{problem}{Multiplicativity of the Radon-Nikodym Derivative}*
-    [MAT425 P6.5.] Let $(X_i, \fr{M}_i)_{i=1}^n$ be measurable spaces, each with $\mu_i : \fr{M}_i \to [0, \infty]$ $\sigma$-finite and $\nu_i : \fr{M}_i \to \bb{C}$. If $\nu_i \ll \mu_i$ for all $i$, then
-    $$
-        \prod_{i=1}^n \nu_i \ll \prod_{i=1}^n \mu_i 
-        \quad \text{and} \quad 
-        \frac{ \mr{d} \prod_{i=1}^n \nu_i }{ \mr{d} \prod_{i=1}^n \mu_i } (x_1, \dots, x_n) = \prod_{i=1}^n \frac{\mr{d}\nu_i}{\mr{d}\mu_i} (x_i) 
-    $$
-\end{problem}
-
-\begin{proof}
-    Without loss of generality we consider $n=2$. Suppose $(\mu_1 \times \mu_2)(E) = 0$. Then, 
-    $$
-        0 
-        = (\mu_1 \times \mu_2)(E) 
-        = \int_{X_1} \mu_2(E_2) \, \mr{d}\mu_1
-        = \int_{X_2} \mu_1(E_1) \, \mr{d}\mu_2
-    $$
-
-    and therefore $\mu_2(E_2) = 0$ $\mu_1$-a.e., while $\mu_1(E_1) = 0$ $\mu_2$-a.e. It follows that $\nu_2(E_2) = 0$ $\mu_1$-a.e. and $\nu_1(E_1) = 0$ $\nu_2$-a.e., so 
-    $$
-        (\nu_1 \times \nu_2)(E) = \int_{X_1} \nu_2(E_2) \, \mr{d}\nu_1 = \int_{X_2} \nu_1(E_1) \, \mr{d}\nu_2 = 0
-    $$
-
-    thus showing $\nu_1 \times \nu_2 \ll \mu_1 \times \mu_2$. Finally, by Tonelli's Theorem, we have 
-    $$
-        \int_{X_1 \times X_2} \cl{X}_E \frac{\mr{d}\nu_1}{\mr{d}\mu_1} \frac{\mr{d}\nu_2}{\mr{d}\mu_2} \, \mr{d} (\mu_1 \times \mu_2)
-        = \int_{X_1} \int_{X_2} \cl{X}_{E_2} \frac{\mr{d} \nu_2}{\mr{d} \mu_2} \, \mr{d} \mu_2 \mr{d}\mu_1 
-        = \int_{X_1} \nu_2(E_2) \, \mr{d}\mu_1
-        = (\nu_1 \times \nu_2)(E)
-    $$
-
-    and so the derivative of the products is the product of the derivatives. 
-\end{proof}
 
 
 
 \newpage
-\section{$L^p$ Spaces}
+\section{\(L^p\) Spaces}
+
 
 \begin{problem}{Preserving Convexity in Composition}*
-    [RCA E2.2] If $\varphi : (a, b) \to \bb{R}$ is convex and if $\psi$ is convex and nondecreasing on the range of $\varphi$, prove that $\psi \circ \varphi : (a, b) \to \bb{R}$ is convex. For $\varphi > 0$, show that the convexity of $\log\varphi$ implies the convexity of $\varphi$, but not vice versa. 
+    [RCA E2.2] If \(\varphi : (a, b) \to \bb{R}\) is convex and if \(\psi\) is convex and nondecreasing on the range of \(\varphi\), prove that \(\psi \circ \varphi : (a, b) \to \bb{R}\) is convex. For \(\varphi > 0\), show that the convexity of \(\log\varphi\) implies the convexity of \(\varphi\), but not vice versa. 
 \end{problem}
 
 \begin{proof}
-    That $\psi \circ \varphi$ is convex follows immediately from the definitions. If $\varphi > 0$, convexity of $\log\varphi$ means that $\varphi = \exp \log \varphi$ is convex as well, since $\exp$ is convex and increasing. 
+    That \(\psi \circ \varphi\) is convex follows immediately from the definitions. If \(\varphi > 0\), convexity of \(\log\varphi\) means that \(\varphi = \exp \log \varphi\) is convex as well, since \(\exp\) is convex and increasing. 
 \end{proof}
 
+
 \begin{problem}{Midpoint Convexity}*
-    [RCA E2.3.] Assume that $\varphi: (a, b) \to \bb{R}$ is continuous and 
-    $$
+    [RCA E2.3.] Assume that \(\varphi: (a, b) \to \bb{R}\) is continuous and 
+    \[
         \varphi \left(\frac{1}{2}x + \frac{1}{2}y\right) \leq \frac{1}{2} \varphi(x) + \frac{1}{2}\varphi(y)
         \qquad (x, y \in (a, b))
-    $$
+    \]
 
-    Prove that $\varphi$ is convex and that continuity is a required assumption. 
+    Prove that \(\varphi\) is convex and that continuity is a required assumption. 
 \end{problem}
 
 \begin{proof}
-    Let a function $f$ be $\Theta$-\tit{convex} if 
-    $$
+    Let a function \(f\) be \(\Theta\)-\tit{convex} if 
+    \[
         f(\theta x + (1 - \theta) y) \leq \theta f(x) + (1 - \theta) f(y) 
         \qquad (\theta \in \Theta)
-    $$
+    \]
 
-    Let $B_n = \{k / 2^n \mid k \in \bb{N}, 0 < k < 2^n\}$ for each $n \in \bb{N}$. We will prove by induction that $\varphi$ is $B_n$-convex. For $n=1$, the hypothesis is true by assumption. So suppose $\varphi$ is $B_n$ convex; we will show it is $B_{n+1}$-convex. Fix any integer $k$ such that $0 < k < 2^n$. If $k$ is even, then $k/2^{n+1} \in B_n$, so suppose $k$ is odd. Then, 
+    Let \(B_n = \{k / 2^n \mid k \in \bb{N}, 0 < k < 2^n\}\) for each \(n \in \bb{N}\). We will prove by induction that \(\varphi\) is \(B_n\)-convex. For \(n=1\), the hypothesis is true by assumption. So suppose \(\varphi\) is \(B_n\) convex; we will show it is \(B_{n+1}\)-convex. Fix any integer \(k\) such that \(0 < k < 2^n\). If \(k\) is even, then \(k/2^{n+1} \in B_n\), so suppose \(k\) is odd. Then, 
     \begin{align*}
         \varphi \left( \frac{k}{2^{n+1}} x + \left(1 - \frac{k}{2^{n+1}}\right) y \right)
         &= \varphi \left( \frac{1}{2} \left( \frac{k}{2^n} x + \left(1 - \frac{k}{2^n}\right) y \right) + \frac{1}{2} y \right) \\
@@ -853,56 +764,291 @@ Problems are derived largely from \textit{Integration Theory and Hilbert Spaces}
         &\leq \frac{k}{2^{n+1}} \varphi(x) + \left(1 - \frac{k}{2^{n+1}} \right) \varphi(y)
     \end{align*}
 
-    so that $\varphi$ is $B_{n+1}$-convex, completing the induction. Now, let $B$ be the set of all $b \in (0, 1)$ which have a binary representation with at most finitely many nonzero digits. Note that every $b \in B$ satisfies $b \in B_n$ for some $n$, so $\varphi$ is $B$-convex. So, take any $\theta \in (0, 1)$, and consider a binary representation $\theta = \sum_i b_i / 2^i$. If $\theta_N = \sum_{i=1}^N b_i / 2^i$, then since $\theta_N \in B$, 
-    $$
+    so that \(\varphi\) is \(B_{n+1}\)-convex, completing the induction. Now, let \(B\) be the set of all \(b \in (0, 1)\) which have a binary representation with at most finitely many nonzero digits. Note that every \(b \in B\) satisfies \(b \in B_n\) for some \(n\), so \(\varphi\) is \(B\)-convex. So, take any \(\theta \in (0, 1)\), and consider a binary representation \(\theta = \sum_i b_i / 2^i\). If \(\theta_N = \sum_{i=1}^N b_i / 2^i\), then since \(\theta_N \in B\), 
+    \[
         \varphi(\theta_N x + (1 - \theta_N) y) \leq \theta_N \varphi(x) + (1 - \theta_N) \varphi(y)
         \qquad (N \in \bb{N})
-    $$
+    \]
 
-    Since $\varphi$ is continuous, taking $N \to \infty$ on both sides shows that $\varphi$ is convex. Finally, continuity is a required assumption: if $\varphi$ were not continuous, then it could not be convex, since every convex function is continuous. 
-    \end{proof}
+    Since \(\varphi\) is continuous, taking \(N \to \infty\) on both sides shows that \(\varphi\) is convex. Finally, continuity is a required assumption: if \(\varphi\) were not continuous, then it could not be convex, since every convex function is continuous. 
+\end{proof}
 
-\begin{problem}{Monotonicity of $L^p$}*
-    [RCA E2.4.] Suppose $(X, \fr{M}, \mu)$ is a positive measure space and let $f$ be a complex measurable function. Define 
-    $$
-        \varphi(p) := \int_X |f|^p \, \mr{d}\mu = \|f\|_p^p
+
+\begin{problem}{Finite \(L^p\)-Norm Implies \(\sigma\)-Finite Support}*
+    Suppose \((X, \fr{M}, \mu)\) is a positive measure space and let \(f\) be a complex measurable function. If \(\norm{f}_p < \infty\) for some \(0 < p < \infty\), then \(f\) has \(\sigma\)-finite support. 
+\end{problem}
+
+\begin{proof}
+    Suppose for contradiction that \(f\) did not have \(\sigma\)-finite support. Note that 
+    \[
+        \oname{supp}(f) = \{x : f(x) > 0 \} = \bigcup_{n=1}^\infty \left\{ x : f(x) > \frac{1}{n} \right\}
+    \]
+
+    So, there exists some \(m \in \bb{N}\) for which \(\mu(\{x : f(x) > 1/m\}) = \infty\). But then
+    \[
+        \norm{f}_p = \left( \int_X |f|^p \, \mr{d}\mu \right)^{\frac{1}{p}}
+        > \left( \int_{\{x : f(x) > 1/m\}} \left(\frac{1}{m}\right)^p \, \mr{d}\mu \right)^{\frac{1}{p}}
+        = \infty
+    \]
+
+    a contradiction, so \(f\) has \(\sigma\)-finite support. 
+\end{proof}
+
+
+\begin{problem}{Monotonicity of the \(L^p\)-norm}*
+    [RCA E2.4.] Suppose \((X, \fr{M}, \mu)\) is a positive measure space and let \(f\) be a complex measurable function. Define 
+    \[
+        \varphi(p) := \int_X |f|^p \, \mr{d}\mu = \norm{f}_p^p
         \qquad (0 < p < \infty) 
-    $$
+    \]
 
-    and $E := \{ p \mid \varphi(p) < \infty\}$. Then, prove the following: 
+    and \(E := \{ p \mid \varphi(p) < \infty\}\). Then, prove the following: 
     \begin{enumerate}[(a)]
         \itemsep0em
-        \item $E$ is connected, in the sense that if $r, s \in E$ then $(r, s) \subseteq E$. 
-        \item $\log \varphi$ is convex on $E^\circ$ and $\varphi$ is continuous on $E$. 
-        \item $E$ could be any singleton or interval subset of $(0, \infty)$. 
-        \item $L^p$ is monotonic in $p$ under set inclusion, but the monotonicity may be increasing or decreasing in $p$. [Hint: show that if $r < p < s$, then $\|f\|_p \leq \max(\|f\|_r, \|f\|_s)$.]
-        \item If $\|f\|_r < \infty$ for some $0 < r < \infty$, then $\|f\|_p \to \|f\|_\infty$ as $p \to \infty$. 
+        \item \(E\) is connected, in the sense that if \(r, s \in E\) then \((r, s) \subseteq E\). 
+        \item \(\log \varphi\) is convex on \(E^\circ\) and \(\varphi\) is continuous on \(E\). 
+        \item \(E\) could be any singleton or interval subset of \((0, \infty)\). 
+        \item \(\norm{f}_p\) is monotonic in \(p\) for fixed \(f\), but the monotonicity may be increasing or decreasing in \(p\). [Hint: show that if \(r < p < s\), then \(\norm{f}_p \leq \max(\norm{f}_r, \norm{f}_s)\).]
+        \item If \(\norm{f}_r < \infty\) for some \(0 < r < \infty\), then \(\norm{f}_p \to \norm{f}_\infty\) as \(p \to \infty\). 
     \end{enumerate}
 \end{problem}
 
 \begin{proof}
-    \tit{Part (a).} Let $r, s \in E$ and take $p \in (r, s)$. Define $A := \{ x \mid |f| \leq 1\}$. Then, 
-    $$
+    \tit{Part (a).} Let \(r, s \in E\) and take \(p \in (r, s)\). Define \(A := \{ x \mid |f(x)| \leq 1\}\). Then, 
+    \[
         \int_X |f|^p \, \mr{d} \mu 
         = \int_{A} |f|^p \, \mr{d}\mu + \int_{A^c} |f|^p \, \mr{d}\mu
         \leq \int_A |f|^r \, \mr{d}\mu + \int_{A^c} |f|^s \, \mr{d}\mu
         \leq \varphi(r) + \varphi(s) < \infty
-    $$
+    \]
 
-    so that $p \in E$ as well. 
+    so that \(p \in E\) as well. 
 \end{proof}
 
+\begin{proof}
+    \tit{Part (b).} For any \(r, s \in E^\circ\), applying Holder's inequality on \(|f|\) using the conjugate exponents \((\theta^{-1}, (1 - \theta)^{-1})\) yields
+    \begin{align*}
+        \log \varphi(\theta r + (1 - \theta) x) 
+        &= \log \left( \int_X |f|^{\theta r} |f|^{(1 - \theta) s} \, \mr{d}\mu \right)
+        \leq \log \left[ \left( \int_X |f|^r \, \mr{d}\mu \right)^\theta \left( \int_X |f|^s \, \mr{d}\mu \right)^{1 - \theta} \right] \\
+        &= \theta \log \varphi(r) + (1 - \theta) \log \varphi(s)
+    \end{align*}
+
+    Note that we must look at \(E^\circ\) rather than \(E\) since convexity (according to RCA) is defined on open intervals. Now, to show that \(\varphi\) is continuous on \(E\), first note that \(\varphi\) is convex on \(E^\circ\) since \(\varphi = \exp \log \varphi\). Then consider any \(p \in \partial E\). Any sequence \(\{p_n\}_n\) which approaches \(p\) must do so either from above or below, since \(E\) is an interval. Define \(A := \{ x \mid |f(x)| \leq 1 \}\) so that 
+    \begin{align*}
+        \lim_{n \to \infty} \varphi(p_n) 
+        &= \lim_{n \to \infty} |f|^{p_n} \, \mr{d}\mu 
+        = \lim_{n \to \infty} \int_A |f|^{p_n} \, \mr{d}\mu + \lim_{n \to \infty} \int_{A^c} |f|^{p_n} \, \mr{d}\mu \\
+        &\stackrel{(*)}{=} \int_A |f|^p \, \mr{d}\mu + \int_{A^c} |f|^p \, \mr{d}\mu
+        = \int_X |f|^p \, \mr{d}\mu
+        = \varphi(p)
+    \end{align*}
+
+    The justification for \((*)\) follows from applications of the Dominated Convergence Theorem. If \(p_n\) approaches \(p\) from below, then the first term in \((*)\) uses domination by \(|f|^{p_0}\), where \(p_0 := \inf p_n \in E\), and the second uses domination by \(|f|^p\). On the other hand, if \(p_n\) approaches \(p\) from above, then the first term uses domination by \(|f|^p\), and the second term by \(|f|^{p_0}\) where \(p_0 := \sup p_n\) this time. Hence \(\varphi\) is continuous at both the interior and boundary points of \(E\), so it is continuous on \(E\). 
+\end{proof}
+
+\begin{proof}
+    \tit{Part (c).} First, we show that \(E\) could be any singleton \(0 < p_0 < \infty\). Define 
+    \begin{align*}
+        & a_n = 2^{-n}, \quad \mu(\{A_n\}) = n^{-2} 2^{np_0}  \\
+        & b_n = 2^{-n}, \quad \mu(\{B_n\}) = n^{-2} 2^{-np_0}
+    \end{align*}
+
+    where the points \(\{A_n\}_n, \{B_n\}_n\) form a measure space \(X = \left(\bigcup_n A_n\right) \cup \left(\bigcup_n B_n\right)\) whose \(\sigma\)-algebra \(\fr{M}\) is the power set \(\cl{P}(X)\). Define \(f(A_n) = a_n\) and \(f(B_n) = b_n\) so that \(f\) is a limit of simple functions and therefore is measurable. Observe, 
+    \[
+        \varphi(p) = \int_X f^p \, \mr{d}\mu = \sum_{n=1}^\infty f(A_n) \mu(\{A_n\}) + \sum_{n=1}^\infty f(B_n) \mu(\{B_n\})
+        = \sum_{n=1}^\infty \frac{1}{n^2} \left( 2^{n(p_0 - p)} + 2^{n(p - p_0)} \right)
+    \]
+
+    Of course, this series converges only for \(p = p_0\), so \(E = \{p_0\}\) as desired. 
+    \stdvspace
+
+    Now we show that \(E\) can be any open interval \((\alpha, \beta)\) where \(0 \leq \alpha < \beta \leq \infty\). Define
+    \[
+        f_\beta = \left(x \mapsto x^{-\frac{1}{\beta}}\right) : (0,1) \to \bb{R}, 
+        \quad 
+        f_\alpha = \left(x \mapsto x^{-\frac{1}{\alpha}}\right) : (1,\infty) \to \bb{R}
+    \]
+    
+    where \(f_\beta = 1\) whenever \(\beta = \infty\) and \(f_\alpha = 0\) whenever \(\alpha = 0\). Observe that \(\norm{f_\beta}_p\) is finite on \((0,1)\) precisely when \(p < \beta\), and \(\norm{f_\alpha}_p\) is finite on \((1, \infty)\) precisely when \(p > \alpha\). Hence define 
+    \[
+        f = f_\beta \cl{X}_{(0,1)} + f_\alpha \cl{X}_{(1, \infty)} : \bb{R} \to \bb{R}
+    \]
+
+    so that \(\norm{f}_p\) is finite on \(\bb{R}\) precisely when \(\alpha < p < \beta\). So, \(E = (\alpha, \beta)\) for \(f\). 
+    \stdvspace
+
+    Next, we show that \(E = [\alpha, \beta)\), \(E = (\alpha, \beta]\), or \(E = [\alpha, \beta]\) can be constructed as well. TODO. 
+\end{proof}
+
+\begin{proof}
+    \tit{Part (d).} Without loss of generality, assume \(\norm{f}_r\) and \(\norm{f}_s\) are finite. First, consider the case where \(r, s \in E^\circ\). Let \(p = \theta r + (1 - \theta) s\) for some \(\theta \in (0, 1)\). Since \(\log\varphi\) is convex, we have 
+    \begin{align*}
+        \log\varphi(p) \leq \theta \log\varphi(r) + (1 - \theta) \log\varphi(s) 
+        \implies & \norm{f}_p^p \leq (\norm{f}_r^r)^\theta (\norm{f}_s^s)^{1 - \theta} 
+        \leq \max\{\norm{f}_r, \norm{f}_s\}^p 
+    \end{align*}
+
+    from which it follows that \(\norm{f}_p \leq \max\{ \norm{f}_r, \norm{f}_s \}\). Now suppose either \(r\) or \(s\) lies on the boundary \(\partial E\). Then observe that since \(\psi(p) := \norm{f}_p = \varphi(p)^p = \exp \left( \frac{1}{p} \log \varphi(p) \right)\) is the composition of continuous maps (whenever \(\varphi > 0\), which occurs insofar as \(\mu(X) > 0\) and \(f\) is not zero a.e., which are both cases where the desired result is trivially true) and therefore is continuous, we have that
+    \begin{align*}
+        & \norm{f}_p \leq \lim_{\varepsilon \to 0} \max( \norm{f}_{r + \varepsilon}, \norm{f}_s ) = \max( \norm{f}_r, \norm{f}_s) 
+        \quad \text{if } r \in \partial E, s \in E^\circ \\
+        & \norm{f}_p \leq \lim_{\varepsilon \to 0} \max( \norm{f}_r, \norm{f}_{s + \varepsilon} ) = \max( \norm{f}_r, \norm{f}_s) 
+        \quad \text{if } s \in \partial E, r \in E^\circ
+    \end{align*}
+
+    or we can even take both limits if \(r, s \in \partial E\). Hence \(\norm{f}_p\) is monotonic (either weakly increasing or decreasing) in \(p\) if we fix a function \(f\). However, either direction is possible, even within the same measure space. For instance, when \((X, \fr{M}, \mu) = (\bb{R}, \cl{L}(\bb{R}), m)\) where \(\cl{L}(\bb{R})\) is the collection of Lebesgue-measurable sets on \(\bb{R}\), the function \(f=\cl{X}_{[0, 1/4)}\) satisfies
+    \[
+        \norm{f}_1 = \int_\bb{R} \cl{X}_{\left[0, \frac{1}{4}\right)} \, \mr{d}m = \frac{1}{4},
+        \quad 
+        \norm{f}_2 = \sqrt{\int_\bb{R} \cl{X}_{\left[0, \frac{1}{4}\right)} \, \mr{d}m} = \frac{1}{2}
+    \]
+
+    and so \(\norm{f}_1 < \norm{f}_2\). Yet if we choose instead \(f = \cl{X}_{[0, 4)}\), 
+    \[
+        \norm{f}_1 = \int_{\bb{R}} \cl{X}_{[0, 4)} \, \mr{d}m = 4,
+        \quad
+        \norm{f}_2 = \sqrt{\int_{\bb{R}} \cl{X}_{[0, 4)} \, \mr{d}m} = 2
+    \]
+
+    so that \(\norm{f}_1 > \norm{f}_2\). 
+\end{proof}
+
+\begin{proof}
+    \tit{Part (e).} We consider two cases. First, suppose \(\norm{f}_\infty = \infty\). Fix \(n \in \bb{N}\) greater than \(1\), and observe that we can find a set \(K\) with measure \(\varepsilon\) on which \(f > n\). Hence
+    \[
+        \varphi(p) = \int_X |f|^p \, \mr{d}\mu > \int_K |f|^p \, \mr{d}\mu > n^p \mu(K) = n^p \varepsilon
+    \]
+    
+    Of course, as \(p \to \infty\) we thus have \(\varphi(p) \to \infty\) and so \(\norm{f}_p \to \infty\) as well. 
+    \stdvspace
+
+    Second, suppose \(\norm{f}_\infty < \infty\). We will show inequality in both directions. To show \(\norm{f}_\infty\) is an upper bound, 
+    \[
+        \lim_{p \to \infty} \norm{f}_p = \lim_{p \to \infty} \left( \int_X |f|^r |f|^{p-r} \, \mr{d}\mu \right)^{\frac{1}{p}} 
+        \leq \lim_{p \to \infty} (\norm{f}_\infty)^{1 - \frac{r}{p}} (\norm{f}_r)^{\frac{r}{p}}
+        = \norm{f}_\infty
+    \]
+
+    Now to show \(\norm{f}_\infty\) is a lower bound. Since \(\norm{f}_r < \infty\), we know that \(\oname{supp}(f)\) is \(\sigma\)-finite. Let \(\{K_n\}_n\) denote a partition of \(\oname{supp}(f)\) with \(\mu(K_n) < \infty\), and furthermore write 
+    \[
+        A_{\varepsilon, n} = \{x \in K_n \mid f(x) > \norm{f}_\infty - \varepsilon\}
+        \qquad (\varepsilon > 0)
+    \]
+
+    Note that \(0 < \mu(A_{\varepsilon, n}) < \infty\), so 
+    \[
+        \lim_{p \to \infty} \norm{f}_p 
+        \geq \lim_{p \to \infty} \left( \sum_{n=1}^\infty \int_{K_n} |f|^p \, \mr{d}\mu \right)^{\frac{1}{p}} 
+        \geq \lim_{p \to \infty} \left( (\norm{f}_\infty - \varepsilon) \left( \sum_{n=1}^\infty \mu(A_{\varepsilon, n}) \right)^{\frac{1}{p}} \right)
+        = \norm{f}_\infty - \varepsilon
+    \]
+
+    The last step follows since \(\sum_n \mu(A_{\varepsilon, n})\) must converge since otherwise \(\lim \norm{f}_p\) would be infinite, contradicting \(\lim \norm{f}_p \leq \norm{f}_\infty < \infty\). Finally, taking \(\varepsilon \to 0\) yields \(\lim \norm{f}_p \geq \norm{f}_\infty\), as desired. 
+\end{proof}
+
+
+
+
+\newpage
+\section{Differentiation}
+
+\begin{problem}{Chain Rule for the Radon-Nikodym Derivative}*
+    [MAT425 P6.2.] Let \((X, \fr{M})\) be a measurable space. Let \(\mu : \fr{M} \to [0, \infty]\) be \(\sigma\)-finite, \(\nu : \fr{M} \to [0, \infty)\) and \(\eta : \fr{M} \to \bb{C}\) be measures such that \(\eta \ll \nu \ll \mu\). Prove that \(\eta \ll \mu\) and that 
+    \[
+        \frac{\mr{d}\eta}{\mr{d}\mu} = \frac{\mr{d}\eta}{\mr{d}\nu} \frac{\mr{d}\nu}{\mr{d}\mu}
+    \]
+\end{problem}
+
+\begin{proof}
+    To show \(\eta \ll \mu\), note that \(\mu(E) = 0 \implies \nu(E) = 0 \implies \eta(E) = 0\) for any \(E \in \fr{M}\). The key observation is that for any positive \(g \in L^1(\nu)\), 
+    \[
+        \int_X g \, \mr{d}\nu = \int_X g \frac{\mr{d}\nu}{\mr{d}\mu} \, \mr{d}\mu
+    \]
+
+    Indeed, the equality is certainly true for characteristics and thus simple functions, so taking an increasing sequence of simple functions \(s_n \to g\) for any positive \(g \in L^1(\nu)\) we find it must hold for such \(g\) as well. But since \(\mr{d}\eta / \mr{d}\nu \in L^1(\nu)\) is positive, we have 
+    \[
+        \eta(E) = \int_E \frac{\mr{d}\eta}{\mr{d}\nu} \, \mr{d}\nu = \int_E \frac{\mr{d}\eta}{\mr{d}\nu} \frac{\mr{d}\nu}{\mr{d}\mu} \, \mr{d}\mu
+    \]
+
+    as well, and so uniqueness of the Radon-Nikodym derivative concludes the proof. 
+\end{proof}
+
+\begin{problem}{Inverse of the Radon-Nikodym Derivative}*
+    [MAT425 P6.3.] If \(\mu \ll \nu\) and \(\nu \ll \mu\) are positive finite measures then 
+    \[
+        \frac{\mr{d}\mu}{\mr{d}\nu} = \left( \frac{\mr{d}\nu}{\mr{d}\mu} \right)^{-1}
+    \]
+\end{problem}
+
+\begin{proof}
+    From the Chain Rule, we have that since \(\mu \ll \nu \ll \mu\), 
+    \[
+        \frac{\mr{d}\mu}{\mr{d}\nu}\frac{\mr{d}\nu}{\mr{d}\mu} = \frac{\mr{d}\mu}{\mr{d}\mu} = 1
+        \implies 
+        \frac{\mr{d}\mu}{\mr{d}\nu} = \left( \frac{\mr{d}\nu}{\mr{d}\mu} \right)^{-1} 
+    \]
+
+    again by uniqueness of the Radon-Nikodym derivative. 
+\end{proof}
+
+\begin{problem}{Linearity of the Radon-Nikodym Derivative}*
+    [MAT425 P6.4.] Let \((X, \fr{M})\) be a measurable space. Let \(\mu : \fr{M} \to [0, \infty]\) be \(\sigma\)-finite, and let \(\{\nu_i\}_{i=1}^n : \fr{M} \to \bb{C}\) be measures such that \(\nu_i \ll \mu\) for all \(i\). Then 
+    \[
+        \sum_{i=1}^n \nu_i \ll \mu
+        \quad \text{and} \quad 
+        \frac{\mr{d} \sum_{i=1}^n \nu_i}{\mr{d} \mu} = \sum_{i=1}^n \frac{\mr{d} \nu_i}{\mr{d}\mu}
+    \]
+\end{problem}
+
+\begin{proof}
+    For any \(E \in \fr{M}\), it's clear that \(\mu(E) = 0 \implies \forall i: \nu_i(E) = 0 \implies \sum_{i=1}^n \nu_i(E) = 0\). Thus \(\sum_{i=1}^n \nu_i \ll \mu\). Following that, it's also immediate that 
+    \[
+        \int_E \sum_{i=1}^n \frac{\mr{d}\nu_i}{\mr{d}\mu} \, \mr{d}\mu
+        = \sum_{i=1}^n \int_E \frac{\mr{d}\nu_i}{\mr{d}\mu} \, \mr{d}\mu
+        = \sum_{i=1}^n \nu_i(E)
+        = \left( \sum_{i=1}^n \nu_i \right) (E)
+    \]
+
+    so we conclude once more by uniqueness of the Radon-Nikodym derivative. 
+\end{proof}
+
+\begin{problem}{Multiplicativity of the Radon-Nikodym Derivative}*
+    [MAT425 P6.5.] Let \((X_i, \fr{M}_i)_{i=1}^n\) be measurable spaces, each with \(\mu_i : \fr{M}_i \to [0, \infty]\) \(\sigma\)-finite and \(\nu_i : \fr{M}_i \to \bb{C}\). If \(\nu_i \ll \mu_i\) for all \(i\), then
+    \[
+        \prod_{i=1}^n \nu_i \ll \prod_{i=1}^n \mu_i 
+        \quad \text{and} \quad 
+        \frac{ \mr{d} \prod_{i=1}^n \nu_i }{ \mr{d} \prod_{i=1}^n \mu_i } (x_1, \dots, x_n) = \prod_{i=1}^n \frac{\mr{d}\nu_i}{\mr{d}\mu_i} (x_i) 
+    \]
+\end{problem}
+
+\begin{proof}
+    Without loss of generality we consider \(n=2\). Suppose \((\mu_1 \times \mu_2)(E) = 0\). Then, 
+    \[
+        0 
+        = (\mu_1 \times \mu_2)(E) 
+        = \int_{X_1} \mu_2(E_2) \, \mr{d}\mu_1
+        = \int_{X_2} \mu_1(E_1) \, \mr{d}\mu_2
+    \]
+
+    and therefore \(\mu_2(E_2) = 0\) \(\mu_1\)-a.e., while \(\mu_1(E_1) = 0\) \(\mu_2\)-a.e. It follows that \(\nu_2(E_2) = 0\) \(\mu_1\)-a.e. and \(\nu_1(E_1) = 0\) \(\nu_2\)-a.e., so 
+    \[
+        (\nu_1 \times \nu_2)(E) = \int_{X_1} \nu_2(E_2) \, \mr{d}\nu_1 = \int_{X_2} \nu_1(E_1) \, \mr{d}\nu_2 = 0
+    \]
+
+    thus showing \(\nu_1 \times \nu_2 \ll \mu_1 \times \mu_2\). Finally, by Tonelli's Theorem, we have 
+    \[
+        \int_{X_1 \times X_2} \cl{X}_E \frac{\mr{d}\nu_1}{\mr{d}\mu_1} \frac{\mr{d}\nu_2}{\mr{d}\mu_2} \, \mr{d} (\mu_1 \times \mu_2)
+        = \int_{X_1} \int_{X_2} \cl{X}_{E_2} \frac{\mr{d} \nu_2}{\mr{d} \mu_2} \, \mr{d} \mu_2 \mr{d}\mu_1 
+        = \int_{X_1} \nu_2(E_2) \, \mr{d}\mu_1
+        = (\nu_1 \times \nu_2)(E)
+    \]
+
+    and so the derivative of the products is the product of the derivatives. 
+\end{proof}
+
+
+
+
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
 
