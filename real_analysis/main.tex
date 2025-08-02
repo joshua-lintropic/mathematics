@@ -153,7 +153,12 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 \end{problem}
 
 \begin{proof}
-    TODO. 
+    By translation-invariance, we may restrict our attention to \(B_r\) centered at the origin. Consider the linear transformation \(T_r = (x\mapsto rx) : \bb{R}^d \to \bb{R}^d\). Because \(\det T_r = r^d\), we have that 
+    \[
+        m(T_r(B_1)) = \det(T_r) \cdot m(B_1) = m(B_1) r^d
+    \]
+
+    as desired. 
 \end{proof}
 
 \begin{problem}{Boundary of Closure with Positive Measure}*
@@ -367,21 +372,8 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
     Let \(\Delta(f, \cl{X}_{[0,1]}) = \{x \in \bb{R} \mid f(x) \neq \cl{X}_{[0,1]}(x)\}\). We will show that \(\Delta(f, \cl{X}_{[0,1]})\) has non-empty interior whenever \(f\) is continuous. Choose \(a \in (-1,0)\) and \(b \in [0,1]\) such that \(f(a) = \cl{X}_{[0,1]}(a)\) and \(f(b) = \cl{X}_{[0,1]}(b)\). If such \(a\) and \(b\) do not exist, we are done. By the Intermediate Value Theorem, there exists \(c \in (a, b)\) such that \(f(c) = 1/2\). But because \(f\) is continuous, for any \(0 < \varepsilon < 1/2\), there exists some \(\delta > 0\) such that \(|x - c| < \delta \implies |f(x) - f(c)| < \varepsilon \implies f(x) \in (0, 1)\). Thus, \((c - \delta, c + \delta) \subseteq \Delta(f, \cl{X}_{[0,1]})\), so the set of disagreements has nonzero Lebesgue measure. 
 \end{proof}
 
-\begin{problem}{Positive Outer-Measurable Sets (Almost) Contain Intervals}*
-    [S\&S E1.28.] Let \(E\) be a subset of \(\bb{R}\) with \(m*(E) > 0\), where \(m*\) is the Lebesgue outer-measure. Prove that for each \(0 < \alpha < 1\), there exists an open interval \(I\) so that 
-    \[
-        m*(E \cap I) \geq \alpha m*(I)
-    \]
-
-    Loosely speaking, this estimate shows that \(E\) contains almost a whole interval. [Hint: choose an open set \(\cl{O}\) that contains \(E\), and such that \(m*(E) \geq \alpha m*(\cl{O})\). Write \(\cl{O}\) as the countable union of disjoint open intervals, and show that one of these intervals must satisfy the desired property.]
-\end{problem}
-
-\begin{proof}
-    TODO. [Decide whether this problem is worth it.]
-\end{proof}
-
 \begin{problem}{Composition Fails to Preserve Lebesgue Measurability}*
-    [S\&S E1.35.] Prove that if \(\varphi\) is continuous and \(f\) is Lebesgue-measurable, then \(\varphi \circ f\) is Lebesgue-measurable. However, show that the reverse need not be true: find an example of where \(f \circ \varphi\) is non-measurable.\footnote{The nuance here is that the composition of \textit{Borel}-measurable functions is Borel!} Use the construction in the hint to show that there exists a Lebesgue-measurable set that is not a Borel set. 
+    [S\&S E1.35.] Prove that if \(\varphi\) is continuous and \(f\) is Lebesgue-measurable, then \(\varphi \circ f\) is Lebesgue-measurable. However, show that the converse need not be true: find an example of where \(f \circ \varphi\) is non-measurable.\footnote{The nuance here is that the composition of \textit{Borel}-measurable functions is Borel!} Use the construction in the hint to show that there exists a Lebesgue-measurable set that is not a Borel set. 
     [Hint: Let \(\varphi : \hat{\cl{C}} \to \cl{C}\) where \(\hat{\cl{C}}\) is the fat Cantor set and \(\cl{C}\) is the Cantor set. Let \(N \subseteq \hat{\cl{C}}\) be non-measurable, and take \(f = \cl{X}_{\varphi(N)}\).]
 \end{problem}
 
@@ -390,17 +382,19 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 \end{proof}
 
 \begin{problem}{Lebesgue's Theorem}*
-    [S\&S P1.4.] A bounded function on an interval is Riemann integrable if and only if its set of discontinuities has measure zero. 
+    [S\&S P1.4.] Let \(f\) be a \tit{bounded} function on a compact interval \(K\), and let \(B_r(c) \subseteq \bb{R}\) denote the open interval of radius \(r > 0\) centered at \(c \in \bb{R}\). Let \(\oname{osc}_f(c) = \lim_{r \to 0} \sup_{x, y \in K \cap B_r(c)}|f(x) - f(y)|\). Note that \(f\) is continuous at \(c \in K\) if and only if \(\oname{osc}_f(c) = 0\). Prove the following assertions:
+    \begin{enumerate}[(a)]
+        \itemsep0em
+        \item For every \(\varepsilon > 0\), the set of points \(c \in K\) such that \(\oname{osc}_f(c) \geq \varepsilon\) is compact. 
+        \item If the set of discontinuities of \(f\) has measure zero, then \(f\) is Riemann integrable. [Hint: given \(\varepsilon > 0\) let \(A_\varepsilon = \{c \in K \mid \oname{osc}_f(c) \geq \varepsilon \}\). Select an appropriate partition of \(K\) and estimate the difference between the upper and lower sums of \(f\) over this partition.]
+        \item Conversely, if \(f\) is Riemann integrable on \(K\), then its set of discontinuities has measure zero. [Hint: The set of discontinuities is contained in \(\bigcup_n A_{1/n}\). Choose a partition \(P\) such that \(U_f(P) - L_f(P) < \varepsilon / n\). Show that the total length of the intervals in \(P\) whose interior intersect \(A_{1/n}\) is at most \(\varepsilon\). 
+    \end{enumerate}
+
+    Conclude that a bounded function \(f : K \to \bb{R}\) on a compact interval is Riemann integrable if and only if its set of discontinuities has Lebesgue-measure zero. 
 \end{problem}
 
 \begin{proof}
-    Let \(f : I \to \bb{R}\) be bounded for an interval \(I = [a, b)\), and define \(I_n := a + [n, n+1) \frac{b-a}{N}\) for \(N\) subdivisions of the interval on \(n \in \{0, \dots, N-1\}\). The lower and upper Darboux sums are
-    \[
-    L_N(f) = \frac{b-a}{N} \sum_{n=0}^{N-1} \inf f(I_n), \quad 
-    U_N(f) = \frac{b-a}{N} \sum_{n=0}^{N-1} \sup f(I_n)
-    \]
-
-    First, suppose \(f\) is Riemann integrable. Then both \(L_N(f)\) and \(U_N(f)\) exist and agree. TODO: WRITE THE PROBLEM FROM STEIN. 
+    TODO. 
 \end{proof}
 
 \begin{problem}{Axiom of Choice is Equivalent to Well-Ordering Principle}*
@@ -412,65 +406,44 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 \end{proof}
 
 \begin{problem}{The Vitali Set}*
-    [MAT425 P4.8.] In this problem you will a non Lebesgue-measurable set in the unit interval. \\
+    [MAT425 P4.8.] In this problem you will construct a non Lebesgue-measurable set in the unit interval.
 
-    \stdvspace
-    \textbf{(a) The Equivalence Relation}
+    \begin{enumerate}[(a)]
+        \itemsep0em 
+        \item \textbf{The Equivalence Relation.}
+        \begin{itemize}
+            \item[(i)] Let \(\sim\) be the relation on \([0,1]\) defined by
+            \[
+                x \sim y \quad \text{if and only if} \quad x - y \in \bb{Q}.
+            \]
 
-    \begin{itemize}
-    \item[(i)] Let \(\sim\) be the relation on \([0,1]\) defined by
-    \[
-        x \sim y \quad \text{if and only if} \quad x - y \in \bb{Q}.
-    \]
+            Prove that \(\sim\) is an equivalence relation on \([0,1]\).
+            \item[(ii)] Show that each equivalence class is countable. [Hint: For any fixed \(x \in [0,1]\), the equivalence class of \(x\) is given by \(\{x + q : q \in \bb{Q} \} \cap [0,1]\), and \(\bb{Q}\) is countable.]
+        \end{itemize}
+        \item \textbf{Existence of a Vitali Set.} Using the Axiom of Choice, show that there exists a subset \(V \subset [0,1]\) (the Vitali set) such that \(V\) contains exactly one element from each equivalence class defined by \(\sim\). 
+        \item \textbf{Translates of the Vitali Set}. For each rational number \(r \in \bb{Q} \cap [-1,1]\), define the translated set
+        \[
+            V_r = \{ v + r : v \in V \}.
+        \]
 
-    Prove that \(\sim\) is an equivalence relation on \([0,1]\).
+        Prove that the sets \(\{V_r : r \in \bb{Q} \cap [-1,1]\}\) are pairwise disjoint. [Hint: Suppose that for \(r_1 \ne r_2\), there exist \(v_1, v_2 \in V\) such that \(v_1 + r_1 = v_2 + r_2\). Use the definition of the equivalence classes to reach a contradiction.] 
+        \item \textbf{Covering a Finite Interval.} Show that
+        \[
+            \bigcup_{r \in \bb{Q} \cap [-1,1]} V_r \subset [-1,2].
+        \]
 
-    \item[(ii)] Show that each equivalence class is countable. [Hint: For any fixed \(x \in [0,1]\), the equivalence class of \(x\) is given by \(\{x + q : q \in \bb{Q} \} \cap [0,1]\), and \(\bb{Q}\) is countable.]
-    \end{itemize}
+        [Hint: If \(v \in V \subset [0,1]\) and \(r \in [-1,1]\), then \(v + r \in [-1,2]\).] 
+        \item \textbf{Non-measurability of the Vitali Set.} Assume, for the sake of contradiction, that \(V\) is Lebesgue measurable with measure \(m(V)\). Using translation invariance and countable additivity of the Lebesgue measure, show this assumption leads to contradiction.
+        \begin{itemize}
+            \item[(i)] Express the measure of the union
+            \[
+                U = \bigcup_{r \in \bb{Q} \cap [-1,1]} V_r,
+            \]
 
-    \stdvspace
-    \textbf{(b) Existence of a Vitali Set}
-    \stdvspace
-
-    Using the Axiom of Choice, show that there exists a subset \(V \subset [0,1]\) (the Vitali set) such that \(V\) contains exactly one element from each equivalence class defined by \(\sim\). \\
-
-    \stdvspace
-    \textbf{(c) Translates of the Vitali Set}
-    \stdvspace
-
-    For each rational number \(r \in \bb{Q} \cap [-1,1]\), define the translated set
-    \[
-    V_r = \{ v + r : v \in V \}.
-    \]
-
-    Prove that the sets \(\{V_r : r \in \bb{Q} \cap [-1,1]\}\) are pairwise disjoint. [Hint: Suppose that for \(r_1 \ne r_2\), there exist \(v_1, v_2 \in V\) such that \(v_1 + r_1 = v_2 + r_2\). Use the definition of the equivalence classes to reach a contradiction.] \\
-
-    \stdvspace
-    \textbf{(d) Covering a Finite Interval}
-    \stdvspace
-
-    Show that
-    \[
-    \bigcup_{r \in \bb{Q} \cap [-1,1]} V_r \subset [-1,2].
-    \]
-
-    [Hint: If \(v \in V \subset [0,1]\) and \(r \in [-1,1]\), then \(v + r \in [-1,2]\).] \\
-
-    \stdvspace
-    \textbf{(e) Non-measurability of the Vitali Set}
-    \stdvspace
-
-    Assume, for the sake of contradiction, that \(V\) is Lebesgue measurable with measure \(m(V)\). Using the translation invariance and countable additivity of Lebesgue measure, show that this assumption leads to a contradiction.
-
-    \begin{itemize}
-    \item[(i)] Express the measure of the union
-    \[
-        U = \bigcup_{r \in \bb{Q} \cap [-1,1]} V_r,
-    \]
-    in terms of \(m(V)\).
-
-    \item[(ii)] Explain why this leads to a contradiction given that \(U\) is contained in the finite interval \([-1,2]\). [Hint: Consider the cases \(m(V) = 0\) and \(m(V) > 0\), and show that each case contradicts the finiteness of the measure of \([-1,2]\).]
-    \end{itemize}
+            in terms of \(m(V)\).
+            \item[(ii)] Explain why this leads to a contradiction given that \(U\) is contained in the finite interval \([-1,2]\). [Hint: Consider the cases \(m(V) = 0\) and \(m(V) > 0\), and show that each case contradicts the finiteness of the measure of \([-1,2]\).]
+        \end{itemize}
+    \end{enumerate}
 \end{problem}
 
 \begin{proof}
@@ -713,7 +686,83 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 \end{proof}
 
 \begin{problem}{Convergence in \(L^1\) but Pointwise Nowhere}*
-    Show that there exists \(f, f_n \in L^1(\bb{R}^d \to \bb{R}, m)\) such that \(\norm{f - f_n}_{L^1} \to 0\) as \(n \to \infty\), but \(f_n(x) \to f(x)\) for no \(x \in \bb{R}^d\) at all. [Hint: in \(\bb{R}\), let \(f_n = \cl{X}_{I_n}\), where \(I_n\) is an appropriately chosen sequence of intervals with \(m(I_n) \to 0\).]
+    [S\&S E2.12.] Show that there exists \(f, f_n \in L^1(\bb{R}^d \to \bb{R}, m)\) such that \(\norm{f - f_n}_{L^1} \to 0\) as \(n \to \infty\), but \(f_n(x) \to f(x)\) for no \(x \in \bb{R}^d\) at all. [Hint: in \(\bb{R}\), let \(f_n = \cl{X}_{I_n}\), where \(I_n\) is an appropriately chosen sequence of intervals with \(m(I_n) \to 0\).]
+\end{problem}
+
+\begin{proof}
+    TODO. 
+\end{proof}
+
+
+\begin{problem}{High-Dimensional Volumes}*
+    [S\&S E2.14.] In the previous section we saw that \(m(B) = v_d r^d\), whenever \(B\) is a ball of radius \(r\) in \(\bb{R}^d\) and \(v_d = m(B_1)\), with \(B_1\) the unit ball. Here we evaluate the constant \(v_d\).
+    \begin{enumerate}[(a)]
+        \itemsep0em
+        \item For \(d = 2\), prove that 
+        \[
+            v_2 = 2 \int_{-1}^1 (1 - x^2)^{1/2} \, \mr{d}x
+        \]
+
+        and hence that \(v_2 = \pi\). 
+        \item By similar methods, show that 
+        \[
+            v_d = 2v_{d-1} \int_0^1 (1 - x^2)^{(d-1)/2} \, \mr{d}x
+        \]
+
+        \item The result is 
+        \[
+            v_d = \frac{\pi^{d/2}}{\Gamma(d/2 + 1)}
+        \]
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+    TODO. 
+\end{proof}
+
+
+\begin{problem}{Convolutions}*
+    [S\&S E2.21.] Suppose that \( f \) and \( g \) are measurable functions on \( \mathbb{R}^d \).
+    \begin{enumerate}[(a)]
+        \itemsep0em
+        \item Prove that \( f(x - y)g(y) \) is measurable on \( \mathbb{R}^{2d} \).
+        \item Show that if \( f \) and \( g \) are integrable on \( \mathbb{R}^d \), then \( f(x - y)g(y) \) is integrable on \( \mathbb{R}^{2d} \).
+        \item Recall the definition of the convolution of \( f \) and \( g \) given by
+        \[
+            (f * g)(x) = \int_{\mathbb{R}^d} f(x - y)g(y) \, \mr{d}y
+        \]
+
+        Show that \( f * g \) is well defined for a.e. \( x \) (that is, \( f(x - y)g(y) \) is integrable on \( \mathbb{R}^d \) for a.e. \( x \)).
+        \item Show that \( f * g \) is integrable whenever \( f \) and \( g \) are integrable, and that
+        \[
+            \norm{f*g}_1 \leq \norm{f}_1 \norm{g}_1,
+        \]
+
+        with equality if \( f \) and \( g \) are non-negative.
+        \item The Fourier transform of an integrable function \( f \) is defined by
+        \[
+            \hat{f}(\xi) = \int_{\mathbb{R}^d} f(x)e^{-2\pi i x \cdot \xi} \, \mr{d}x
+        \]
+
+        Check that \( \hat{f} \) is bounded and is a continuous function of \( \xi \). Prove that for each \( \xi \),
+        \[
+            \widehat{(f * g)}(\xi) = \hat{f}(\xi)\hat{g}(\xi)
+        \]
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+    TODO. 
+\end{proof}
+
+
+\begin{problem}{The Riemann-Lebesgue Lemma}*
+    [S\&S E2.22.] Prove that if \(f \in L^1(\mathbb{R}^d)\) and 
+    \[
+        \hat{f}(\xi) = \int_{\bb{R}^d} f(x) e^{-2\pi i x \xi} \, \mr{d}x
+    \]
+
+    then \(\hat{f}(\xi) \to 0\) as \(|\xi| \to 0\). [Hint: Write \(\hat{f}(\xi) = \frac{1}{2} \int_{\bb{R}^d} [f(x) - f(x -\xi')] e^{-2\pi ix \xi} \, \mr{d}x\), where \(\xi' = \frac{1}{2} \frac{\xi}{|\xi|^2}\), and use the fact that \(f_h := f \circ (x \mapsto x -h)\) satisfies \(\norm{f_h - f}_1 \to 0\) as \(h \to 0\).]
 \end{problem}
 
 \begin{proof}
@@ -722,8 +771,18 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 
 
+\begin{problem}{Uniform Continuity of the Convolution}*
+    [S\&S E2.24.] Consider the convolution 
+    \[
+        (f*g)(x) = \int_{\bb{R}^d} f(x - y) g(y) \, \mr{d}y
+    \]
 
-
+    \begin{enumerate}[(a)]
+        \itemsep0em
+        \item Show that \(f*g\) is uniformly continuous when \(f\) is integrable and \(g\) is bounded. 
+        \item If in addition \(g\) is integrable, prove that \((f*g)(x) \to 0\) as \(|x| \to \infty\). 
+    \end{enumerate}
+\end{problem}
 
 
 \newpage
@@ -735,7 +794,7 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 \end{problem}
 
 \begin{proof}
-    That \(\psi \circ \varphi\) is convex follows immediately from the definitions. If \(\varphi > 0\), convexity of \(\log\varphi\) means that \(\varphi = \exp \log \varphi\) is convex as well, since \(\exp\) is convex and increasing. 
+    That \(\psi \circ \varphi\) is convex follows immediately from the definitions. If \(\varphi > 0\), convexity of \(\log\varphi\) means that \(\varphi = \exp \log \varphi\) is convex as well, since \(\exp\) is convex and increasing. Of course, the converse doesn't hold since \(x \mapsto x\) is convex but \(x \mapsto \log x\) is not.
 \end{proof}
 
 
@@ -826,7 +885,7 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 \end{proof}
 
 \begin{proof}
-    \tit{Part (b).} For any \(r, s \in E^\circ\), applying Holder's inequality on \(|f|\) using the conjugate exponents \((\theta^{-1}, (1 - \theta)^{-1})\) yields
+    \tit{Part (b).} For any \(r, s \in E^\circ\), applying H\"older's inequality on \(|f|\) using the conjugate exponents \((\theta^{-1}, (1 - \theta)^{-1})\) yields
     \begin{align*}
         \log \varphi(\theta r + (1 - \theta) x) 
         &= \log \left( \int_X |f|^{\theta r} |f|^{(1 - \theta) s} \, \mr{d}\mu \right)
@@ -878,7 +937,7 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
     so that \(\norm{f}_p\) is finite on \(\bb{R}\) precisely when \(\alpha < p < \beta\). So, \(E = (\alpha, \beta)\) for \(f\). 
     \stdvspace
 
-    Next, we show that \(E = [\alpha, \beta)\), \(E = (\alpha, \beta]\), or \(E = [\alpha, \beta]\) can be constructed as well. TODO. 
+    Next, we show that \(E = [\alpha, \beta)\), \(E = (\alpha, \beta]\), or \(E = [\alpha, \beta]\) can be constructed as well. TODO. See the linked \href{https://math.stackexchange.com/questions/3186292/rudins-real-and-complex-analysis-exercise-3-4-c}{Math Stack Exchange post.} 
 \end{proof}
 
 \begin{proof}
@@ -947,7 +1006,83 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
     The last step follows since \(\sum_n \mu(A_{\varepsilon, n})\) must converge since otherwise \(\lim \norm{f}_p\) would be infinite, contradicting \(\lim \norm{f}_p \leq \norm{f}_\infty < \infty\). Finally, taking \(\varepsilon \to 0\) yields \(\lim \norm{f}_p \geq \norm{f}_\infty\), as desired. 
 \end{proof}
 
+\begin{problem}{Montonicity of \(L^p\)}*
+    [RCA E3.7.] For some measures, the relation \(r < s\) implies \(L^r(\mu) \subseteq L^s(\mu)\); for others, the inclusion is reversed; and there are some for which \(L^r(\mu)\) does not contain \(L^s(\mu)\) if \(r \neq s\). Give examples of these situations, and find conditions on \(\mu\) under which each will occur. 
+\end{problem}
 
+\begin{proof}
+    TODO. 
+\end{proof}
+
+
+\begin{problem}{Hardy's Inequality}*
+    [RCA E3.14, E.15.] Suppose \(1 < p < \infty\), \(f \in L^p((0, \infty) \to \bb{C}, m)\), and 
+    \[
+        F(x) = \frac{1}{x} \int_0^x f(t) \, \mr{d}t
+        \qquad
+        (0 < x < \infty)
+    \]
+
+    \begin{enumerate}[(a)]
+        \itemsep0em
+        \item Prove Hardy's inequality 
+        \[
+            \norm{F}_p \leq \frac{p}{p-1} \norm{f}_p
+        \]
+
+        which shows that the mapping \(f \mapsto F\) carries \(L^p\) into \(L^p\). [Hint: Assume first that \(f \geq 0, f \in C_c((0,\infty))\). Integration by parts gives \(\int_0^\infty F^p(x) \, \mr{d}x = -p \int_0^\infty F^{p-1}(x) x F'(x) \, \mr{d}x\). Note that \(xF' = f - F\), and apply H\"older's inequality to \(\int F^{p-1} f\). Then derive the general case.]
+        \item Prove that equality holds if and only if \(f = 0\) a.e. 
+        \item Prove that the constant \(p/(p-1)\) cannot be replaced by a smaller one. [Hint: Take \(f(x) = x^{-1/p} \cl{X}_{[1, A]}\) for large \(A\). Use the fact that if each section \(f_x\) is Borel and each \(f_y\) is continuous, then \(f\) is Borel on \(\bb{R}^2\).]
+        \item If \(f > 0\) and \(f \in L^1((0, \infty) \to \bb{R}, m)\), prove that \(F \not\in L^1\). 
+        \item Suppose \(\{a_n\}_n\) is a sequence of positive numbers. prove that 
+        \[
+            \sum_{N=1}^\infty \left( \frac{1}{N} \sum_{n=1}^N a_n \right)^p
+            \leq \left( \frac{p}{p-1} \right)^p \sum_{n=1}^\infty a_n^p
+        \]
+
+        if \(1 < p < \infty\). [Hint: If \(a_n \geq a_{n+1}\), thte result can be made to follow from Hardy's inequality. This special case implies the general one.]
+    \end{enumerate}
+\end{problem}
+
+
+\begin{proof}
+    TODO. 
+\end{proof}
+
+
+\begin{problem}{Egorov's Theorem}*
+    [RCA E3.16.] If \(\mu(X) < \infty\), if \(\{f_n : X \to \bb{C}\}_n\) converges pointwise everywhere, and if \(\varepsilon > 0\), then there exists a measurable \(E \subseteq X\) such that \(\mu(X \setminus E) < \varepsilon\), such that \(\{f_n\}_n\) converges uniformly on \(E\). [Hint: Put \(S(n, k) = \bigcap_{i,j > n} \{x \mid |f_i(x) - f_j(x)| < 1/k\}\), show that \(\mu(S(n, i)) \to \mu(X)\) as \(n \to \infty\) for each \(k\), and hence that there is a suitably increasing sequence \(n_k\) such that \(E = \bigcap S(n_k, k)\) has the desired property.] 
+    \stdvspace
+
+    The conclusion is that by redefining the \(f_n\) on a set of arbitrarily small measure we can convert a pointwise convergent sequence to a uniformly convergent one. Furthermore, 
+    \begin{enumerate}[(a)]
+        \itemsep0em
+        \item Show that the theorem does not extend to \(\sigma\)-finite spaces. 
+        \item Show that the theorem does extend, with essentially the same proof, to thte situation in which the sequence \(\{f_n\}_n\) is replaced by a family \(\{f_t\}_{t \in \bb{R}}\). The assumptions now are that for each \(x \in X\), \(\lim_{t \to \infty} f_t(x) = f(x)\) and \(t \mapsto f_t(x)\) is continuous. 
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+    TODO. 
+\end{proof}
+
+
+\begin{problem}{Convergence in Measure}*
+    [RCA E3.18.] Let \(\mu\) be a positive measure on \(X\). A sequence \(\{f_n : X \to \bb{C}\}_n\) of measurable functions is said to \tit{converge in measure} to the measurable function \(f\) if to every \(\varepsilon > 0\)
+    \[
+        \lim_{n \to \infty} \mu( \{ x \mid |f_n(x) - f(x)| > \varepsilon \} ) = 0
+    \]
+
+    Assume \(\mu(X) < \infty\) and prove the following: 
+    \begin{enumerate}[(a)]
+        \itemsep0em
+        \item If \(f_n(x) \to f(x)\) a.e., then \(f_n \to f\) in measure. 
+        \item If \(f_n \in L^p(\mu)\) and \(\norm{f_n - f}_p \to 0\), then \(f_n \to f\) in measure; here \(1 \leq p \leq \infty\). 
+        \item If \(f_n \to f\) in measure, then \(\{f_n\}_n\) has a subsequence which converges to \(f\) a.e. 
+    \end{enumerate}
+
+    Investigate the converses of (a) and (b). What happens to (a), (b), and (c) if \(\mu(X) = \infty\), for instance if \(\mu\) is the Lebesgue measure on \(\bb{R}\)? 
+\end{problem}
 
 
 \newpage
