@@ -37,21 +37,17 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{enumerate}[(a)]
     \item Every number in \([0,1]\) has a ternary expansion
-    
     \[
         x = \sum_{k=1}^\infty a_k 3^{-k}, \quad \text{where } a_k = 0, 1, \text{ or } 2.
     \]
-
     Note that this decomposition is not unique since, for example, \(1/3 = \sum_{k=2}^\infty 2/3^k\).
 
     Prove that \(x \in \cl{C}\) if and only if \(x\) has a representation where every \(a_k\) is either \(0\) or \(2\).
     
     \item The \textbf{Cantor function} is defined on \(\cl{C}\) by
-    
     \[
         F(x) = \sum_{k=1}^\infty \frac{b_k}{2^k} \quad \text{if } x = \sum_{k=1}^\infty a_k 3^{-k}, \text{ where } b_k = a_k / 2.
     \]
-
     In this definition, we choose the expansion of \(x\) in which \(a_k = 0\) or \(2\).
 
     Show that \(F\) is well defined and continuous on \(\cl{C}\), and moreover \(F(0) = 0\) as well as \(F(1) = 1\).
@@ -64,32 +60,24 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{proof}
     \textit{Part (a).} Consider \(x \in \cl{C}\). We will construct a sequence of ternary numbers \(\{a_k\}_k\) such that \(x = \sum_k a_k 3^{-k}\) as desired. First, define \(a_1\) to be the smallest ternary number satisfying 
-    
     \[
         \frac{a_1}{3} \leq x \leq \frac{a_1}{3} + \frac{1}{3}
     \]
-
     Now, suppose the first \(n-1\) ternary numbers \(\{a_k\}_{k=1}^{n-1}\) have been constructed as such, so that 
-    
     \[
     \sum_{k=1}^{n-1} \frac{a_k}{3^k} \leq x \leq \sum_{k=1}^{n-1} \frac{a_k}{3^k} + \frac{1}{3^{n-1}}
     \]
-
     Then, select \(a_n\) as the smallest ternary number satisfying 
-    
     \[
     \sum_{k=1}^{n} \frac{a_k}{3^k} \leq x \leq \sum_{k=1}^n \frac{a_k}{3^k} + \frac{1}{3^n}
     \]
-
     Thus we have a ternary sequence \(\{a_n\}\) satisfying the above inequalities. Taking the limit \(n \to \infty\) on both sides, \(x = \sum_k a_k 3^{-k}\) as desired. 
     \stdvspace
 
     For the reverse direction, take any \(x\) with such a ternary representation. We will show by induction that it is contained in all \(\cl{C}_n\). Let \(x = \sum_k a_k 3^{-k}\) for \(a_k\in \{0, 2\}\). If \(a_1 = 0\), then \(x < 1/3\) so \(x \in \cl{C}_1\); on the other hand if \(a_1 = 2\), then \(x \geq 2/3\) so \(x \in \cl{C}_1\). Now suppose \(x \in \cl{C}_{n-1}\); then by construction of the Cantor set, it must be in some interval \(I_{n-1} = [i_{n-1}, i_{n-1} + 3^{-(n-1)}]\). If \(a_n = 0\), then \(x < i_{n-1} + 3^{-n}\) so \(x \in \cl{C}_n\), and if \(a_n = 2\), then \(x \geq i_{n-1} + 2 \cdot 3^{-n}\) so \(x \in \cl{C}_n\) as well. Hence
-    
     \[
     \forall n \in \bb{N} : x \in \cl{C}_n \implies x \in \bigcap_{n=1}^\infty \cl{C}_n = \cl{C}
     \]
-
     and that completes the proof. 
 \end{proof}
 
@@ -98,12 +86,10 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
     \stdvspace
 
     Finally, we can write 
-    
     \[
     0 = \sum_{k \in \bb{N}} 0 \cdot 3^{-k}, \quad 1 = \sum_{k \in \bb{N}} 2 \cdot 3^{-k}
     \implies F(0) = 0, F(1) = 1
     \]
-
     thus completing the proof. 
 \end{proof}
 
@@ -131,30 +117,24 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{problem}{Comparison Sets are Measurable}*
     [RCA E1.5(a).] Suppose \(f,g : X \to \overline{\bb{R}}\) are measurable. Then the comparison sets 
-    
     \[
         \{x \mid f(x) < g(x)\}, \quad \{x \mid f(x) = g(x)\}
     \]
-
     are measurable. [Hint: Look at the rationals between \(f\) and \(g\).]
 \end{problem}
 
 \begin{proof}
     If we can show that \(\{x \mid f(x) < g(x)\}\) is measurable, then 
-    
     \[
         \{x \mid f(x) = g(x)\} = X \setminus (\{x \mid f(x) < g(x)\} \cup \{x \mid f(x) > g(x)\})
     \] 
-
     is also measurable. If \(f(x) < g(x)\), then there exists a rational \(q\) such that \(f(x) < q < g(x)\). The idea is to form preimages of intervals using all such \(q\), since 
-    
     \[
     \{x \mid f(x) < g(x) \}
     = \bigcup_{q \in \bb{Q}} \{x \mid f(x) < q < g(x)\}
     = \bigcup_{q \in \bb{Q}} f^{-1}([-\infty, q)) \cap g^{-1}((q, \infty])
     \in \fr{M}
     \]
-
     since intervals are measurable and thus their preimages are as well. 
 \end{proof}
 
@@ -168,12 +148,10 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{problem}{Borel-Cantelli Lemma}*
     [S\&S E1.16.] Suppose \(\{E_k\}_k\) is a countable family of measurable subsets of \(\bb{R}^d\) and that \(\sum_k m(E_k) < \infty\). Let 
-    
     \[
     E := \{x \in \bb{R}^d : x \in E_k, \text{ for infinitely many } k\}
     \equiv \limsup_{k \to \infty} (E_k)
     \]
-
     \begin{enumerate}[(a)]
         \itemsep0em
         \item Show that \(E\) is measurable. 
@@ -184,19 +162,16 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{proof}
     \textit{Part (a).} Observe \(x \in E_k\) for infinitely many \(k\) if and only if for each \(n \in \bb{N}\), \(x\) resides in at least one \(E_k\) for \(k \geq n\). So, \(E = \bigcap_n \bigcup_{k \geq n} E_k\). Then measurability follows since 
-    
     \[
-    \{E_k\}_k \subseteq \cl{L}(\bb{R}^d)
-    \implies \bigcup_{k = n}^\infty E_k \in \cl{L}(\bb{R}^d) \quad (n \in \bb{N})
-    \implies E = \bigcap_{n=1}^\infty \bigcup_{k = n}^\infty E_k \in \cl{L}(\bb{R}^d)
+    \{E_k\}_k \subseteq \fr{L}(\bb{R}^d)
+    \implies \bigcup_{k = n}^\infty E_k \in \fr{L}(\bb{R}^d) \quad (n \in \bb{N})
+    \implies E = \bigcap_{n=1}^\infty \bigcup_{k = n}^\infty E_k \in \fr{L}(\bb{R}^d)
     \]
-
     and that completes the proof.
 \end{proof}
 
 \begin{proof}
     \textit{Part (b).} Observe that for all \(n \in \bb{N}\), \(E \subseteq \bigcup_{k \geq n} E_k\). By monotonicity, thus 
-    
     \[
         m(E) 
         \leq m \left( \bigcup_{k = n}^\infty E_k \right)
@@ -207,7 +182,6 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
         = m(\varnothing) 
         = 0
     \]
-
     and so \(E\) has Lebesgue-measure zero. 
 \end{proof}
 
@@ -217,36 +191,28 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{proof}
     By replacing \(f_n\) with \(|f_n|\), without loss of generality let \(f_n : [0,1] \to [0, \infty]\). Since \(f_n < \infty\) almost everywhere, 
-    
     \[
     m\left( \bigcap_{M = 1}^\infty \left\{ x \in [0, 1] \st f_n(x) > M \right\} \right) = 0
     \qquad (n \in \bb{N})
     \]
-
     Therefore, fix any \(n\), and choose \(M_n\) large enough such that 
-    
     \[
     m\left( \left\{ x \in [0, 1] \st f_n(x) > M_n \right\} \right) < \frac{1}{2^n}
     \implies 
     m\left( \left\{ x \in [0, 1] \st \frac{f_n(x)}{c_n} > \frac{1}{n} \right\} \right) < \frac{1}{2^n}
     \]
-
     by writing \(c_n := nM_n\). Let \(E_n\) denote the set in the last step. Since \(\sum_{n} m(E_n) = 1 < \infty\), by the Borel-Cantelli Lemma it must be that \(m(E) = 0\) where \(E := \limsup_n E_n\). Thus every \(x \in [0, 1] \setminus E\) is in at most finitely many \(E_n\), so for \(n\) large enough (depending on \(x\)), 
-    
     \[
     \frac{f_n(x)}{c_n} \leq \frac{1}{n} \implies \lim_{n \to \infty} \frac{f_n(x)}{c_n} = 0
     \]
-
     and thus this property holds for almost every \(x\). 
 \end{proof}
 
 \begin{problem}{Measurable Functions as Continuous Limits}*
     [S\&S E1.18.] Suppose \(f : \bb{R} \to \bb{C}\) is a measurable function. Then there exist \(\{f_n : \bb{R} \to \bb{C}\}\) continuous and a set \(E\) of Lebesgue-measure zero such that 
-    
     \[
     \lim_{n \to \infty} f_n(x) = f(x) \qquad (x \in \bb{R} \setminus E)
     \]
-
     In other words, every measurable function is the limit pointwise almost everywhere of a sequence of continuous functions. 
 \end{problem}
 
@@ -256,7 +222,6 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
     \textbf{Step 1.} \textit{The intervals \((a, \infty)\) are good.}
 
     Explicitly construct the continuous functions
-    
     \[
     f_n : \bb{R} \to \bb{C}, \quad 
     f_n(x) = \begin{cases}
@@ -265,7 +230,6 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
     1 & a + \frac{1}{n} \leq x
     \end{cases}
     \]
-
     Observe that \(f_n \to \cl{X}_{(a, \infty)}\) everywhere, so the intervals \((a, \infty)\) are good. 
 
     \textbf{Step 2.} \textit{The good functions \(\cl{G}\) form a commutative ring.}
@@ -283,15 +247,12 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
     \textbf{Step 4.} \textit{The pointwise limit of a sequence of good functions, if it exists, is good.}
 
     Suppose \(f_n \to f\) for \(\{f_n\}\) good. For each \(n\), there exists \(\{f_{nm}\}_m\) continuous which tend to \(f_n\) pointwise almost everywhere. We wil show that \(f_k' \to f\) where \(k\) is indexed according to the triangular numbers as in Cantor's diagonalization argument, 
-    
     \[
     k := T_{n+m-1} + n = \frac{(n+m-1)(n+m)}{2} + n, 
     \quad 
     f_k' := f_{nm}
     \]
-    
     Observe that \(k\) is increasing in both \(n\) and \(m\), so for any \(\varepsilon > 0\) and \(k\) large enough, 
-    
     \[
     |f_k' - f| 
     \leq |f_k' - f_n| + |f_n - f|
@@ -299,25 +260,22 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
     \leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2}
     = \varepsilon
     \]
-
     outside at most \(E := \bigcup_{n,m} E_{nm}\). Thus \(f_k' \to f\) except on \(E\), but by Cantor's diagonalization theorem, this union is countable and thus has measure zero. 
 
     \textbf{Step 5.} \textit{The good sets form a \(\sigma\)-algebra.}
 
     Let \(\fr{M}\) be the collection of all good sets. It's clear that \(\bb{R} \in \fr{M}\) since \(\cl{X}_{\bb{R}}\) is continuous. Moreover, if \(E \in \fr{M}\), then \(\bb{R} \setminus E \in \fr{M}\) since \(\cl{X}_{\bb{R} \setminus E} = \cl{X}_{\bb{R}} + (-1) \cdot \cl{X}_E \in \fr{M}\) from Step 2. Finally, take \(\{E_n\}_n \subseteq \fr{M}\), and without loss of generality suppose they are pairwise disjoint (otherwise, write \(E_n' := E_n \setminus \bigcup_{k<n}E_k\)). Then, 
-    
     \[
     \cl{X}_{\bigcup_{n=1}^\infty E_n} 
     = \sum_{n=1}^\infty \cl{X}_{E_n} 
     = \lim_{N \to \infty} \sum_{n=1}^N \cl{X}_{E_n}
     \in \cl{G}
     \]
-
     since each partial sum is good by Step 2, and the resulting limit is good by Step 4. Hence \(\fr{M}\) is a \(\sigma\)-algebra. 
 
     \textbf{Step 6.} \textit{The Lebesgue-measurable sets are good.}
 
-    Denote the Lebesgue-measurable sets by \(\cl{L}(\bb{R})\). Since \(\cl{A} \subseteq \fr{M}\) and \(\fr{M}\) is a \(\sigma\)-algebra by Step 5, we have \(\sigma(\cl{A}) = \cl{B}(\bb{R}) \subseteq \fr{M}\) as well. Since \(\cl{L}(\bb{R})\) is the completion of \(\cl{B}(\bb{R})\), it suffices that the sets with Lebesgue-measure zero are good. But since \(f_n = 0\) converges pointwise a.e. to \(\cl{X}_N\) for any such null set \(N\), this fact is immediate. 
+    Denote the Lebesgue-measurable sets by \(\fr{L}(\bb{R})\). Since \(\cl{A} \subseteq \fr{M}\) and \(\fr{M}\) is a \(\sigma\)-algebra by Step 5, we have \(\sigma(\cl{A}) = \fr{B}(\bb{R}) \subseteq \fr{M}\) as well. Since \(\fr{L}(\bb{R})\) is the completion of \(\fr{B}(\bb{R})\), it suffices that the sets with Lebesgue-measure zero are good. But since \(f_n = 0\) converges pointwise a.e. to \(\cl{X}_N\) for any such null set \(N\), this fact is immediate. 
 
     \textbf{Step 7.} \textit{The measurable functions \(f : \bb{R} \to [0, \infty)\) are good.}
 
@@ -329,7 +287,7 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 \end{proof}
 
 \begin{problem}{Measure of the Minkowski Sum}*
-    [S\&S E1.20.] Show that there exist closed sets \(A,B \subseteq \bb{R}^n\) with \(m(A) = m(B) = 0\), but \(m(A+B) > 0\):
+    [S\&S E1.20.] Show that there exist closed sets \(A,B \subseteq \bb{R}^d\) with \(m(A) = m(B) = 0\), but \(m(A+B) > 0\):
     \begin{enumerate}[(a)]
         \itemsep0em
         \item In \(\bb{R}\), let \(A = \cl{C}\) and \(B = \cl{C}/2\). Note that \(A+B \supseteq [0, 1]\).
@@ -339,19 +297,15 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{proof}
     The first observation is that if \(A,B\) are closed, then \(A+B\) is measurable. Since \(\bb{R}^d\) is \(\sigma\)-compact, we can write 
-    
     \[
     A = \bigcup_{n=1}^\infty \, (A \cap K_n), \quad B = \bigcup_{n=1}^\infty \, (B \cap K_n) \qquad (K_n := [-n, n]^d)
     \]
-
     If we label \(A_n := A \cap K_n\) and \(B_n := B \cap K_n\), then each \(A_n\) and \(B_n\) is closed. Therefore, 
-    
     \[
     A + B
     = \left( \bigcup_{n=1}^\infty A_n \right) + \left( \bigcup_{n=1}^\infty B_n \right)
     = \bigcup_{n, m=1}^\infty \, (A_n + B_m)
     \]
-
     which is a countable union thanks to Cantor's diagonalization argument. Thus \(A+B\) is \(F_\sigma\) and so it is measurable. 
 
     \textit{Part (a).} Let \(A = \cl{C}\) and \(B = \cl{C} / 2\), where \(\cl{C}\) is the Cantor set. Clearly \(A\) is closed, since its complement is a union of intervals and thus open. But \(B\) is also closed, since \(f : \bb{R} \to \bb{R}\) with \(x \mapsto 2x\) is continuous and \(f^{-1}(A) = B\). We can characterize \(A\) as the ternary numbers in \([0,1]\) which consist of digits \(0\) or \(2\), so \(B\) is the ternary numbers in \([0,1]\) which consist of digits \(0\) or \(1\). Since \(A+B \supseteq A \cup B \supseteq [0,1]\), and \(A+B\) is measurable from above, we have \(m(A+B) > 0\). 
@@ -365,7 +319,6 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{proof}
     Take any non-measurable subset of \([0,1]\), such as the Vitali set \(\cl{V}\). Let \(f : [0,1] \to [0,1]\) be the Cantor function, which is continuous on this domain. Observe that \(\cl{C} \cap f^{-1}(\cl{V})\) is measurable since the Lebesgue measure is complete. But since \(f \vert_{\cl{C}}\) is surjective, 
-    
     \[
     f(\cl{C} \cap f^{-1}(\cl{V}))
     = f(f\vert_{\cl{C}}^{-1}(\cl{V}))
@@ -373,7 +326,6 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
     = (\cl{V} \cap f\vert_{\cl{C}}(\cl{C})) \cup \varnothing
      = \cl{V}
     \]
-
     using the fact that \(h(h^{-1}(E)) = E \cap h(X)\) for any map \(h : X \to Y\), on \(h = f\vert_{\cl{C}}\). 
 \end{proof}
 
@@ -396,11 +348,9 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{problem}{Lebesgue's Theorem}*
     [S\&S P1.4.] Let \(f\) be a \emph{bounded} function on a compact interval \(K\), and let \(B_r(c) \subseteq \bb{R}\) denote the open interval of radius \(r > 0\) centered at \(c \in \bb{R}\). Let 
-    
     \[
         \oname{osc}_f(c) := \lim_{r \to 0} \left( \sup_{x, y \in K \cap B_r(c)}|f(x) - f(y)| \right)
     \]
-
     Note that \(f\) is continuous at \(c \in K\) if and only if \(\oname{osc}_f(c) = 0\). Prove the following assertions:
     \begin{enumerate}[(a)]
         \itemsep0em
@@ -414,19 +364,15 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{proof}
     \emph{Part (a).} Since every closed subset of a compact space is compact, it suffices to prove that \(U_\varepsilon := \{c \in K \mid \oname{osc}_f(c) < \varepsilon\}\) is open. Take any \(c_0 \in U_\varepsilon\), and note there exists \(r > 0\) for which 
-
     \[
         \sup_{x, y \in K \cap B_r(c_0)} |f(x) - f(y)| < \varepsilon 
     \]
-
     Fix any \(c \in B_{r/2}(c_0)\), and observe that 
-    
     \[
         \sup_{x, y \in K \cap B_{r/2}(c)} |f(x) - f(y)| 
         \leq \sup_{x, y \in K \cap B_r(c_0)} |f(x) - f(y)|
         < \varepsilon
     \]
-
     so that actually \(\oname{osc}_f(c) < \varepsilon\) as well. 
 \end{proof}
 
@@ -443,28 +389,22 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
         \item \textbf{The Equivalence Relation.}
         \begin{itemize}
             \item[(i)] Let \(\sim\) be the relation on \([0,1]\) defined by
-            
             \[
                 x \sim y \quad \text{if and only if} \quad x - y \in \bb{Q}.
             \]
-
             Prove that \(\sim\) is an equivalence relation on \([0,1]\).
             \item[(ii)] Show that each equivalence class is countable. [Hint: For any fixed \(x \in [0,1]\), the equivalence class of \(x\) is given by \(\{x + q : q \in \bb{Q} \} \cap [0,1]\), and \(\bb{Q}\) is countable.]
         \end{itemize}
         \item \textbf{Existence of a Vitali Set.} Using the Axiom of Choice, show that there exists a subset \(V \subset [0,1]\) (the Vitali set) such that \(V\) contains exactly one element from each equivalence class defined by \(\sim\). 
         \item \textbf{Translates of the Vitali Set}. For each rational number \(r \in \bb{Q} \cap [-1,1]\), define the translated set
-        
         \[
             V_r = \{ v + r : v \in V \}.
         \]
-
         Prove that the sets \(\{V_r : r \in \bb{Q} \cap [-1,1]\}\) are pairwise disjoint. [Hint: Suppose that for \(r_1 \ne r_2\), there exist \(v_1, v_2 \in V\) such that \(v_1 + r_1 = v_2 + r_2\). Use the definition of the equivalence classes to reach a contradiction.] 
         \item \textbf{Covered by a Finite Interval.} Show that
-        
         \[
             U := \bigcup_{r \in \bb{Q} \cap [-1,1]} V_r \subset [-1,2].
         \]
-
         [Hint: If \(v \in V \subset [0,1]\) and \(r \in [-1,1]\), then \(v + r \in [-1,2]\).] 
         \item \textbf{Non-measurability of the Vitali Set.} Assume, for the sake of contradiction, that \(V\) is Lebesgue measurable with measure \(m(V)\). Using translation invariance and countable additivity of the Lebesgue measure, show this assumption leads to contradiction.
         \begin{itemize}
@@ -479,17 +419,13 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
     \stdvspace
 
     Observe that by construction, \(V+r\) is disjoint for each \(r \in \bb{Q} \cap [-1, 1]\). Define 
-    
     \[
         U := \bigcup_{r \in \bb{Q} \cap [-1, 1]} (V + r) \subseteq V + [-1, 1] \subseteq [0,1] + [-1,1] \subseteq [-1, 2]
     \]
-
     and note that \(U \supseteq [0,1]\). Hence by countable additivity and translation-invariance, 
-    
     \[
         m(U) = \sum_{r \in \bb{Q} \cap [-1,1]} m(V+r) = \sum_{r \in \bb{Q} \cap [-1,1]} m(V)
     \]
-
     Since \(m(U) \leq m([-1,2]) = 3 < \infty\), we must have that \(m(V) = 0\). But then \(m(U) = 0\), contradicting the fact that \(m(U) \geq m([0,1]) = 1\). 
 \end{proof}
 
@@ -506,36 +442,29 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{proof}
     Fix any \(\varepsilon > 0\). Let \(E_n := \{x \mid f(x) \leq n\}\) and \(f_n := \cl{X}_{E_n}f\). Then by the Monotone Convergence Theorem, for any set \(E \in \fr{M}\), we can \textit{fix} some \(N\) large enough such that
-    
     \[
     \int_E |f_N - f| \, \mr{d}\mu \leq \frac{\varepsilon}{2}
     \]
-
     Define \(\delta := \varepsilon / 2N\). If \(\mu(E) \leq \delta\), then by the triangle inequality, 
-    
     \[
     \int_E |f| \, \mr{d}\mu 
     \leq \int_E |f - f_N| \, \mr{d}\mu + \int_E |f_N| \, \mr{d}\mu
     \leq \frac{\varepsilon}{2} + N \cdot \frac{\varepsilon}{2N}
     \leq \varepsilon
     \]
-
     as desired. 
 \end{proof}
 
 \begin{problem}{Uniform Convergence for Limits of Integrals}*
     [RCA E1.10.] Suppose \(\mu(X) < \infty\) and \(\{f_n : X \to \bb{C}\}_n\) are bounded, and \(f_n \to f\) uniformly on \(X\). Then 
-    
     \[
     \lim_{n \to \infty} \int_X f_n \, \mr{d}\mu = \int_X f \, \mr{d}\mu
     \]
-
     Furthermore, show that the result may fail if \(\mu(X) < \infty\) is not true. 
 \end{problem}
 
 \begin{proof}
     If \(f_n \to f\) uniformly, then for all \(\varepsilon > 0\) there exists \(N\) large enough such that \(\sup_{x \in X} |f_n(x) - f(x)| \leq \varepsilon / \mu(X)\) whenever \(n \geq N\), since \(X\) has finite measure. Therefore, for such \(n \geq N\), 
-    
     \[
     \left| \int_X f_n \, \mr{d}\mu - \int_X f \, \mr{d}\mu \right| 
     \leq \int_X |f_n - f| \, \mr{d}\mu 
@@ -543,13 +472,11 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
     \leq \mu(X) \cdot \frac{\varepsilon}{\mu(X)}
     = \varepsilon
     \]
-
     and thus we conclude. For a counterexample when \(\mu(X) = \infty\), take \(f = 0\) and \(f_n = \frac{1}{n} \cl{X}_{[0, n)}\) with the Lebesgue measure. Then \(\int_{\bb{R}} f_n \, \mr{d}m = 1 \neq 0 = \int_{\bb{R}} f \, \mr{d}m \) for all \(n\), even though \(f_n \to f\) uniformly. 
 \end{proof}
 
 \begin{problem}{Convergence in \(L^1\)}*
     [S\&S E2.2.] If \(f \in L^1(\bb{R}^d \to \bb{R}, m)\) and \(\delta > 0\), then \(f_\delta(x) := f(\delta x)\) converges to \(f\) in the \(L^1\) norm. In other words, 
-    
     \[
     \lim_{\delta \to 1} \norm{ f - f_\delta }_{L^1} 
     \equiv \lim_{\delta \to 1} \int_{\bb{R}^d} |f - f_\delta| \, \mr{d}m = 0
@@ -558,22 +485,17 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{proof}
     Since the continuous functions of compact support are dense in \(L^1(\mu)\) [S\&S Thm 2.2.4], there exists a function \(g \in L^1(m)\) such that \(\norm{f - g}_{L^1} \leq \varepsilon / 4\). Write \(f - f_{\delta} = (f-g) + (g-g_{\delta}) + (g_{\delta} - f_{\delta})\). Then by the triangle inequality, 
-    
     \[
     \norm{f - f_{\delta}}_{L^1} \leq \norm{f - g}_{L^1} + \norm{g - g_{\delta}}_{L^1} + \norm{g_{\delta} - f_{\delta}}_{L^1}
     \]
-
     Since \(g\) is continuous with compact support, it is uniformly continuous.\footnote{See this \href{https://math.stackexchange.com/questions/2086124/continuous-with-compact-support-implies-uniform-continuity}{Mathematics Stack Exchange} post.} Consider \(\delta > 0\) such that \(|x - \delta x| = |(1 - \delta)x| \leq \varepsilon / 4 m(\oname{supp}(g))\) for all \(x \in \oname{supp}(g)\), which exists by compactness. Then 
-    
     \[
     \norm{g - g_{\delta}}_{L^1} 
     = \int_{\bb{R}^d} |g - g_{\delta}| \, \mr{d}m
     \leq \int_{\oname{supp}(g)} \frac{\varepsilon}{4 m(\oname{supp}(g))} \, \mr{d}m
     = \frac{\varepsilon}{4}
     \]
-
     since compact sets have finite measure thanks to Heine-Borel. Next, apply change of variables on \(g_{\delta} - f_{\delta}\) so that  
-    
     \[
     \norm{g_{\delta} - f_{\delta}}_{L^1}
     = \int_{\bb{R}^d} |g_{\delta} - f_{\delta}| \, \mr{d}m
@@ -583,14 +505,11 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
     \leq \frac{2\varepsilon}{4}
     < \frac{\varepsilon}{2}
     \]
-
     where \(\delta^{-d} \leq 2\) for \(\delta\) close enough to 1. Altogether, we have that 
-    
     \[
         \norm{f - f_{\delta}}_{L^1} \leq \frac{\varepsilon}{4} + \frac{\varepsilon}{4} + \frac{\varepsilon}{2}
         = \varepsilon
     \]
-    
     and thus \(f_\delta \stackrel{\delta \to 1}{\longrightarrow} f\) in the \(L^1\)-norm. 
 \end{proof}
 
@@ -604,7 +523,6 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{proof}
     \textit{Part (a).} Look at the function \(f = \sum_{n} n \cl{X}_{[n, n+1/n^3)}\). Clearly it is positive, and it is \(L^1(m)\) since by the Monotone Convergence Theorem, 
-    
     \[
         \int_{\bb{R}} f \, \mr{d}m
         = \int_{\bb{R}} \sum_{n=1}^\infty n \cl{X}_{[n, n + 1/n^3)} \, \mr{d}m
@@ -612,25 +530,20 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
         = \sum_{n=1}^\infty \frac{1}{n^2}
         < \infty
     \]
-
     and yet \(\limsup_{x \to \infty} f(x) = \infty\). Note that while \(f\) itself is not continuous, we can replace the discontinuous points with steep line segments, of which the \(k^{\text{th}}\) segment will increase the area by \(2^{-k}\). This new function \(\tilde{f} \in L^1(m)\) still tends to infinity, but it is now continuous. 
 \end{proof}
 
 \begin{proof}
     \textit{Part (b).} Suppose \(f \in L^1(\bb{R} \to \bb{R}, m)\) but that \(\lim_{|x| \to \infty} f(x) \neq 0\). The latter means that either \(\lim_{x \to \infty} f(x) \neq 0\) or \(\lim_{x \to -\infty} f(x) \neq 0\), so without loss of generality suppose \(\lim_{x \to \infty} \neq 0\). Then fix any \(\varepsilon > 0\); there exists a sequence \(\{x_n\}_n\) such that \(|f(x_n)| \geq \varepsilon\) for all \(n\). But by uniform continuity, there exists a \(\delta > 0\) such that 
-    
     \[
         |x - x_n| \leq \delta \implies |f(x) - f(x_n)| \leq \frac{\varepsilon}{2} \implies |f(x)| \geq \frac{\varepsilon}{2}
         \qquad (n \in \bb{N})
     \]
-
     It thus follows that 
-    
     \[
     \int_{B_{\delta}(x_n)} |f| \, \mr{d}m \geq 2\delta \cdot \frac{\varepsilon}{2} = \delta \varepsilon
     \implies \int_{\bb{R}} |f| \, \mr{d}m \geq \sum_{n \geq 1} \delta \varepsilon = \infty
     \]
-
     a contradiction, and that completes the proof. 
 \end{proof}
 
@@ -640,22 +553,18 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{proof}
     To show that \(\Gamma\) is measurable, we exploit finiteness of \(f\). Denote \(g(x, y) = |y - f(x)|\) for \(g : \bb{R}^{d+1} \to \bb{R}\) which is measurable, so that
-    
     \[
         \Gamma 
         = \bigcap_{n=1}^\infty \left\{ (x, y) \in \bb{R}^d \times \bb{R} \st |y - f(x)| < \frac{1}{n} \right\}
         = \bigcap_{n=1}^\infty g^{-1}\left(\left[0, \frac{1}{n}\right)\right)
     \]
-
     is measurable in \(\bb{R}^{d+1}\). Now, let \(m_d\) denote the Lebesgue measure on \(\bb{R}^d\). Integrating over sections, 
-    
     \[
         (m_d \times m)(\Gamma)
         = \int_{\bb{R}^d} m(\Gamma_2(x)) \, \mr{d}m_d(x)
         = \int_{\bb{R}^d} m(\{f(x)\}) \, \mr{d}m_d(x)
         = 0
     \]
-
     as desired. 
 \end{proof}
 
@@ -665,14 +574,11 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{proof}
     Take the Cantor function \(h : \cl{C} \to [0, 1]\), which is bicontinuous. Thus its product map \(H := h \times h : \cl{C} \times \cl{C} \to [0,1] \times [0,1]\) is bicontinuous as well, where \(H(x) = (h(x), h(x))\). Now we show that there exists a bicontinuous map \(g : \cl{C} \to \cl{C} \times \cl{C}\). Define
-    
     \[
         g \left( \sum_{n=1}^\infty \frac{a_n}{3^n} \right) 
         = \left( \sum_{n=1}^\infty \frac{a_{2n-1}}{3^n}, \sum_{n=1}^\infty \frac{a_{2n}}{3^n} \right)
     \]
-
     where the representation is the standard \(\{a_n\}_n \subseteq \{0, 2\}\) form. Clearly \(g\) is a bijection. To show it is continuous, fix any \(\varepsilon > 0\). Choose \(k\) such that \(\sqrt{2} \cdot 3^{-k} < \varepsilon\). Let \(\delta = 2 \cdot 3^{-k}\) and note that if \(|x - y| < \delta\) for \(x,y \in \cl{C}\) then \(x\) and \(y\) have the same first \(k\) digits, and 
-    
     \[
         |f(x) - f(y)|
         \leq \left| \left( \sum_{n > k} \frac{|a_{2n-1} - b_{2n-1}|}{3^n}, \sum_{n > k} \frac{|a_{2n} - b_{2n}|}{3^n} \right) \right| 
@@ -680,24 +586,19 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
         = \sqrt{2} \cdot \frac{1}{3^k} 
         < \varepsilon
     \]
-
     Finally, since \(g\) is bicontinuous, \(f := H \circ g : \cl{C} \to [0, 1]^2\) is a bicontinuous map as well. But similarly to the Cantor function, we can extend \(f\) to a function \(F : [0, 1] \to [0, 1]^2\) as follows: for each deleted interval \((a, b)\) in a step of the Cantor construction, let \(F(\theta a + (1 - \theta)b) = \theta F(a) + (1 - \theta) F(b)\), where \(\theta \in (0, 1)\). First we show continuity at each \(x \not\in \cl{C}\). Take \(x, y \in (a, b)\) parametrized by \(\theta, \varphi\) respectively and note that if
-    
     \[
         |x - y| = |(\theta - \varphi)a + (\varphi - \theta)b| 
         < \frac{|a - b|}{|f(a) - f(b)|} \varepsilon
         \implies |\theta - \varphi| < \frac{1}{|f(a) - f(b)|} \varepsilon
     \]
-
     then 
-    
     \[
         |F(x) - F(y)|
         = |(\theta - \varphi) F(a) + (\varphi - \theta) F(b)|
         = |\theta - \varphi| |F(a) - F(b)|
         < \varepsilon
     \]
-
     so \(F\) is continuous on \([0,1] \setminus \cl{C}\). To show \(F\) is continuous on \(\cl{C}\), fix any \(x \in \cl{C}\) and \(\varepsilon > 0\). There exists \(\delta > 0\) such that whenever \(|c - x| < \delta\) for \(c \in \cl{C}\), then \(|f(x) - f(c)| < \varepsilon / 2\). Now, fix \(w \not\in \cl{C}\) such that \(|x - w| < \min(\delta, (|y - z| / 2|F(y) - F(z)|) \cdot \varepsilon)\), where \(y\) and \(z\) are the endpoints of the deleted interval containing \(w\), and \(y\) is the endpoint between \(x\) and \(w\). Then, 
     \begin{align*}
         |F(x) - F(w)|
@@ -707,7 +608,6 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
         < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} 
         = \varepsilon
     \end{align*}
-
     Therefore \(F\) is surjective and continuous (though not injective since \(f\) is already surjective), and that completes the proof. 
 \end{proof}
 
@@ -724,13 +624,11 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
         &= \left| \int_x^y f(t) \, \mr{d}t \right| 
         = \left| \int_{[x, y]} f \, \mr{d} m \right| 
     \end{align*}
-
     thanks to the equality of the Riemann and Lebesgue integrals. However, by absolute continuity of the Lebesgue integral, there exists \(\delta\) such that if \(|x - y| \leq \delta\), then the integral is at most \(\varepsilon\).
 \end{proof}
 
 \begin{problem}{Tchebychev's Inequality}*
     [S\&S E2.9.] Suppose \(f \in L^1(X \to \overline{\bb{R}}, \mu)\). Then
-    
     \[
     \mu(\{x \mid f(x) > \alpha\}) \leq \frac{1}{\alpha} \int_{X} f \, \mr{d}\mu \qquad (\alpha > 0)
     \]
@@ -738,13 +636,11 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{proof}
     Let \(E_{\alpha} := \{x \mid f(x) > \alpha\}\). The key observation is that \(f \geq \alpha \cl{X}_{E_\alpha}\), since then
-    
     \[
         \mu(E_\alpha) = \int_X \cl{X}_{E_\alpha} \, \mr{d}\mu 
         \leq \int_X \frac{1}{\alpha} f \, \mr{d} \mu 
         = \frac{1}{\alpha} \int_X f \, \mr{d} \mu
     \]
-
     as desired. 
 \end{proof}
 
@@ -762,20 +658,15 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
     \begin{enumerate}[(a)]
         \itemsep0em
         \item For \(d = 2\), prove that 
-        
         \[
             v_2 = 2 \int_{-1}^1 (1 - x^2)^{1/2} \, \mr{d}x
         \]
-
         and hence that \(v_2 = \pi\). 
         \item By similar methods, show that 
-        
         \[
             v_d = 2v_{d-1} \int_0^1 (1 - x^2)^{(d-1)/2} \, \mr{d}x
         \]
-
         \item The result is 
-        
         \[
             v_d = \frac{\pi^{d/2}}{\Gamma(d/2 + 1)}
         \]
@@ -794,27 +685,20 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
         \item Prove that \( f(x - y)g(y) \) is measurable on \( \mathbb{R}^{2d} \).
         \item Show that if \( f \) and \( g \) are integrable on \( \mathbb{R}^d \), then \( f(x - y)g(y) \) is integrable on \( \mathbb{R}^{2d} \).
         \item Recall the definition of the convolution of \( f \) and \( g \) given by
-        
         \[
             (f * g)(x) = \int_{\mathbb{R}^d} f(x - y)g(y) \, \mr{d}y
         \]
-
         Show that \( f * g \) is well defined for a.e. \( x \) (that is, \( f(x - y)g(y) \) is integrable on \( \mathbb{R}^d \) for a.e. \( x \)).
         \item Show that \( f * g \) is integrable whenever \( f \) and \( g \) are integrable, and that
-        
         \[
             \norm{f*g}_1 \leq \norm{f}_1 \norm{g}_1,
         \]
-
         with equality if \( f \) and \( g \) are non-negative.
         \item The Fourier transform of an integrable function \( f \) is defined by
-        
         \[
             \hat{f}(\xi) = \int_{\mathbb{R}^d} f(x)e^{-2\pi i x \cdot \xi} \, \mr{d}x
         \]
-
         Check that \( \hat{f} \) is bounded and is a continuous function of \( \xi \). Prove that for each \( \xi \),
-        
         \[
             \widehat{(f * g)}(\xi) = \hat{f}(\xi)\hat{g}(\xi)
         \]
@@ -828,11 +712,9 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{problem}{The Riemann-Lebesgue Lemma}*
     [S\&S E2.22.] Prove that if \(f \in L^1(\mathbb{R}^d)\) and 
-    
     \[
         \hat{f}(\xi) = \int_{\bb{R}^d} f(x) e^{-2\pi i x \xi} \, \mr{d}x
     \]
-
     then \(\hat{f}(\xi) \to 0\) as \(|\xi| \to 0\). [Hint: Write \(\hat{f}(\xi) = \frac{1}{2} \int_{\bb{R}^d} [f(x) - f(x -\xi')] e^{-2\pi ix \xi} \, \mr{d}x\), where \(\xi' = \frac{1}{2} \frac{\xi}{|\xi|^2}\), and use the fact that \(f_h := f \circ (x \mapsto x -h)\) satisfies \(\norm{f_h - f}_1 \to 0\) as \(h \to 0\).]
 \end{problem}
 
@@ -844,11 +726,9 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{problem}{Uniform Continuity of the Convolution}*
     [S\&S E2.24.] Consider the convolution 
-    
     \[
         (f*g)(x) = \int_{\bb{R}^d} f(x - y) g(y) \, \mr{d}y
     \]
-
     \begin{enumerate}[(a)]
         \itemsep0em
         \item Show that \(f*g\) is uniformly continuous when \(f\) is integrable and \(g\) is bounded. 
@@ -872,23 +752,19 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{problem}{Midpoint Convexity}*
     [RCA E2.3.] Assume that \(\varphi: (a, b) \to \bb{R}\) is continuous and 
-    
     \[
         \varphi \left(\frac{1}{2}x + \frac{1}{2}y\right) \leq \frac{1}{2} \varphi(x) + \frac{1}{2}\varphi(y)
         \qquad (x, y \in (a, b))
     \]
-
     Prove that \(\varphi\) is convex and that continuity is a required assumption. 
 \end{problem}
 
 \begin{proof}
     Let a function \(f\) be \(\Theta\)-\emph{convex} if 
-    
     \[
         f(\theta x + (1 - \theta) y) \leq \theta f(x) + (1 - \theta) f(y) 
         \qquad (\theta \in \Theta)
     \]
-
     Let \(B_n = \{k / 2^n \mid k \in \bb{N}, 0 < k < 2^n\}\) for each \(n \in \bb{N}\). We will prove by induction that \(\varphi\) is \(B_n\)-convex. For \(n=1\), the hypothesis is true by assumption. So suppose \(\varphi\) is \(B_n\) convex; we will show it is \(B_{n+1}\)-convex. Fix any integer \(k\) such that \(0 < k < 2^n\). If \(k\) is even, then \(k/2^{n+1} \in B_n\), so suppose \(k\) is odd. Then, 
     \begin{align*}
         \varphi \left( \frac{k}{2^{n+1}} x + \left(1 - \frac{k}{2^{n+1}}\right) y \right)
@@ -896,49 +772,40 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
         &\leq \frac{1}{2} \left( \frac{k}{2^n} x + \left( 1 - \frac{k}{2^n} \right) y \right) + \frac{1}{2} \varphi(y) \\
         &\leq \frac{k}{2^{n+1}} \varphi(x) + \left(1 - \frac{k}{2^{n+1}} \right) \varphi(y)
     \end{align*}
-
     so that \(\varphi\) is \(B_{n+1}\)-convex, completing the induction. Now, let \(B\) be the set of all \(b \in (0, 1)\) which have a binary representation with at most finitely many nonzero digits. Note that every \(b \in B\) satisfies \(b \in B_n\) for some \(n\), so \(\varphi\) is \(B\)-convex. So, take any \(\theta \in (0, 1)\), and consider a binary representation \(\theta = \sum_i b_i / 2^i\). If \(\theta_N = \sum_{i=1}^N b_i / 2^i\), then since \(\theta_N \in B\), 
-    
     \[
         \varphi(\theta_N x + (1 - \theta_N) y) \leq \theta_N \varphi(x) + (1 - \theta_N) \varphi(y)
         \qquad (N \in \bb{N})
     \]
-
     Since \(\varphi\) is continuous, taking \(N \to \infty\) on both sides shows that \(\varphi\) is convex. Finally, continuity is a required assumption: if \(\varphi\) were not continuous, then it could not be convex, since every convex function is continuous. 
 \end{proof}
 
 
 \begin{problem}{Finite \(L^p\)-Norm Implies \(\sigma\)-Finite Support}*
-    Suppose \((X, \fr{M}, \mu)\) is a positive measure space and let \(f\) be a complex measurable function. If \(\norm{f}_p < \infty\) for some \(0 < p < \infty\), then \(f\) has \(\sigma\)-finite support. 
+    [\href{https://terrytao.wordpress.com/2009/01/09/245b-notes-3-lp-spaces/}{Tao} E3.3] Suppose \((X, \fr{M}, \mu)\) is a positive measure space and let \(f\) be a complex measurable function. If \(\norm{f}_p < \infty\) for some \(0 < p < \infty\), then \(f\) has \(\sigma\)-finite support. 
 \end{problem}
 
 \begin{proof}
     Suppose for contradiction that \(f\) did not have \(\sigma\)-finite support. Note that 
-    
     \[
         \oname{supp}(f) = \{x : f(x) > 0 \} = \bigcup_{n=1}^\infty \left\{ x : f(x) > \frac{1}{n} \right\}
     \]
-
     So, there exists some \(m \in \bb{N}\) for which \(\mu(\{x : f(x) > 1/m\}) = \infty\). But then
-    
     \[
         \norm{f}_p = \left( \int_X |f|^p \, \mr{d}\mu \right)^{\frac{1}{p}}
         > \left( \int_{\{x : f(x) > 1/m\}} \left(\frac{1}{m}\right)^p \, \mr{d}\mu \right)^{\frac{1}{p}}
         = \infty
     \]
-
     a contradiction, so \(f\) has \(\sigma\)-finite support. 
 \end{proof}
 
 
 \begin{problem}{Monotonicity of the \(L^p\)-norm}*
     [RCA E2.4.] Suppose \((X, \fr{M}, \mu)\) is a positive measure space and let \(f\) be a complex measurable function. Define 
-    
     \[
         \varphi(p) := \int_X |f|^p \, \mr{d}\mu = \norm{f}_p^p
         \qquad (0 < p < \infty) 
     \]
-
     and \(E := \{ p \mid \varphi(p) < \infty\}\). Then, prove the following: 
     \begin{enumerate}[(a)]
         \itemsep0em
@@ -952,14 +819,12 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{proof}
     \emph{Part (a).} Let \(r, s \in E\) and take \(p \in (r, s)\). Define \(A := \{ x \mid |f(x)| \leq 1\}\). Then, 
-    
     \[
         \int_X |f|^p \, \mr{d} \mu 
         = \int_{A} |f|^p \, \mr{d}\mu + \int_{A^c} |f|^p \, \mr{d}\mu
         \leq \int_A |f|^r \, \mr{d}\mu + \int_{A^c} |f|^s \, \mr{d}\mu
         \leq \varphi(r) + \varphi(s) < \infty
     \]
-
     so that \(p \in E\) as well. 
 \end{proof}
 
@@ -971,7 +836,6 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
         \leq \log \left[ \left( \int_X |f|^r \, \mr{d}\mu \right)^\theta \left( \int_X |f|^s \, \mr{d}\mu \right)^{1 - \theta} \right] \\
         &= \theta \log \varphi(r) + (1 - \theta) \log \varphi(s)
     \end{align*}
-
     Note that we must look at \(E^\circ\) rather than \(E\) since convexity (according to RCA) is defined on open intervals. Now, to show that \(\varphi\) is continuous on \(E\), first note that \(\varphi\) is convex on \(E^\circ\) since \(\varphi = \exp \log \varphi\). Then consider any \(p \in \partial E\). Any sequence \(\{p_n\}_n\) which approaches \(p\) must do so either from above or below, since \(E\) is an interval. Define \(A := \{ x \mid |f(x)| \leq 1 \}\) so that 
     \begin{align*}
         \lim_{n \to \infty} \varphi(p_n) 
@@ -981,7 +845,6 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
         = \int_X |f|^p \, \mr{d}\mu
         = \varphi(p)
     \end{align*}
-
     The justification for \((*)\) follows from applications of the Dominated Convergence Theorem. If \(p_n\) approaches \(p\) from below, then the first term in \((*)\) uses domination by \(|f|^{p_0}\), where \(p_0 := \inf p_n \in E\), and the second uses domination by \(|f|^p\). On the other hand, if \(p_n\) approaches \(p\) from above, then the first term uses domination by \(|f|^p\), and the second term by \(|f|^{p_0}\) where \(p_0 := \sup p_n\) this time. Hence \(\varphi\) is continuous at both the interior and boundary points of \(E\), so it is continuous on \(E\). 
 \end{proof}
 
@@ -991,31 +854,24 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
         & a_n = 2^{-n}, \quad \mu(\{A_n\}) = n^{-2} 2^{np_0}  \\
         & b_n = 2^{-n}, \quad \mu(\{B_n\}) = n^{-2} 2^{-np_0}
     \end{align*}
-
     where the points \(\{A_n\}_n, \{B_n\}_n\) form a measure space \(X = \left(\bigcup_n A_n\right) \cup \left(\bigcup_n B_n\right)\) whose \(\sigma\)-algebra \(\fr{M}\) is the power set \(\cl{P}(X)\). Define \(f(A_n) = a_n\) and \(f(B_n) = b_n\) so that \(f\) is a limit of simple functions and therefore is measurable. Observe, 
-    
     \[
         \varphi(p) = \int_X f^p \, \mr{d}\mu = \sum_{n=1}^\infty f(A_n) \mu(\{A_n\}) + \sum_{n=1}^\infty f(B_n) \mu(\{B_n\})
         = \sum_{n=1}^\infty \frac{1}{n^2} \left( 2^{n(p_0 - p)} + 2^{n(p - p_0)} \right)
     \]
-
     Of course, this series converges only for \(p = p_0\), so \(E = \{p_0\}\) as desired. 
     \stdvspace
 
     Now we show that \(E\) can be any open interval \((\alpha, \beta)\) where \(0 \leq \alpha < \beta \leq \infty\). Define
-    
     \[
         f_\beta = \left(x \mapsto x^{-\frac{1}{\beta}}\right) : (0,1) \to \bb{R}, 
         \quad 
         f_\alpha = \left(x \mapsto x^{-\frac{1}{\alpha}}\right) : (1,\infty) \to \bb{R}
     \]
-    
     where \(f_\beta = 1\) whenever \(\beta = \infty\) and \(f_\alpha = 0\) whenever \(\alpha = 0\). Observe that \(\norm{f_\beta}_p\) is finite on \((0,1)\) precisely when \(p < \beta\), and \(\norm{f_\alpha}_p\) is finite on \((1, \infty)\) precisely when \(p > \alpha\). Hence define 
-    
-    \[
+   \[
         f = f_\beta \cl{X}_{(0,1)} + f_\alpha \cl{X}_{(1, \infty)} : \bb{R} \to \bb{R}
     \]
-
     so that \(\norm{f}_p\) is finite on \(\bb{R}\) precisely when \(\alpha < p < \beta\). So, \(E = (\alpha, \beta)\) for \(f\). 
     \stdvspace
 
@@ -1029,7 +885,6 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
         \implies & \norm{f}_p^p \leq (\norm{f}_r^r)^\theta (\norm{f}_s^s)^{1 - \theta} 
         \leq \max\{\norm{f}_r, \norm{f}_s\}^p 
     \end{align*}
-
     from which it follows that \(\norm{f}_p \leq \max\{ \norm{f}_r, \norm{f}_s \}\). Now suppose either \(r\) or \(s\) lies on the boundary \(\partial E\). Then observe that since \(\psi(p) := \norm{f}_p = \varphi(p)^p = \exp \left( \frac{1}{p} \log \varphi(p) \right)\) is the composition of continuous maps (whenever \(\varphi > 0\), which occurs insofar as \(\mu(X) > 0\) and \(f\) is not zero a.e., which are both cases where the desired result is trivially true) and therefore is continuous, we have that
     \begin{align*}
         & \norm{f}_p \leq \lim_{\varepsilon \to 0} \max( \norm{f}_{r + \varepsilon}, \norm{f}_s ) = \max( \norm{f}_r, \norm{f}_s) 
@@ -1037,60 +892,47 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
         & \norm{f}_p \leq \lim_{\varepsilon \to 0} \max( \norm{f}_r, \norm{f}_{s + \varepsilon} ) = \max( \norm{f}_r, \norm{f}_s) 
         \quad \text{if } s \in \partial E, r \in E^\circ
     \end{align*}
-
-    or we can even take both limits if \(r, s \in \partial E\). Hence \(\norm{f}_p\) is monotonic (either weakly increasing or decreasing) in \(p\) if we fix a function \(f\). However, either direction is possible, even within the same measure space. For instance, when \((X, \fr{M}, \mu) = (\bb{R}, \cl{L}(\bb{R}), m)\) where \(\cl{L}(\bb{R})\) is the collection of Lebesgue-measurable sets on \(\bb{R}\), the function \(f=\cl{X}_{[0, 1/4)}\) satisfies
-    
+    or we can even take both limits if \(r, s \in \partial E\). Hence \(\norm{f}_p\) is monotonic (either weakly increasing or decreasing) in \(p\) if we fix a function \(f\). However, either direction is possible, even within the same measure space. For instance, when \((X, \fr{M}, \mu) = (\bb{R}, \fr{L}(\bb{R}), m)\) where \(\fr{L}(\bb{R})\) is the collection of Lebesgue-measurable sets on \(\bb{R}\), the function \(f=\cl{X}_{[0, 1/4)}\) satisfies
     \[
         \norm{f}_1 = \int_\bb{R} \cl{X}_{\left[0, \frac{1}{4}\right)} \, \mr{d}m = \frac{1}{4},
         \quad 
         \norm{f}_2 = \sqrt{\int_\bb{R} \cl{X}_{\left[0, \frac{1}{4}\right)} \, \mr{d}m} = \frac{1}{2}
     \]
-
     and so \(\norm{f}_1 < \norm{f}_2\). Yet if we choose instead \(f = \cl{X}_{[0, 4)}\), 
-    
     \[
         \norm{f}_1 = \int_{\bb{R}} \cl{X}_{[0, 4)} \, \mr{d}m = 4,
         \quad
         \norm{f}_2 = \sqrt{\int_{\bb{R}} \cl{X}_{[0, 4)} \, \mr{d}m} = 2
     \]
-
     so that \(\norm{f}_1 > \norm{f}_2\). 
 \end{proof}
 
 \begin{proof}
     \emph{Part (e).} We consider two cases. First, suppose \(\norm{f}_\infty = \infty\). Fix \(n \in \bb{N}\) greater than \(1\), and observe that we can find a set \(K\) with measure \(\varepsilon\) on which \(f > n\). Hence
-    
     \[
         \varphi(p) = \int_X |f|^p \, \mr{d}\mu > \int_K |f|^p \, \mr{d}\mu > n^p \mu(K) = n^p \varepsilon
     \]
-    
     Of course, as \(p \to \infty\) we thus have \(\varphi(p) \to \infty\) and so \(\norm{f}_p \to \infty\) as well. 
     \stdvspace
 
     Second, suppose \(\norm{f}_\infty < \infty\). We will show inequality in both directions. To show \(\norm{f}_\infty\) is an upper bound, 
-    
     \[
         \lim_{p \to \infty} \norm{f}_p = \lim_{p \to \infty} \left( \int_X |f|^r |f|^{p-r} \, \mr{d}\mu \right)^{\frac{1}{p}} 
         \leq \lim_{p \to \infty} (\norm{f}_\infty)^{1 - \frac{r}{p}} (\norm{f}_r)^{\frac{r}{p}}
         = \norm{f}_\infty
     \]
-
     Now to show \(\norm{f}_\infty\) is a lower bound. Since \(\norm{f}_r < \infty\), we know that \(\oname{supp}(f)\) is \(\sigma\)-finite. Let \(\{K_n\}_n\) denote a partition of \(\oname{supp}(f)\) with \(\mu(K_n) < \infty\), and furthermore write 
-    
     \[
         A_{\varepsilon, n} = \{x \in K_n \mid f(x) > \norm{f}_\infty - \varepsilon\}
         \qquad (\varepsilon > 0)
     \]
-
     Note that \(0 < \mu(A_{\varepsilon, n}) < \infty\), so 
-    
     \[
         \lim_{p \to \infty} \norm{f}_p 
         \geq \lim_{p \to \infty} \left( \sum_{n=1}^\infty \int_{K_n} |f|^p \, \mr{d}\mu \right)^{\frac{1}{p}} 
         \geq \lim_{p \to \infty} \left( (\norm{f}_\infty - \varepsilon) \left( \sum_{n=1}^\infty \mu(A_{\varepsilon, n}) \right)^{\frac{1}{p}} \right)
         = \norm{f}_\infty - \varepsilon
     \]
-
     The last step follows since \(\sum_n \mu(A_{\varepsilon, n})\) must converge since otherwise \(\lim \norm{f}_p\) would be infinite, contradicting \(\lim \norm{f}_p \leq \norm{f}_\infty < \infty\). Finally, taking \(\varepsilon \to 0\) yields \(\lim \norm{f}_p \geq \norm{f}_\infty\), as desired. 
 \end{proof}
 
@@ -1105,32 +947,26 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{problem}{Hardy's Inequality}*
     [RCA E3.14, E.15.] Suppose \(1 < p < \infty\), \(f \in L^p((0, \infty) \to \bb{C}, m)\), and 
-    
     \[
         F(x) = \frac{1}{x} \int_0^x f(t) \, \mr{d}t
         \qquad
         (0 < x < \infty)
     \]
-
     \begin{enumerate}[(a)]
         \itemsep0em
         \item Prove Hardy's inequality 
-        
         \[
             \norm{F}_p \leq \frac{p}{p-1} \norm{f}_p
         \]
-
         which shows that the mapping \(f \mapsto F\) carries \(L^p\) into \(L^p\). [Hint: Assume first that \(f \geq 0, f \in C_c((0,\infty))\). Integration by parts gives \(\int_0^\infty F^p(x) \, \mr{d}x = -p \int_0^\infty F^{p-1}(x) x F'(x) \, \mr{d}x\). Note that \(xF' = f - F\), and apply H\"older's inequality to \(\int F^{p-1} f\). Then derive the general case.]
         \item Prove that equality holds if and only if \(f = 0\) a.e. 
         \item Prove that the constant \(p/(p-1)\) cannot be replaced by a smaller one. [Hint: Take \(f(x) = x^{-1/p} \cl{X}_{[1, A]}\) for large \(A\). Use the fact that if each section \(f_x\) is Borel and each \(f_y\) is continuous, then \(f\) is Borel on \(\bb{R}^2\).]
         \item If \(f > 0\) and \(f \in L^1((0, \infty) \to \bb{R}, m)\), prove that \(F \not\in L^1\). 
         \item Suppose \(\{a_n\}_n\) is a sequence of positive numbers. prove that 
-        
         \[
             \sum_{N=1}^\infty \left( \frac{1}{N} \sum_{n=1}^N a_n \right)^p
             \leq \left( \frac{p}{p-1} \right)^p \sum_{n=1}^\infty a_n^p
         \]
-
         if \(1 < p < \infty\). [Hint: If \(a_n \geq a_{n+1}\), thte result can be made to follow from Hardy's inequality. This special case implies the general one.]
     \end{enumerate}
 \end{problem}
@@ -1160,11 +996,9 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{problem}{Convergence in Measure}*
     [RCA E3.18.] Let \(\mu\) be a positive measure on \(X\). A sequence \(\{f_n : X \to \bb{C}\}_n\) of measurable functions is said to \emph{converge in measure} to the measurable function \(f\) if to every \(\varepsilon > 0\)
-    
     \[
         \lim_{n \to \infty} \mu( \{ x \mid |f_n(x) - f(x)| > \varepsilon \} ) = 0
     \]
-
     Assume \(\mu(X) < \infty\) and prove the following: 
     \begin{enumerate}[(a)]
         \itemsep0em
@@ -1182,7 +1016,6 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{problem}{Chain Rule for the Radon-Nikodym Derivative}*
     [MAT425 P6.2.] Let \((X, \fr{M})\) be a measurable space. Let \(\mu : \fr{M} \to [0, \infty]\) be \(\sigma\)-finite, \(\nu : \fr{M} \to [0, \infty)\) and \(\eta : \fr{M} \to \bb{C}\) be measures such that \(\eta \ll \nu \ll \mu\). Prove that \(\eta \ll \mu\) and that 
-    
     \[
         \frac{\mr{d}\eta}{\mr{d}\mu} = \frac{\mr{d}\eta}{\mr{d}\nu} \frac{\mr{d}\nu}{\mr{d}\mu}
     \]
@@ -1190,23 +1023,18 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{proof}
     To show \(\eta \ll \mu\), note that \(\mu(E) = 0 \implies \nu(E) = 0 \implies \eta(E) = 0\) for any \(E \in \fr{M}\). The key observation is that for any positive \(g \in L^1(\nu)\), 
-    
     \[
         \int_X g \, \mr{d}\nu = \int_X g \frac{\mr{d}\nu}{\mr{d}\mu} \, \mr{d}\mu
     \]
-
     Indeed, the equality is certainly true for characteristics and thus simple functions, so taking an increasing sequence of simple functions \(s_n \to g\) for any positive \(g \in L^1(\nu)\) we find it must hold for such \(g\) as well. But since \(\mr{d}\eta / \mr{d}\nu \in L^1(\nu)\) is positive, we have 
-    
     \[
         \eta(E) = \int_E \frac{\mr{d}\eta}{\mr{d}\nu} \, \mr{d}\nu = \int_E \frac{\mr{d}\eta}{\mr{d}\nu} \frac{\mr{d}\nu}{\mr{d}\mu} \, \mr{d}\mu
     \]
-
     as well, and so uniqueness of the Radon-Nikodym derivative concludes the proof. 
 \end{proof}
 
 \begin{problem}{Inverse of the Radon-Nikodym Derivative}*
     [MAT425 P6.3.] If \(\mu \ll \nu\) and \(\nu \ll \mu\) are positive finite measures then 
-    
     \[
         \frac{\mr{d}\mu}{\mr{d}\nu} = \left( \frac{\mr{d}\nu}{\mr{d}\mu} \right)^{-1}
     \]
@@ -1214,19 +1042,16 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{proof}
     From the Chain Rule, we have that since \(\mu \ll \nu \ll \mu\), 
-    
     \[
         \frac{\mr{d}\mu}{\mr{d}\nu}\frac{\mr{d}\nu}{\mr{d}\mu} = \frac{\mr{d}\mu}{\mr{d}\mu} = 1
         \implies 
         \frac{\mr{d}\mu}{\mr{d}\nu} = \left( \frac{\mr{d}\nu}{\mr{d}\mu} \right)^{-1} 
     \]
-
     again by uniqueness of the Radon-Nikodym derivative. 
 \end{proof}
 
 \begin{problem}{Linearity of the Radon-Nikodym Derivative}*
     [MAT425 P6.4.] Let \((X, \fr{M})\) be a measurable space. Let \(\mu : \fr{M} \to [0, \infty]\) be \(\sigma\)-finite, and let \(\{\nu_i\}_{i=1}^n : \fr{M} \to \bb{C}\) be measures such that \(\nu_i \ll \mu\) for all \(i\). Then 
-    
     \[
         \sum_{i=1}^n \nu_i \ll \mu
         \quad \text{and} \quad 
@@ -1236,20 +1061,17 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{proof}
     For any \(E \in \fr{M}\), it's clear that \(\mu(E) = 0 \implies \forall i: \nu_i(E) = 0 \implies \sum_{i=1}^n \nu_i(E) = 0\). Thus \(\sum_{i=1}^n \nu_i \ll \mu\). Following that, it's also immediate that 
-    
     \[
         \int_E \sum_{i=1}^n \frac{\mr{d}\nu_i}{\mr{d}\mu} \, \mr{d}\mu
         = \sum_{i=1}^n \int_E \frac{\mr{d}\nu_i}{\mr{d}\mu} \, \mr{d}\mu
         = \sum_{i=1}^n \nu_i(E)
         = \left( \sum_{i=1}^n \nu_i \right) (E)
     \]
-
     so we conclude once more by uniqueness of the Radon-Nikodym derivative. 
 \end{proof}
 
 \begin{problem}{Multiplicativity of the Radon-Nikodym Derivative}*
     [MAT425 P6.5.] Let \((X_i, \fr{M}_i)_{i=1}^n\) be measurable spaces, each with \(\mu_i : \fr{M}_i \to [0, \infty]\) \(\sigma\)-finite and \(\nu_i : \fr{M}_i \to \bb{C}\). If \(\nu_i \ll \mu_i\) for all \(i\), then
-    
     \[
         \prod_{i=1}^n \nu_i \ll \prod_{i=1}^n \mu_i 
         \quad \text{and} \quad 
@@ -1259,34 +1081,106 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 \begin{proof}
     Without loss of generality we consider \(n=2\). Suppose \((\mu_1 \times \mu_2)(E) = 0\). Then, 
-    
     \[
         0 
         = (\mu_1 \times \mu_2)(E) 
         = \int_{X_1} \mu_2(E_2) \, \mr{d}\mu_1
         = \int_{X_2} \mu_1(E_1) \, \mr{d}\mu_2
     \]
-
     and therefore \(\mu_2(E_2) = 0\) \(\mu_1\)-a.e., while \(\mu_1(E_1) = 0\) \(\mu_2\)-a.e. It follows that \(\nu_2(E_2) = 0\) \(\mu_1\)-a.e. and \(\nu_1(E_1) = 0\) \(\nu_2\)-a.e., so 
-    
     \[
         (\nu_1 \times \nu_2)(E) = \int_{X_1} \nu_2(E_2) \, \mr{d}\nu_1 = \int_{X_2} \nu_1(E_1) \, \mr{d}\nu_2 = 0
     \]
-
     thus showing \(\nu_1 \times \nu_2 \ll \mu_1 \times \mu_2\). Finally, by Tonelli's Theorem, we have 
-    
     \[
         \int_{X_1 \times X_2} \cl{X}_E \frac{\mr{d}\nu_1}{\mr{d}\mu_1} \frac{\mr{d}\nu_2}{\mr{d}\mu_2} \, \mr{d} (\mu_1 \times \mu_2)
         = \int_{X_1} \int_{X_2} \cl{X}_{E_2} \frac{\mr{d} \nu_2}{\mr{d} \mu_2} \, \mr{d} \mu_2 \mr{d}\mu_1 
         = \int_{X_1} \nu_2(E_2) \, \mr{d}\mu_1
         = (\nu_1 \times \nu_2)(E)
     \]
-
     and so the derivative of the products is the product of the derivatives. 
 \end{proof}
 
 
+\begin{problem}{Maximality of the Maximal Function}*
+    [RCA E7.1.] Show that \(|f(x)| \leq (Mf)(x)\) at every Lebesgue point of \(f\) if \(f \in L^1(\bb{R}^d)\). 
+\end{problem}
 
+\begin{proof}
+    TODO. 
+\end{proof}
+
+
+
+\begin{problem}{Sufficient Condition for \(L^\infty\) Derivative}*
+    [RCA E7.10.] If \(f \in \oname{Lip}{1}\) on \([a, b]\), prove that \(f\) is absolutely continuous and that \(f' \in L^\infty\). 
+\end{problem}
+
+\begin{proof}
+    To show that \(f'\) is absolutely continuous, choose \(\delta = \varepsilon\), so
+    \[
+        \sum_{i=1}^N |f(\beta_i) - f(\alpha_i)| \leq \sum_{i=1}^N |\beta_i - \alpha_i| < \delta = \varepsilon
+    \]
+    for disjoint intervals \(I_i = (\alpha_i, \beta_i) \subseteq [a, b]\) whose lengths sum to at most \(\delta\). Therefore, \(f\) is differentiable almost everywhere, and hence \(f'\) exists on \([a, b]\) outside a set \(E\) of measure zero. Then note that by the Lipschitz condition on any distinct \(x, y \in [a, b]\), 
+    \[
+        \frac{|f(y) - f(x)|}{|y - x|} \leq 1 
+        \implies |f'(x)| \leq 1
+    \]
+    for almost every \(x \in [a, b]\). Hence \(\|f'\|_\infty \leq 1 < \infty\), and \(f' \in L^\infty\). 
+\end{proof}
+
+
+\begin{problem}{Integration by Parts}*
+    [RCA E7.14.] Show that the product of two absolutely continuous functions on \([a, b]\) is absolutely continuous. Use this to derive a theorem about integration by parts, i.e. that 
+    \[
+        \int_a^x f'(t) g(t) \, \mr{d}t = f(t) g(t) \Big\rvert_a^x - \int_a^x f(t) g'(t) \, \mr{d}t
+    \]
+\end{problem}
+
+\begin{proof}
+    Let \(f\) and \(g\) be absolutely continuous on \([a, b]\). Note that since absolute continuity implies continuity, we have that their images are bounded: \(|f| \leq A\) and \(|g| \leq B\), for \(0 < A, B < \infty\). Then, 
+    \begin{align*}
+        \sum_{i=1}^N |f(\beta_i) g(\beta_i) - f(\alpha_i) g(\alpha_i)|
+        &= \sum_{i=1}^N |g(\beta_i) [f(\beta_i) - f(\alpha_i)] + f(\alpha_i) [g(\beta_i) - g(\alpha_i)]| \\
+        &\leq B \sum_{i=1}^N |f(\beta_i) - f(\alpha_i)| + A \sum_{i=1}^N |g(\beta_i) - g(\alpha_i)| \\
+        &< B((2B)^{-1} \varepsilon) + A ((2A)^{-1} \varepsilon) 
+        = \varepsilon
+    \end{align*}
+    whenever we choose appropriately small \(\delta_f\) and \(\delta_g\). Take \(\delta = \min\{\delta_f, \delta_g\}\) to conclude. Hence \(fg\) is absolutely continuous on \([a, b]\). Then, since
+    \[
+        \int_a^x \frac{d}{dt} (f(t) g(t)) \, \mr{d}t = f(t) g(t) \Big\rvert_a^x
+    \]
+    by the Fundamental Theorem of Calculus, applying the product rule to this expression yields the integration by parts formula. 
+\end{proof}
+
+
+\begin{problem}{Gap Between \(C^0\) and \(C^1\)}*
+    [RCA E7.15.] Construct a monotonic function \(f\) on \(\bb{R}\) so that \(f'(x)\) exists (finitely) for any \(x \in \bb{R}\), but \(f'\) is not a continuous function. 
+\end{problem}
+
+\begin{proof}
+    TODO. 
+\end{proof}
+
+
+\begin{problem}{Symmetric Derivate of Series}*
+    Suppose \(\{\mu_n\}\) is a sequence of positive Borel measures on \(\bb{R}^d\) and \(\mu = \sum_n \mu_n\). Assume that \(\mu(\bb{R}^d) < \infty\). 
+    \begin{enumerate}[(a)]
+        \itemsep0em
+        \item Show that \(\mu\) is a Borel measure.
+        \item What is the relation between the Lebesgue decompositions of the \(\mu_n\) and that of \(\mu\)? 
+        \item Prove that 
+        \[
+            (D\mu)(x) = \sum_{n=1}^\infty (D\mu_n)(x)
+            \quad \text{a.e.}\, [m]
+        \]
+        \item Derive corresponding theorems for sequences \(\{f_n\}_n\) of positive nondecreasing functions on \(\bb{R}\) and their sums \(f = \sum_n f_n\). 
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+    TODO. 
+\end{proof}
 
 \end{document}
 
