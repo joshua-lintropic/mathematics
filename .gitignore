@@ -1,3 +1,4 @@
+.DS_Store
 *.acn
 *.acr
 *.alg
@@ -33,6 +34,8 @@
 *.pyg
 *.run.xml
 *.snm
+*.swp
+*.swo
 *.synctex.gz
 *.tex.backup
 *.tex~
