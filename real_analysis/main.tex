@@ -143,7 +143,14 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 \end{problem}
 
 \begin{proof}
-    TODO. 
+    Let \(\cl{C}\) be the fat Cantor set. Define 
+    \[
+        V_n := \left\{ x \in \bb{R} \mid \frac{1}{n+1} < d(x, \cl{C}) < \frac{1}{n} \right\},
+        \quad
+        U := \bigcup_{n=1}^\infty V_{2n}, 
+        \quad
+        U' := \bigcup_{n=1}^\infty V_{2n-1}
+    \]
 \end{proof}
 
 \begin{problem}{Borel-Cantelli Lemma}*
@@ -430,7 +437,7 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 \end{proof}
 
 \begin{problem}{Banach-Tarski Paradox}*
-    TODO.
+    [MAT425 P4.9.] TODO. 
 \end{problem}
 
 \newpage
@@ -627,22 +634,73 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
     thanks to the equality of the Riemann and Lebesgue integrals. However, by absolute continuity of the Lebesgue integral, there exists \(\delta\) such that if \(|x - y| \leq \delta\), then the integral is at most \(\varepsilon\).
 \end{proof}
 
-\begin{problem}{Tchebychev's Inequality}*
-    [S\&S E2.9.] Suppose \(f \in L^1(X \to \overline{\bb{R}}, \mu)\). Then
+\begin{problem}{Markov's and Chebyshev's Inequalities}*
+    [S\&S E2.9.\footnote{Generalized to arbitrary \(p\), rather than just \(p=1\).}] Suppose \(f : \Omega \to \ovl{\bb{R}}\) is measurable with respect to measure \(\lambda \geq 0\). Show that 
     \[
-    \mu(\{x \mid f(x) > \alpha\}) \leq \frac{1}{\alpha} \int_{X} f \, \mr{d}\mu \qquad (\alpha > 0)
+        \lambda(\{|f| \geq \alpha\}) \leq \frac{1}{\alpha^p} \int_{\Omega} |f|^p \, \mr{d}\lambda \qquad (0 < \alpha, p < \infty)
     \]
+    Now suppose \(\Omega\) is a probability space, and let \(X\) be a positive random variable.
+    \begin{enumerate}[(a)]
+        \itemsep0em
+        \item Prove \emph{Markov's Inequality:} if \(X\) also has finite expectation \(\mu\), 
+        \[
+            \Pr(X \geq k) \leq \frac{\mu}{k}
+            \qquad (k > 0)
+        \]
+        \item Prove \emph{Chebyshev's Inequality:} if \(X\) also has finite expectation \(\mu\) and finite variance \(\sigma^2\), 
+        \[
+            \Pr(|X - \mu| \geq k \sigma) \leq \frac{1}{k^2}
+            \qquad (k > 0)
+        \]
+    \end{enumerate}
 \end{problem}
 
 \begin{proof}
-    Let \(E_{\alpha} := \{x \mid f(x) > \alpha\}\). The key observation is that \(f \geq \alpha \cl{X}_{E_\alpha}\), since then
+    Without loss of generality, allow \(f \geq 0\). Suppose first that \(p = 1\). The key observation is that \(f \geq \alpha \cl{X}_{\{f \geq \alpha\}}\), since then
     \[
-        \mu(E_\alpha) = \int_X \cl{X}_{E_\alpha} \, \mr{d}\mu 
-        \leq \int_X \frac{1}{\alpha} f \, \mr{d} \mu 
-        = \frac{1}{\alpha} \int_X f \, \mr{d} \mu
+        \lambda(\{f \geq \alpha\})
+        = \int_{\Omega} \cl{X}_{\{f \geq \alpha\}} \, \mr{d}\lambda
+        \leq \int_{\Omega} \frac{1}{\alpha} f \, \mr{d} \lambda
+        = \frac{1}{\alpha} \int_{\Omega} f \, \mr{d} \lambda
     \]
-    as desired. 
+    as desired. Then letting \(g = (f / \alpha)^p\) yields 
+    \[
+        \lambda(\{g \geq 1\}) \leq \int_{\Omega} g^p \, \mr{d}\lambda
+        \implies 
+        \lambda(\{f \geq \alpha\}) \leq \frac{1}{\alpha^p} \int_{\Omega} f^p \, \mr{d}\lambda
+    \]
+    Markov's inequality then follows by letting \(f = X\), \(\alpha = k\), and \(p = 1\). Chebyshev's inequality follows from letting \(f = X - \mu\), \(\alpha = k \sigma\), and \(p = 2\). 
 \end{proof}
+
+\begin{problem}{Layer-Cake Representation}*
+    [MAT425 P4.6.] Let \(f \in L^1(\bb{R}^d)\). Show that 
+    \[
+        \int_{\bb{R}^d} |f| \, \mr{d}m = \int_0^\infty m(\{|f| > \alpha\}) \, \mr{d}\alpha
+    \]
+    where the expression on the right is an \emph{improper} Riemann integral. 
+\end{problem}
+
+\begin{proof}
+    Without loss of generality, suppose \(f \geq 0\). Then, 
+    \[
+        \int_0^\infty \cl{X}_{\{f > \alpha\}}(x) \, \mr{d}\alpha
+        = \int_0^\infty \cl{X}_{(0, f(x))}(\alpha) \, \mr{d}\alpha
+        = \int_0^{f(x)} \, \mr{d}\alpha
+        = f(x) 
+    \]
+    Since the improper Riemann integral converges almost everywhere (i.e. whenever \(f < \infty\)), it agrees with the Lebesgue integral, so by Fubini's Theorem we have 
+    \begin{align*}
+        \int_{\bb{R}^d} f(x) \, \mr{d}m(x)
+        &= \int_{\bb{R}^d} \left(\int_0^\infty \cl{X}_{\{f > \alpha\}}(x) \, \mr{d}\alpha\right) \mr{d}m(x)
+        = \int_{\bb{R}^d} \int_{(0, \infty)} \cl{X}_{\{f > \alpha\}} \, \mr{d}m(\alpha) \mr{d}m(x) \\
+        &= \int_{(0, \infty)} \int_{\bb{R}^d} \cl{X}_{\{f > \alpha\}} \, \mr{d}m(\alpha) \mr{d}m(x)
+        = \int_{(0, \infty)} m(\{f > \alpha\}) \, \mr{d}m(\alpha) \\
+        &= \lim_{n \to \infty} \int_{(0, n)} m(\{f > \alpha\}) \, \mr{d}m(\alpha) 
+        = \int_0^\infty m(\{f > \alpha\}) \, \mr{d}\alpha
+    \end{align*}
+    where the penultimate step follows from approximation on \(\mr{d}\mu = m(\{f > \alpha\}) \mr{d}m(\alpha)\), and the final step from equality of the Lebesgue and Riemann integrals on bounded intervals. 
+\end{proof}
+
 
 \begin{problem}{Convergence in \(L^1\) but Pointwise Nowhere}*
     [S\&S E2.12.] Show that there exists \(f, f_n \in L^1(\bb{R}^d \to \bb{R}, m)\) such that \(\norm{f - f_n}_{L^1} \to 0\) as \(n \to \infty\), but \(f_n(x) \to f(x)\) for no \(x \in \bb{R}^d\) at all. [Hint: in \(\bb{R}\), let \(f_n = \cl{X}_{I_n}\), where \(I_n\) is an appropriately chosen sequence of intervals with \(m(I_n) \to 0\).]
