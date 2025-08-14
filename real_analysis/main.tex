@@ -1,3 +1,5 @@
+% main.tex
+
 \input{preamble}
 \input{format}
 \input{commands}
@@ -11,10 +13,10 @@
 \vspace{1ex}
 
 \textsf{\textbf{Student:}} Joshua Lin \\
-\textsf{\textbf{Lecturer:}} Jacob Shapiro
+\textsf{\textbf{Lecturer:}} Assaf Naor, Jacob Shapiro, Allan Sly
 
 \vspace{2ex}
-Problems are derived largely from \textit{Integration Theory and Hilbert Spaces} by Stein and Shakarchi and \textit{Real and Complex Analysis} by Rudin. Some solutions are not my own, but rather thanks to the MAT425 TAs at Princeton (Spring 2025). 
+Problems are derived largely from \emph{Integration Theory and Hilbert Spaces} by Stein and Shakarchi, \emph{Real and Complex Analysis} by Rudin, and \emph{Probability and Measure} by Billingsley. The requisite content for solving the problems comes from the corresponding sections of these \href{https://web.archive.org/web/20250630154205/https://web.math.princeton.edu/~js129/PDFs/teaching/MAT425_spring_2025/MAT425_Lecture_Notes.pdf}{lecture notes}. Some solutions are not my own, but rather thanks to the MAT425 TAs at Princeton (Spring 2025). 
 \stdvspace
 
 Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
@@ -59,7 +61,7 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 \end{problem}
 
 \begin{proof}
-    \textit{Part (a).} Consider \(x \in \cl{C}\). We will construct a sequence of ternary numbers \(\{a_k\}_k\) such that \(x = \sum_k a_k 3^{-k}\) as desired. First, define \(a_1\) to be the smallest ternary number satisfying 
+    \emph{Part (a).} Consider \(x \in \cl{C}\). We will construct a sequence of ternary numbers \(\{a_k\}_k\) such that \(x = \sum_k a_k 3^{-k}\) as desired. First, define \(a_1\) to be the smallest ternary number satisfying 
     \[
         \frac{a_1}{3} \leq x \leq \frac{a_1}{3} + \frac{1}{3}
     \]
@@ -82,7 +84,7 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 \end{proof}
 
 \begin{proof}
-    \textit{Part (b).} Clearly \(F : \cl{C} \to [0, 1]\) is well-defined. To show continuity on \(\cl{C}\), for any \(x \in \cl{C}\) and \(\varepsilon > 0\) we must show existence of some \(\delta > 0\) such that \(|x - y| < \delta \implies |f(x) - f(y)| < \varepsilon\). First, select some \(n \in \bb{N}\) such that \(2^{-n} < \varepsilon\), and let \(\delta = 2 \cdot 3^{-n}\). If \(|x - y| < \delta\), then in their ternary \(\{0, 2\}\) representations the first \(n\) digits must agree. Hence \(|F(x) - F(y)| < 2^{-n} < \varepsilon\) as desired. 
+    \emph{Part (b).} Clearly \(F : \cl{C} \to [0, 1]\) is well-defined. To show continuity on \(\cl{C}\), for any \(x \in \cl{C}\) and \(\varepsilon > 0\) we must show existence of some \(\delta > 0\) such that \(|x - y| < \delta \implies |f(x) - f(y)| < \varepsilon\). First, select some \(n \in \bb{N}\) such that \(2^{-n} < \varepsilon\), and let \(\delta = 2 \cdot 3^{-n}\). If \(|x - y| < \delta\), then in their ternary \(\{0, 2\}\) representations the first \(n\) digits must agree. Hence \(|F(x) - F(y)| < 2^{-n} < \varepsilon\) as desired. 
     \stdvspace
 
     Finally, we can write 
@@ -94,11 +96,11 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 \end{proof}
 
 \begin{proof}
-    \textit{Part (c).} Write \(y = \sum_k b_k 2^{-k}\). Clearly \(x = \sum_k (2a_k) \cdot 3^{-k}\) satisfies \(F(x) = y\). 
+    \emph{Part (c).} Write \(y = \sum_k b_k 2^{-k}\). Clearly \(x = \sum_k (2a_k) \cdot 3^{-k}\) satisfies \(F(x) = y\). 
 \end{proof}
 
 \begin{proof}
-    \textit{Part (d).} The precise definition of the extension is \(\tilde{F}(x) = \sup_{y \in \cl{C}, y \leq x} F(y)\) for \(\tilde{F} : [0, 1] \to [0, 1]\). Clearly \(\tilde{F}\) is continuous at each \(x \in \cl{C}\), from part (b). So, take any \(x \not\in \cl{C}\). Since \([0,1] \setminus \cl{C}\) is open, there exists a ball \(B_{\delta}(x) \subseteq [0,1] \setminus \cl{C}\) containing \(x\). For any \(\varepsilon > 0\), clearly \(|x - y| < \delta \implies |\tilde{F}(x) - \tilde{F}(y)| = 0 < \varepsilon\), so \(\tilde{F}\) is continuous at all \(x \not\in \cl{C}\) as well. 
+    \emph{Part (d).} The precise definition of the extension is \(\tilde{F}(x) = \sup_{y \in \cl{C}, y \leq x} F(y)\) for \(\tilde{F} : [0, 1] \to [0, 1]\). Clearly \(\tilde{F}\) is continuous at each \(x \in \cl{C}\), from part (b). So, take any \(x \not\in \cl{C}\). Since \([0,1] \setminus \cl{C}\) is open, there exists a ball \(B_{\delta}(x) \subseteq [0,1] \setminus \cl{C}\) containing \(x\). For any \(\varepsilon > 0\), clearly \(|x - y| < \delta \implies |\tilde{F}(x) - \tilde{F}(y)| = 0 < \varepsilon\), so \(\tilde{F}\) is continuous at all \(x \not\in \cl{C}\) as well. 
 \end{proof}
 
 \begin{problem}{Cardinality of \(\sigma\)-algebras}*
@@ -155,7 +157,7 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 \end{proof}
 
 
-\begin{problem}{Lebesgue-Stieltjes Measure}*
+\begin{problem}{The Lebesgue-Stieltjes Measure}*
     [MAT425 P3.5.] Let \(F : \bb{R} \to \bb{R}\) be increasing and right continuous. Let \(\cl{E}\) be Lebesgue elementary family consisting of all intervals of type \((a, b]\) or \((a, \infty)\) including the empty set \(\varnothing\), and let \(\cl{A}\) be the Lebesgue algebra generated by its finite disjoint unions. Define now 
     \[
         \rho_F(S) = \begin{cases}
@@ -177,7 +179,47 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
     TODO. 
 \end{proof}
 
-\begin{problem}{Borel-Cantelli Lemma}*
+
+\begin{problem}{The Hausdorff Measure}*
+    [MAT425 P3.15.] Let \(X\) be a metric space. Define for any \(S \subseteq X, \delta > 0, d \in \bb{R}\) 
+    \[
+        H_\delta^d(S) = \inf \left( \left\{ \sum_{n=1}^\infty (\oname{diam}(U_n))^d \st \{U_n\}_{n=1}^\infty \subseteq X, \, S \subseteq \bigcup_{n=1}^\infty U_n, \, \oname{diam}(U_n) < \delta \right\} \right)
+    \]
+    Here \(\oname{diam}(U_n)\) is the diameter of the set defined via the metric on \(X\). 
+    \begin{enumerate}[(a)]
+        \itemsep0em
+        \item Show that \(\delta \mapsto H_\delta^d(S)\) is monotone increasing. 
+        \item Define 
+        \[
+            H^d(S) := \lim_{ \delta \to 0^+} H_\delta^d(S)
+        \]
+        Show that \(S \mapsto H^d(S)\) is an outer measure. The induced measure is called the \emph{\(d\)-dimensional Hausdorff measure on \(X\)}.  
+        \item Show that all Borel subsets \(\fr{B}(X)\) (with respect to the metric topology on \(X\)) are \(H^d\)-measurable, in the sense of Caratheodory. 
+        \item Show that for any \(S \subseteq X\),
+        \[
+            d \mapsto H^d(S) \qquad (0 \leq d < \infty)
+        \]
+        is monotone decreasing and its image is \(\{H^{d_*(S)}(S), 0, \infty\}\) for some \(0 \leq d_*(S) < \infty\) such that \(0 < H^{d_*(S)}(S) < \infty\). The number 
+        \[
+            d_*(S) := \inf \{ d \geq 0 \mid H^d(S) = 0 \}
+        \]
+        is called the \emph{Hausdorff dimension of \(S\)}. 
+        \item Let \(d \in \bb{N}\). Show that if \(X = \bb{R}^d\) and \(m : \fr{B}(\bb{R}^d) \to [0, \infty]\) is the Lebesgue measure restricted to Borel sets, then 
+        \[
+            m(E) = \beta_d H^d(E)
+            \qquad 
+            (E \in \fr{B}(\bb{R}^d))
+        \]
+        for some constant \(\beta_d\) which only depends on \(d\). Calculate the constant. 
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+    TODO. 
+\end{proof}
+
+
+\begin{problem}{Borel-Cantelli Lemmas}*
     [S\&S E1.16.] Suppose \(\{E_k\}_k\) is a countable family of measurable subsets of \(\bb{R}^d\) and that \(\sum_k m(E_k) < \infty\). Let 
     \[
     E := \{x \in \bb{R}^d : x \in E_k, \text{ for infinitely many } k\}
@@ -192,7 +234,7 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 \end{problem}
 
 \begin{proof}
-    \textit{Part (a).} Observe \(x \in E_k\) for infinitely many \(k\) if and only if for each \(n \in \bb{N}\), \(x\) resides in at least one \(E_k\) for \(k \geq n\). So, \(E = \bigcap_n \bigcup_{k \geq n} E_k\). Then measurability follows since 
+    \emph{Part (a).} Observe \(x \in E_k\) for infinitely many \(k\) if and only if for each \(n \in \bb{N}\), \(x\) resides in at least one \(E_k\) for \(k \geq n\). So, \(E = \bigcap_n \bigcup_{k \geq n} E_k\). Then measurability follows since 
     \[
     \{E_k\}_k \subseteq \fr{L}(\bb{R}^d)
     \implies \bigcup_{k = n}^\infty E_k \in \fr{L}(\bb{R}^d) \quad (n \in \bb{N})
@@ -202,7 +244,7 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 \end{proof}
 
 \begin{proof}
-    \textit{Part (b).} Observe that for all \(n \in \bb{N}\), \(E \subseteq \bigcup_{k \geq n} E_k\). By monotonicity, thus 
+    \emph{Part (b).} Observe that for all \(n \in \bb{N}\), \(E \subseteq \bigcup_{k \geq n} E_k\). By monotonicity, thus 
     \[
         m(E) 
         \leq m \left( \bigcup_{k = n}^\infty E_k \right)
@@ -250,7 +292,7 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 \begin{proof}
     Let the ``good'' functions \(\cl{G}\) be the functions which satisfy the desired property. Let the ``good'' subsets of \(\bb{R}\) be those whose characteristic functions satisfy the property. The proof will be deconstructed into eight steps. 
 
-    \textbf{Step 1.} \textit{The intervals \((a, \infty)\) are good.}
+    \textbf{Step 1.} \emph{The intervals \((a, \infty)\) are good.}
 
     Explicitly construct the continuous functions
     \[
@@ -263,19 +305,19 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
     \]
     Observe that \(f_n \to \cl{X}_{(a, \infty)}\) everywhere, so the intervals \((a, \infty)\) are good. 
 
-    \textbf{Step 2.} \textit{The good functions \(\cl{G}\) form a commutative ring.}
+    \textbf{Step 2.} \emph{The good functions \(\cl{G}\) form a commutative ring.}
 
     Suppose \(f, f' \in \cl{G}\). Then, respectively, there exists \(\{f_n\}_n\) and \(\{f_n'\}_n\) continuous such that \(f_n \to f\) and \(f_n' \to f'\) except on null sets \(E\) and \(E'\). Thus \(\{f_n + f_n'\}_n\) tend to \(f+f'\) except on the null set \(E \cup E'\), so \(f + f' \in \cl{G}\). Similarly, \(f_n f_n' \to ff'\) on the same set, so \(f f' \in \cl{G}\). Thus \(\cl{G}\) is closed under addition and multiplication.
 
     Then, suppose \(f \in \cl{G}\) and \(\alpha \in \bb{C}\). Clearly \(\alpha f_n \to \alpha f\) except on a null set \(E\), so \(\alpha f \in \cl{G}\). Hence \(\cl{G}\) is closed under scalar multiplication. It follows that \(\cl{G}\) is a commutative ring. 
 
-    \textbf{Step 3.} \textit{Every set in the Lebesgue algebra \(\cl{A}\) is good.}
+    \textbf{Step 3.} \emph{Every set in the Lebesgue algebra \(\cl{A}\) is good.}
 
     Recall that the Lebesgue elementary family (as defined in Folland) is the collection of sets \(\cl{E} = \{ \varnothing \} \cup \{ (a, b] \subseteq \bb{R} \} \cup \{ (a, \infty) \subseteq \bb{R} \}\), and that the Lebesgue algebra \(\cl{A}\) is constructed via finite disjoint unions of elements of \(\cl{E}\). 
     
     It suffices to show that every set in \(\cl{E}\) is good: by Step 2, if \(S_1, \dots, S_n\) are disjoint and good, then \(\cl{X}_{\bigcup_{i=1}^n S_i} = \sum_{i=1}^n \cl{X}_{S_i}\) is good as well. Clearly \(\varnothing\) is good, and Step 1 shows that \((a, \infty)\) is as well. But also \(\cl{X}_{(a, b]} = \cl{X}_{(a, \infty)} + (-1) \cdot \cl{X}_{(b, \infty)}\) is good by Step 2, so actually every set in \(\cl{E}\) is good. 
 
-    \textbf{Step 4.} \textit{The pointwise limit of a sequence of good functions, if it exists, is good.}
+    \textbf{Step 4.} \emph{The pointwise limit of a sequence of good functions, if it exists, is good.}
 
     Suppose \(f_n \to f\) for \(\{f_n\}\) good. For each \(n\), there exists \(\{f_{nm}\}_m\) continuous which tend to \(f_n\) pointwise almost everywhere. We wil show that \(f_k' \to f\) where \(k\) is indexed according to the triangular numbers as in Cantor's diagonalization argument, 
     \[
@@ -293,7 +335,7 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
     \]
     outside at most \(E := \bigcup_{n,m} E_{nm}\). Thus \(f_k' \to f\) except on \(E\), but by Cantor's diagonalization theorem, this union is countable and thus has measure zero. 
 
-    \textbf{Step 5.} \textit{The good sets form a \(\sigma\)-algebra.}
+    \textbf{Step 5.} \emph{The good sets form a \(\sigma\)-algebra.}
 
     Let \(\fr{M}\) be the collection of all good sets. It's clear that \(\bb{R} \in \fr{M}\) since \(\cl{X}_{\bb{R}}\) is continuous. Moreover, if \(E \in \fr{M}\), then \(\bb{R} \setminus E \in \fr{M}\) since \(\cl{X}_{\bb{R} \setminus E} = \cl{X}_{\bb{R}} + (-1) \cdot \cl{X}_E \in \fr{M}\) from Step 2. Finally, take \(\{E_n\}_n \subseteq \fr{M}\), and without loss of generality suppose they are pairwise disjoint (otherwise, write \(E_n' := E_n \setminus \bigcup_{k<n}E_k\)). Then, 
     \[
@@ -304,15 +346,15 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
     \]
     since each partial sum is good by Step 2, and the resulting limit is good by Step 4. Hence \(\fr{M}\) is a \(\sigma\)-algebra. 
 
-    \textbf{Step 6.} \textit{The Lebesgue-measurable sets are good.}
+    \textbf{Step 6.} \emph{The Lebesgue-measurable sets are good.}
 
     Denote the Lebesgue-measurable sets by \(\fr{L}(\bb{R})\). Since \(\cl{A} \subseteq \fr{M}\) and \(\fr{M}\) is a \(\sigma\)-algebra by Step 5, we have \(\sigma(\cl{A}) = \fr{B}(\bb{R}) \subseteq \fr{M}\) as well. Since \(\fr{L}(\bb{R})\) is the completion of \(\fr{B}(\bb{R})\), it suffices that the sets with Lebesgue-measure zero are good. But since \(f_n = 0\) converges pointwise a.e. to \(\cl{X}_N\) for any such null set \(N\), this fact is immediate. 
 
-    \textbf{Step 7.} \textit{The measurable functions \(f : \bb{R} \to [0, \infty)\) are good.}
+    \textbf{Step 7.} \emph{The measurable functions \(f : \bb{R} \to [0, \infty)\) are good.}
 
     There exists a sequence of simple functions \(\{s_n\}_n\) such that \(s_n \to f\) pointwise. By Step 6, every simple function is good since it is the sum of characteristic functions of Lebesgue-measurable sets, and thus by Step 4, \(f\) is good. 
 
-    \textbf{Step 8.} \textit{The measurable functions \(f : \bb{R} \to \bb{C}\) are good.}
+    \textbf{Step 8.} \emph{The measurable functions \(f : \bb{R} \to \bb{C}\) are good.}
 
     Since \(\Re(f)^+, \Re(f)^-, \Im(f)^+, \Im(f)^- : \bb{R} \to [0, \infty)\) are measurable and thus good, so is \(f\). 
 \end{proof}
@@ -339,9 +381,9 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
     \]
     which is a countable union thanks to Cantor's diagonalization argument. Thus \(A+B\) is \(F_\sigma\) and so it is measurable. 
 
-    \textit{Part (a).} Let \(A = \cl{C}\) and \(B = \cl{C} / 2\), where \(\cl{C}\) is the Cantor set. Clearly \(A\) is closed, since its complement is a union of intervals and thus open. But \(B\) is also closed, since \(f : \bb{R} \to \bb{R}\) with \(x \mapsto 2x\) is continuous and \(f^{-1}(A) = B\). We can characterize \(A\) as the ternary numbers in \([0,1]\) which consist of digits \(0\) or \(2\), so \(B\) is the ternary numbers in \([0,1]\) which consist of digits \(0\) or \(1\). Since \(A+B \supseteq A \cup B \supseteq [0,1]\), and \(A+B\) is measurable from above, we have \(m(A+B) > 0\). 
+    \emph{Part (a).} Let \(A = \cl{C}\) and \(B = \cl{C} / 2\), where \(\cl{C}\) is the Cantor set. Clearly \(A\) is closed, since its complement is a union of intervals and thus open. But \(B\) is also closed, since \(f : \bb{R} \to \bb{R}\) with \(x \mapsto 2x\) is continuous and \(f^{-1}(A) = B\). We can characterize \(A\) as the ternary numbers in \([0,1]\) which consist of digits \(0\) or \(2\), so \(B\) is the ternary numbers in \([0,1]\) which consist of digits \(0\) or \(1\). Since \(A+B \supseteq A \cup B \supseteq [0,1]\), and \(A+B\) is measurable from above, we have \(m(A+B) > 0\). 
 
-    \textit{Part (b).} Let \(A = I \times \{0\}\) and \(B = \{0\} \times I\) for \(I = [0,1]\). Both \(m(A) = m(B) = 0\). But since \(A+B = I \times I\), \(m(A+B) = 1 > 0\). 
+    \emph{Part (b).} Let \(A = I \times \{0\}\) and \(B = \{0\} \times I\) for \(I = [0,1]\). Both \(m(A) = m(B) = 0\). But since \(A+B = I \times I\), \(m(A+B) = 1 > 0\). 
 \end{proof}
 
 \begin{problem}{Continuous Transformations Do Not Preserve Measurability}*
@@ -369,7 +411,7 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 \end{proof}
 
 \begin{problem}{Composition Fails to Preserve Lebesgue Measurability}*
-    [S\&S E1.35.] Prove that if \(\varphi\) is continuous and \(f\) is Lebesgue-measurable, then \(\varphi \circ f\) is Lebesgue-measurable. However, show that the converse need not be true: find an example of where \(f \circ \varphi\) is non-measurable.\footnote{The nuance here is that the composition of \textit{Borel}-measurable functions is Borel!} Use the construction in the hint to show that there exists a Lebesgue-measurable set that is not a Borel set. 
+    [S\&S E1.35.] Prove that if \(\varphi\) is continuous and \(f\) is Lebesgue-measurable, then \(\varphi \circ f\) is Lebesgue-measurable. However, show that the converse need not be true: find an example of where \(f \circ \varphi\) is non-measurable.\footnote{The nuance here is that the composition of \emph{Borel}-measurable functions is Borel!} Use the construction in the hint to show that there exists a Lebesgue-measurable set that is not a Borel set. 
     [Hint: Let \(\varphi : \hat{\cl{C}} \to \cl{C}\) where \(\hat{\cl{C}}\) is the fat Cantor set and \(\cl{C}\) is the Cantor set. Let \(N \subseteq \hat{\cl{C}}\) be non-measurable, and take \(f = \cl{X}_{\varphi(N)}\).]
 \end{problem}
 
@@ -406,6 +448,38 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
     \]
     so that actually \(\oname{osc}_f(c) < \varepsilon\) as well. 
 \end{proof}
+
+\begin{proof}
+    \emph{Part (b).} TODO. 
+\end{proof}
+
+
+\begin{proof}
+    \emph{Part (c).} TODO. 
+\end{proof}
+
+
+\begin{problem}{Equivalence of the Riemann and Lebesgue Integrals}*
+    [No Source.] Let \(f : [a, b] \to \bb{R}\) be a Riemann integrable function, i.e. bounded and continuous almost everywhere. Prove that: 
+    \begin{enumerate}[(a)]
+        \itemsep0em
+        \item \(f\) is measurable with respect to \(\fr{L}([a, b])\) on its domain and \(\fr{B}(\bb{R})\) on its codomain. 
+        \item \(f \in L^1([a, b])\), so \(f\) is Lebesgue integrable. 
+        \item The (proper) Riemann and Lebesgue integrals agree, i.e. 
+        \[
+            \int_a^b f(x) \, \mr{d}x = \int_{[a, b]} f \, \mr{d}m
+        \]
+        \item If \(f : \bb{R} \to \bb{R} \in L^1(m)\) and $f$ is Riemann integrable on any interval $[a, b]$, then 
+        \[
+            \int_{-\infty}^{\infty} f(x) \, \mr{d}x = \int_{\bb{R}} f \, \mr{d}m
+        \]
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+    TODO. 
+\end{proof}
+
 
 \begin{problem}{Axiom of Choice is Equivalent to Well-Ordering Principle}*
     [S\&S P1.6.] TODO. 
@@ -472,7 +546,7 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 \end{problem}
 
 \begin{proof}
-    Fix any \(\varepsilon > 0\). Let \(E_n := \{x \mid f(x) \leq n\}\) and \(f_n := \cl{X}_{E_n}f\). Then by the Monotone Convergence Theorem, for any set \(E \in \fr{M}\), we can \textit{fix} some \(N\) large enough such that
+    Fix any \(\varepsilon > 0\). Let \(E_n := \{x \mid f(x) \leq n\}\) and \(f_n := \cl{X}_{E_n}f\). Then by the Monotone Convergence Theorem, for any set \(E \in \fr{M}\), we can \emph{fix} some \(N\) large enough such that
     \[
     \int_E |f_N - f| \, \mr{d}\mu \leq \frac{\varepsilon}{2}
     \]
@@ -553,7 +627,7 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 \end{problem}
 
 \begin{proof}
-    \textit{Part (a).} Look at the function \(f = \sum_{n} n \cl{X}_{[n, n+1/n^3)}\). Clearly it is positive, and it is \(L^1(m)\) since by the Monotone Convergence Theorem, 
+    \emph{Part (a).} Look at the function \(f = \sum_{n} n \cl{X}_{[n, n+1/n^3)}\). Clearly it is positive, and it is \(L^1(m)\) since by the Monotone Convergence Theorem, 
     \[
         \int_{\bb{R}} f \, \mr{d}m
         = \int_{\bb{R}} \sum_{n=1}^\infty n \cl{X}_{[n, n + 1/n^3)} \, \mr{d}m
@@ -565,7 +639,7 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 \end{proof}
 
 \begin{proof}
-    \textit{Part (b).} Suppose \(f \in L^1(\bb{R} \to \bb{R}, m)\) but that \(\lim_{|x| \to \infty} f(x) \neq 0\). The latter means that either \(\lim_{x \to \infty} f(x) \neq 0\) or \(\lim_{x \to -\infty} f(x) \neq 0\), so without loss of generality suppose \(\lim_{x \to \infty} \neq 0\). Then fix any \(\varepsilon > 0\); there exists a sequence \(\{x_n\}_n\) such that \(|f(x_n)| \geq \varepsilon\) for all \(n\). But by uniform continuity, there exists a \(\delta > 0\) such that 
+    \emph{Part (b).} Suppose \(f \in L^1(\bb{R} \to \bb{R}, m)\) but that \(\lim_{|x| \to \infty} f(x) \neq 0\). The latter means that either \(\lim_{x \to \infty} f(x) \neq 0\) or \(\lim_{x \to -\infty} f(x) \neq 0\), so without loss of generality suppose \(\lim_{x \to \infty} \neq 0\). Then fix any \(\varepsilon > 0\); there exists a sequence \(\{x_n\}_n\) such that \(|f(x_n)| \geq \varepsilon\) for all \(n\). But by uniform continuity, there exists a \(\delta > 0\) such that 
     \[
         |x - x_n| \leq \delta \implies |f(x) - f(x_n)| \leq \frac{\varepsilon}{2} \implies |f(x)| \geq \frac{\varepsilon}{2}
         \qquad (n \in \bb{N})
@@ -600,7 +674,7 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 \end{proof}
 
 \begin{problem}{Space-Filling Curves}*
-    [S\&S E7.8\footnote{Slightly modified, since Stein and Shakarchi's problem asks for a \textit{simple} (i.e. injective) curve, which relies on fractal patterns to construct.}.] There exists a continuous surjection from the unit interval to the unit square.
+    [S\&S E7.8\footnote{Slightly modified, since Stein and Shakarchi's problem asks for a \emph{simple} (i.e. injective) curve, which relies on fractal patterns to construct.}.] There exists a continuous surjection from the unit interval to the unit square.
 \end{problem}
 
 \begin{proof}
@@ -668,12 +742,12 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
         \itemsep0em
         \item Prove \emph{Markov's Inequality:} if \(X\) also has finite expectation \(\mu\), 
         \[
-            \Pr(X \geq k) \leq \frac{\mu}{k}
+            \bb{P}(X \geq k) \leq \frac{\mu}{k}
             \qquad (k > 0)
         \]
         \item Prove \emph{Chebyshev's Inequality:} if \(X\) also has finite expectation \(\mu\) and finite variance \(\sigma^2\), 
         \[
-            \Pr(|X - \mu| \geq k \sigma) \leq \frac{1}{k^2}
+            \bb{P}(|X - \mu| \geq k \sigma) \leq \frac{1}{k^2}
             \qquad (k > 0)
         \]
     \end{enumerate}
@@ -1237,7 +1311,7 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 
 \begin{problem}{Gap Between \(C^0\) and \(C^1\)}*
-    [RCA E7.15.] Construct a monotonic function \(f\) on \(\bb{R}\) so that \(f'(x)\) exists (finitely) for any \(x \in \bb{R}\), but \(f'\) is not a continuous function. 
+    [RCA E7.15.] Construct a monotonic function \(f\) on \(\bb{R}\) so that \(f'(x)\) exists and is finite for any \(x \in \bb{R}\), but \(f'\) is not a continuous function. 
 \end{problem}
 
 \begin{proof}
@@ -1246,7 +1320,7 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 
 \begin{problem}{Symmetric Derivate of Series}*
-    Suppose \(\{\mu_n\}\) is a sequence of positive Borel measures on \(\bb{R}^d\) and \(\mu = \sum_n \mu_n\). Assume that \(\mu(\bb{R}^d) < \infty\). 
+    [TODO: find source.] Suppose \(\{\mu_n\}\) is a sequence of positive Borel measures on \(\bb{R}^d\) and \(\mu = \sum_n \mu_n\). Assume that \(\mu(\bb{R}^d) < \infty\). 
     \begin{enumerate}[(a)]
         \itemsep0em
         \item Show that \(\mu\) is a Borel measure.
@@ -1263,6 +1337,68 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 \begin{proof}
     TODO. 
 \end{proof}
+
+
+\newpage
+\section{Probability}
+
+
+\begin{problem}{Borel-Cantelli Lemmas}*
+    [BLN Thm 4.3/4.4] Prove the following: 
+    \begin{enumerate}[(a)]
+        \itemsep0em
+        \item \emph{First Borel-Cantelli Lemma:} If $\sum_n \bb{P}(A_n)$ converges, then $\bb{P}(\limsup_n A_n) = 0$. 
+        \item \emph{Second Borel-Cantelli Lemma:} If $\{A_n\}_n$ are independent and $\sum_n \bb{P}(A_n)$ diverges, then $\bb{P}(\limsup_n A_n) = 1$. 
+    \end{enumerate}
+\end{problem}
+
+
+\begin{problem}{Kolgomorov's Zero-One Law}*
+    [BLN Thm 4.5.] If $\{A_n\}_n$ is an independent sequence of events, and if $A$ is an event in the tail $\sigma$-field defined by 
+    $$
+        \cl{T} = \bigcap_{n=1}^\infty \sigma \left( \{A_k\}_{k=n}^\infty \right)
+    $$
+    then $\bb{P}(A)$ is either $0$ or $1$. 
+\end{problem}
+
+
+\begin{problem}{Monotonicity of $L^p$ for Random Variables}*
+    [BLN Eq 5.33.] Prove that if the $L^p$ norm of a random variable $X$ is $\|X\|_p := \sqrt[p]{\bb{E}[|X|^p]}$, then for any $0 < \alpha \leq \beta$, $\|X\|_\alpha \leq \|X\|_\beta$. 
+\end{problem}
+
+
+\begin{problem}{Cantelli's Inequality}*
+    [BLN P5.5.] Suppose $X$ has mean $\mu$ and variance $\sigma^2$. 
+    \begin{enumerate}[(a)]
+        \itemsep0em
+        \item Prove \emph{Cantelli's inequality}, 
+        $$
+            \bb{P}[X - \mu \geq \alpha] \leq \frac{\sigma^2}{\sigma^2 + \alpha^2}
+            \qquad (\alpha \geq 0)
+        $$
+        \item Prove $\bb{P}[|X - \mu| \geq \alpha] \leq 2\sigma^2 / (\sigma^2 + \alpha^2)$. When is this tighter than Chebyshev's inequality? 
+        \item By considering a Bernoulli-like random variable, show Cantelli's inequality is sharp. 
+    \end{enumerate}
+\end{problem}
+
+
+\begin{problem}{The Law of Large Numbers}*
+    [BLN Thm 6.1, 6.2.] Prove the following: 
+    \begin{enumerate}[(a)]
+        \itemsep0em
+        \item \emph{The Strong Law:} If $\{X_n\}_n$ are i.i.d. with expectation $\mu < \infty$, then 
+        $$
+            \bb{P}\left[\ev{X} \to \mu\right]
+            \equiv \bb{P}\left[ \lim_{n \to \infty} \frac{1}{n} \sum_{k=1}^n X_k = \mu \right] 
+            = 1
+        $$
+        \item \emph{The Weak Law:} Let $(\Omega_n, \fr{M}_n, \bb{P}_n)$ be a sequence of real probability spaces. If $\{X_{nk}\}_{k=1}^{r_n}$ are independent in $k$ for each $n$, and $\{v_n\}_n$ satisfies $\sigma_n / v_n \to 0$, then 
+        $$
+            \lim_{n \to \infty} \bb{P}_n \left[ \left| \frac{\ev{X_n} - \mu_n}{v_n} \right| \geq \varepsilon \right] = 0
+        $$
+    \end{enumerate}
+\end{problem}
+
 
 \end{document}
 
