@@ -16,7 +16,7 @@
 \textsf{\textbf{Lecturer:}} Assaf Naor, Jacob Shapiro, Allan Sly
 
 \vspace{2ex}
-Problems are derived largely from \emph{Integration Theory and Hilbert Spaces} by Stein and Shakarchi, \emph{Real and Complex Analysis} by Rudin, and \emph{Probability and Measure} by Billingsley. The requisite content for solving the problems comes from the corresponding sections of these \href{https://web.archive.org/web/20250630154205/https://web.math.princeton.edu/~js129/PDFs/teaching/MAT425_spring_2025/MAT425_Lecture_Notes.pdf}{lecture notes}. Some solutions are not my own, but rather thanks to the MAT425 TAs at Princeton (Spring 2025). 
+Problems are derived largely from \emph{Integration Theory and Hilbert Spaces} by Stein and Shakarchi and \emph{Real and Complex Analysis} by Rudin. The requisite content for solving the problems comes from the corresponding sections of these \href{https://web.archive.org/web/20250630154205/https://web.math.princeton.edu/~js129/PDFs/teaching/MAT425_spring_2025/MAT425_Lecture_Notes.pdf}{lecture notes}. Some solutions are not my own, but rather thanks to the MAT425 TAs at Princeton (Spring 2025). 
 \stdvspace
 
 Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
@@ -219,7 +219,7 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 \end{proof}
 
 
-\begin{problem}{Borel-Cantelli Lemmas}*
+\begin{problem}{Borel-Cantelli Lemma}*
     [S\&S E1.16.] Suppose \(\{E_k\}_k\) is a countable family of measurable subsets of \(\bb{R}^d\) and that \(\sum_k m(E_k) < \infty\). Let 
     \[
     E := \{x \in \bb{R}^d : x \in E_k, \text{ for infinitely many } k\}
@@ -469,7 +469,7 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
         \[
             \int_a^b f(x) \, \mr{d}x = \int_{[a, b]} f \, \mr{d}m
         \]
-        \item If \(f : \bb{R} \to \bb{R} \in L^1(m)\) and $f$ is Riemann integrable on any interval $[a, b]$, then 
+        \item If \(f : \bb{R} \to \bb{R} \in L^1(m)\) and \(f\) is Riemann integrable on any interval \([a, b]\), then 
         \[
             \int_{-\infty}^{\infty} f(x) \, \mr{d}x = \int_{\bb{R}} f \, \mr{d}m
         \]
@@ -1102,7 +1102,7 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 
 \begin{problem}{Hardy's Inequality}*
-    [RCA E3.14, E.15.] Suppose \(1 < p < \infty\), \(f \in L^p((0, \infty) \to \bb{C}, m)\), and 
+    [RCA E3.14, E3.15.] Suppose \(1 < p < \infty\), \(f \in L^p((0, \infty) \to \bb{C}, m)\), and 
     \[
         F(x) = \frac{1}{x} \int_0^x f(t) \, \mr{d}t
         \qquad
@@ -1134,9 +1134,12 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
 
 \begin{problem}{Egorov's Theorem}*
-    [RCA E3.16.] If \(\mu(X) < \infty\), if \(\{f_n : X \to \bb{C}\}_n\) converges pointwise everywhere, and if \(\varepsilon > 0\), then there exists a measurable \(E \subseteq X\) such that \(\mu(X \setminus E) < \varepsilon\), such that \(\{f_n\}_n\) converges uniformly on \(E\). [Hint: Put \(S(n, k) = \bigcap_{i,j > n} \{x \mid |f_i(x) - f_j(x)| < 1/k\}\), show that \(\mu(S(n, i)) \to \mu(X)\) as \(n \to \infty\) for each \(k\), and hence that there is a suitably increasing sequence \(n_k\) such that \(E = \bigcap S(n_k, k)\) has the desired property.] 
-    \stdvspace
-
+    [RCA E3.16.] Prove \emph{Egorov's Theorem}, that if \(\mu(X) < \infty\), if \(\{f_n : X \to \bb{C}\}_n\) converges pointwise everywhere, and if \(\varepsilon > 0\), then there exists a measurable \(E \subseteq X\) such that \(\mu(X \setminus E) < \varepsilon\) and \(\{f_n\}_n\) converges uniformly on \(E\), using the following outline: 
+    \begin{enumerate}[(a)]
+        \itemsep0em
+        \item Put \(S(n, k) = \bigcap_{i,j > n} \{|f_i - f_j| < 1/k\}\). Prove \(\mu(S(n, i)) \to \mu(X)\) as \(n \to \infty\) for each \(k\).
+        \item Hence there is a suitably increasing sequence \(n_k\) such that \(E = \bigcap_k S(n_k, k)\) has the desired property.
+    \end{enumerate}
     The conclusion is that by redefining the \(f_n\) on a set of arbitrarily small measure we can convert a pointwise convergent sequence to a uniformly convergent one. Furthermore, 
     \begin{enumerate}[(a)]
         \itemsep0em
@@ -1165,6 +1168,10 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
 
     Investigate the converses of (a) and (b). What happens to (a), (b), and (c) if \(\mu(X) = \infty\), for instance if \(\mu\) is the Lebesgue measure on \(\bb{R}\)? 
 \end{problem}
+
+\begin{proof}
+    TODO. 
+\end{proof}
 
 
 \newpage
@@ -1338,66 +1345,6 @@ Convention: if not otherwise specified, \(m\) will denote the Lebesgue measure.
     TODO. 
 \end{proof}
 
-
-\newpage
-\section{Probability}
-
-
-\begin{problem}{Borel-Cantelli Lemmas}*
-    [BLN Thm 4.3/4.4] Prove the following: 
-    \begin{enumerate}[(a)]
-        \itemsep0em
-        \item \emph{First Borel-Cantelli Lemma:} If $\sum_n \bb{P}(A_n)$ converges, then $\bb{P}(\limsup_n A_n) = 0$. 
-        \item \emph{Second Borel-Cantelli Lemma:} If $\{A_n\}_n$ are independent and $\sum_n \bb{P}(A_n)$ diverges, then $\bb{P}(\limsup_n A_n) = 1$. 
-    \end{enumerate}
-\end{problem}
-
-
-\begin{problem}{Kolgomorov's Zero-One Law}*
-    [BLN Thm 4.5.] If $\{A_n\}_n$ is an independent sequence of events, and if $A$ is an event in the tail $\sigma$-field defined by 
-    $$
-        \cl{T} = \bigcap_{n=1}^\infty \sigma \left( \{A_k\}_{k=n}^\infty \right)
-    $$
-    then $\bb{P}(A)$ is either $0$ or $1$. 
-\end{problem}
-
-
-\begin{problem}{Monotonicity of $L^p$ for Random Variables}*
-    [BLN Eq 5.33.] Prove that if the $L^p$ norm of a random variable $X$ is $\|X\|_p := \sqrt[p]{\bb{E}[|X|^p]}$, then for any $0 < \alpha \leq \beta$, $\|X\|_\alpha \leq \|X\|_\beta$. 
-\end{problem}
-
-
-\begin{problem}{Cantelli's Inequality}*
-    [BLN P5.5.] Suppose $X$ has mean $\mu$ and variance $\sigma^2$. 
-    \begin{enumerate}[(a)]
-        \itemsep0em
-        \item Prove \emph{Cantelli's inequality}, 
-        $$
-            \bb{P}[X - \mu \geq \alpha] \leq \frac{\sigma^2}{\sigma^2 + \alpha^2}
-            \qquad (\alpha \geq 0)
-        $$
-        \item Prove $\bb{P}[|X - \mu| \geq \alpha] \leq 2\sigma^2 / (\sigma^2 + \alpha^2)$. When is this tighter than Chebyshev's inequality? 
-        \item By considering a Bernoulli-like random variable, show Cantelli's inequality is sharp. 
-    \end{enumerate}
-\end{problem}
-
-
-\begin{problem}{The Law of Large Numbers}*
-    [BLN Thm 6.1, 6.2.] Prove the following: 
-    \begin{enumerate}[(a)]
-        \itemsep0em
-        \item \emph{The Strong Law:} If $\{X_n\}_n$ are i.i.d. with expectation $\mu < \infty$, then 
-        $$
-            \bb{P}\left[\ev{X} \to \mu\right]
-            \equiv \bb{P}\left[ \lim_{n \to \infty} \frac{1}{n} \sum_{k=1}^n X_k = \mu \right] 
-            = 1
-        $$
-        \item \emph{The Weak Law:} Let $(\Omega_n, \fr{M}_n, \bb{P}_n)$ be a sequence of real probability spaces. If $\{X_{nk}\}_{k=1}^{r_n}$ are independent in $k$ for each $n$, and $\{v_n\}_n$ satisfies $\sigma_n / v_n \to 0$, then 
-        $$
-            \lim_{n \to \infty} \bb{P}_n \left[ \left| \frac{\ev{X_n} - \mu_n}{v_n} \right| \geq \varepsilon \right] = 0
-        $$
-    \end{enumerate}
-\end{problem}
 
 
 \end{document}
