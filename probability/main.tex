@@ -5,7 +5,7 @@
 \begin{document}
 
 \begin{Large}
-    \textsf{\textbf{Princeton Mathematics: Probability Theory}}
+    \textsf{\textbf{Probability Theory (Princeton)}}
 \end{Large}
 
 \vspace{1ex}
@@ -15,18 +15,131 @@
 
 \vspace{2ex}
 
+Problems are largely derived from \emph{Probability and Measure} by Billingsley (BLN).
+
+\section{Probability}
+
+\begin{problem}{Vi\`ete's Formula}*
+    [BLN E1.8.] Show that the Rademacher functions satisfy 
+    \[
+        \int_0^1 \exp \left[ i \sum_{k=1}^n a_k r_k(\omega) \right] \, \mr{d} \omega
+        = \prod_{k=1}^n \frac{e^{ia_k} + e^{-ia_k}}{2}
+        = \prod_{k=1}^n \cos{a_k}
+    \]
+    Take \(a_k = t2^{-k}\) and from \(\sum_{k=1}^\infty r_k(\omega) 2^{-k} = 2\omega - 1\) deduce 
+    \[
+        \frac{\sin{t}}{t} = \prod_{k=1}^\infty \cos \left( \frac{t}{2^k} \right) 
+    \]
+    by letting \(n \to \infty\) inside the integral above. Derive Vi\`ete's remarkable formula
+    \[
+        \frac{2}{\pi} = \frac{\sqrt{2}}{2} \frac{\sqrt{2 + \sqrt{2}}}{2} \frac{\sqrt{2 + \sqrt{2 + \sqrt{2}}}}{2} \cdots
+    \]
+\end{problem}
+
+
+\begin{proof}
+    TODO. 
+\end{proof}
+
+
+\begin{problem}{Borel-Cantelli Lemmas}*
+    [BLN Thm 4.3/4.4] Prove the following:
+    \begin{enumerate}[(a)]
+        \itemsep0em
+        \item \emph{First Borel-Cantelli Lemma:} If \(\sum_n \bb{P}(A_n)\) converges, then \(\bb{P}(\limsup_n A_n) = 0\).
+        \item \emph{Second Borel-Cantelli Lemma:} If \(\{A_n\}_n\) are independent and \(\sum_n \bb{P}(A_n)\) diverges, then \(\bb{P}(\limsup_n A_n) = 1\).
+    \end{enumerate}
+\end{problem}
+
+
+\begin{proof}
+    The first Borel-Cantelli lemma is proved (for general measure spaces, even) earlier in the section on measures. For the second Borel-Cantelli lemma, we can show that \((\limsup_n A_n)^c\) occurs with probability zero. Effectively,
+    \[
+        \bb{P}\left[\limsup_{n \to \infty} A_n\right] = 1
+        \iff \bb{P}\left[ \left(\bigcap_{n=1}^\infty \bigcup_{k=n}^\infty A_k\right)^c \right] = 0
+        \iff \bb{P}\left[ \bigcap_{k=n}^\infty A_k^c \right] = 0
+        \quad (n \in \bb{N})
+    \]
+    By independence,
+    \[
+        \bb{P}\left[ \bigcap_{k =n}^\infty A_k^c \right]
+        = \prod_{k=n}^\infty \bb{P}[A_k^c]
+        = \prod_{k=n}^\infty (1 - \bb{P}(A_k))
+        \leq \prod_{k=n}^\infty \exp(-\bb{P}[A_k])
+        = \exp\left( -\sum_{k=n}^\infty \bb{P}[A_k] \right)
+    \]
+    Since \(\sum_k \bb{P}[A_k] = +\infty\), the final expression vanishes, as desired. Note that there is no measure-theoretic generalization of the second lemma, due to the requirement of independence.
+\end{proof}
+
+
+\begin{problem}{Kolgomorov's Zero-One Law}*
+    [BLN Thm 4.5.] If \(\{A_n\}_n\) is an independent sequence of events, and if \(A\) is an event in the tail \(\sigma\)-field defined by
+    \[
+        \cl{T} = \bigcap_{n=1}^\infty \sigma \left( \{A_k\}_{k=n}^\infty \right)
+    \]
+    then \(\bb{P}(A)\) is either \(0\) or \(1\).
+\end{problem}
+
+
+\begin{problem}{Monotonicity of \(L^p\) for Simple Random Variables}*
+    [BLN Eq 5.33.] Prove that if the \(L^p\) norm of a simple random variable \(X\) is \(\|X\|_p := \sqrt[p]{\bb{E}[|X|^p]}\), then for any \(0 < \alpha \leq \beta\), \(\|X\|_\alpha \leq \|X\|_\beta\).
+\end{problem}
+
+
+\begin{problem}{Cantelli's Inequality}*
+    [BLN P5.5.] Suppose \(X\) is a random variable with mean \(\mu\) and variance \(\sigma^2\).
+    \begin{enumerate}[(a)]
+        \itemsep0em
+        \item Prove \emph{Cantelli's inequality},
+        \[
+            \bb{P}[X - \mu \geq \alpha] \leq \frac{\sigma^2}{\sigma^2 + \alpha^2}
+            \qquad (\alpha \geq 0)
+        \]
+        \item Prove \(\bb{P}[|X - \mu| \geq \alpha] \leq 2\sigma^2 / (\sigma^2 + \alpha^2)\). When is this tighter than Chebyshev's inequality?
+        \item By considering a particular simple random variable, show Cantelli's inequality is sharp.
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+    Without loss of generality, let \(\mu = 0\). Then by Chebyshev's inequality,
+    \begin{align*}
+        \bb{P}[X \geq \alpha]
+        &= \bb{P}[X + c \geq \alpha + c]
+        \leq \bb{P}[|X + c| \geq \alpha + c]
+        \leq \frac{1}{(\alpha + c)^2} \int_{\Omega} (X + c)^2 \, \mr{d}\bb{P}
+        = \frac{\sigma^2 + c^2}{(\alpha + c)^2}
+    \end{align*}
+    Optimizing the bound with respect to \(c\), we find the minimizer to be \(c = \alpha^{-1} \sigma^2\). Substituting yields Cantelli's inequality. From then it follows that
+    \[
+        \bb{P}[|X - \mu| \geq \alpha]
+        = \bb{P}[X - \mu \geq \alpha] + \bb{P}[-(X - \mu) \geq \alpha]
+        \leq \frac{2\sigma^2}{\sigma^2 + \alpha^2}
+    \]
+    Finally, to show Cantelli's inequality is sharp, let \(X\) have the Rademacher distribution. If \(\alpha = 1\),
+    \[
+        \bb{P}[X \geq \alpha] = \frac{1}{2} = \frac{\sigma^2}{\sigma^2 + \alpha^2}
+    \]
+    so equality is attained.
+\end{proof}
+
+
+\begin{problem}{The Law of Large Numbers}*
+    [BLN Thm 6.1, 6.2.] Prove the following:
+    \begin{enumerate}[(a)]
+        \itemsep0em
+        \item \emph{The Strong Law:} If \(\{X_n\}_n\) are simple i.i.d. with expectation \(\mu < \infty\), then
+        \[
+            \bb{P}\left[\ev{X} \to \mu\right]
+            \equiv \bb{P}\left[ \lim_{n \to \infty} \frac{1}{n} \sum_{k=1}^n X_k = \mu \right]
+            = 1
+        \]
+        \item \emph{The Weak Law:} Let \((\Omega_n, \fr{M}_n, \bb{P}_n)\) be a sequence of real probability spaces. If \(\{X_{nk}\}_{k=1}^{r_n}\) are simple and independent in \(k\) for each \(n\), and \(\{v_n\}_n\) satisfies \(\sigma_n / v_n \to 0\), then
+        \[
+            \lim_{n \to \infty} \bb{P}_n \left[ \left| \frac{\ev{X_n} - \mu_n}{v_n} \right| \geq \varepsilon \right] = 0
+        \]
+    \end{enumerate}
+\end{problem}
+
 
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
 
