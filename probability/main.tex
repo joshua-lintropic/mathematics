@@ -135,7 +135,7 @@ Convention: \emph{independence} will be taken to imply \emph{pairwise-independen
 \end{proof}
 
 
-\begin{problem}{The Law of Large Numbers}*
+\begin{problem}{The (Simple) Law of Large Numbers}*
     [BLN Thm 6.1, 6.2.] Prove the following:
     \begin{enumerate}[(a)]
         \itemsep0em
@@ -159,7 +159,7 @@ Convention: \emph{independence} will be taken to imply \emph{pairwise-independen
         \Omega \setminus \left\{\lim_{n \to \infty} n^{-1} S_n = 0\right\} 
         = \bigcup_{\varepsilon \in \bb{Q}_+} \left\{\limsup_{n \to \infty} |n^{-1} S_n| \geq \varepsilon \right\}
     \]
-    It therefore suffices to show that \(\sum_n \bb{P}[|n^{-1} S_n| \geq \varepsilon] = 0\), since then by the first Borel-Cantelli Lemma we show the complement above occurs with high probability. The idea is that we can apply Markov's inequality using the fourth moment: we need an even moment to eliminate the absolute value, and we cannot use the second moment since we need to show the individual probabilities are \(\Theta(n^{-2})\) for the series to converge. Hence,
+    It therefore suffices to show that \(\sum_n \bb{P}[|n^{-1} S_n| \geq \varepsilon] = 0\), since then by the first Borel-Cantelli Lemma we show the complement above occurs almost surely. The idea is that we can apply Markov's inequality using the fourth moment: we need an even moment to eliminate the absolute value, and we cannot use the second moment since we need to show the individual probabilities are \(\Theta(n^{-2})\) for the series to converge. Hence,
     \begin{align*}
         \bb{P}[|S_n| \geq n \varepsilon]
         &\leq \frac{1}{n^4 \varepsilon^4} \int_{\Omega} S_n^4 \, \mr{d}\bb{P} 
@@ -203,7 +203,7 @@ Convention: \emph{independence} will be taken to imply \emph{pairwise-independen
 
 
 \begin{problem}{Cantelli's Theorem}*
-    If \(\{X_n\}_n\) are independent with zero mean and uniformly bounded fourth moments (i.e., \(\bb{E}[X_n] = 0\) and \(\sup_n \bb{E}[X_n^4] < \infty\)), then \(\ev{X} = 0\) almost surely. Note, in particular, that the \(X_n\) need not be identically distributed. 
+    [BLN P6.6.] If \(\{X_n\}_n\) are independent with zero mean and uniformly bounded fourth moments, then \(\ev{X} = 0\) almost surely. In particular, the \(X_n\) need not be identically distributed. 
 \end{problem}
 
 \begin{proof}
@@ -213,7 +213,7 @@ Convention: \emph{independence} will be taken to imply \emph{pairwise-independen
         = \Omega - \bigcup_{\varepsilon \in \bb{Q}} \left\{ \left| \limsup_{n \to \infty} \frac{1}{n} \sum_{k=1}^n X_k \right| \geq \varepsilon \right\}
         = \Omega - \bigcup_{\varepsilon \in \bb{Q}} \left\{ \left| \frac{1}{n} \sum_{k=1}^n X_k \right| \geq \varepsilon \text{ i.o.} \right\}
     \]
-    Hence it suffices to show that if \(S_n := \sum_{k=1}^n X_k\), \(\sum_n \bb{P}[|S_n| \geq n \varepsilon]\) converges. By Markov's inequality, 
+    If \(S_n := \sum_{k=1}^n X_k\), it suffices by the first Borel-Cantelli lemma to show that \(\sum_n \bb{P}[|S_n| \geq n \varepsilon]\) converges. By Markov's inequality, 
     \begin{align*}
         \bb{P}[|S_n| \geq n \varepsilon] 
         &= \frac{1}{n^4 \varepsilon^4} \int_{\Omega} \sum_{\alpha, \beta, \gamma, \zeta} X_\alpha X_\beta X_\gamma X_\zeta \, \mr{d}\bb{P} 
@@ -223,7 +223,56 @@ Convention: \emph{independence} will be taken to imply \emph{pairwise-independen
         &\leq \frac{1}{n^4 \varepsilon^4} \left(n \sup_\alpha \bb{E}[X_\alpha^4] + 3n(n-1) \sup_\alpha \sqrt[4]{\bb{E}[X_\alpha^4]} \right) 
         \leq \frac{K}{n^2 \varepsilon^4}
     \end{align*}
+    where to arrive at the penultimate step, we use monotonicity of the \(L^p\)-norm on random variables. Note that implicitly, we invoke independence to eliminate odd powers in \(\sum X_\alpha X_\beta X_\gamma X_\zeta\). 
 \end{proof}
+
+
+\begin{problem}{The Square Subsequence Lemma}*
+    [BLN P6.7.] Suppose \(n^{-2} S_{n^2} \to 0\) almost surely and the \(X_n\) are uniformly bounded. Show \(\ev{X} = 0\) almost surely. Notably, the \(X_n\) need not be identically distributed or independent. 
+\end{problem}
+
+\begin{proof}
+    It suffices to show that \(\limsup_m m^{-1} |S_m| = 0\) almost surely. Fix \(m\), and let \(n\) be the largest number satisfying \(n^2 \leq m < (n+1)^2\). Define \(R_{n,m} := \sum_{k=n^2+1}^m X_k\) so that \(S_m = S_{n^2} + R_{n,m}\). Let \(B\) be the uniform bound on \(\{X_k\}_k\), so that \(|R_{n,m}| \leq (m-n) K \leq (2n+1) K \leq 3nK\). It follows: 
+    \[
+        \frac{|S_m|}{m} \leq \frac{|S_{n^2}|}{n^2} + \frac{|R_{n,m}|}{n^2} \leq \frac{|S_{n^2}|}{n^2} + \frac{3B}{n}
+    \]
+    Taking the limit superior of both sides, 
+    \[
+        \limsup_{m \to \infty} \frac{|S_m|}{m} 
+        \leq \limsup_{n \to \infty} \left( \frac{|S_{n^2}|}{n^2} + \frac{3B}{n} \right)
+        \leq \limsup_{n \to \infty} \frac{|S_{n^2}|}{n^2} + \limsup_{n \to \infty} \frac{3B}{n}
+        = 0
+    \]
+    almost surely. Hence \(\ev{X} = \lim_m m^{-1} |S_m| = 0\) almost surely. 
+\end{proof}
+
+
+\begin{problem}{Borel's Normal Number Theorem}*
+    [BLN P6.13.] A number \(\omega\) in the unit interval is \emph{completely normal} if, for every base \(b \geq 2\) and every \(k\)-tuple of base-\(b\) digits, the \(k\)-tuple appears in the base \(b\)-expansion of \(\omega\) with asymptotic relative frequency \(b^{-k}\). Show that the set of completely normal numbers has Lebesgue measure 1. 
+\end{problem}
+
+
+\begin{problem}{Shannon's Theorem}*
+    [BLN P6.14.] Suppose that \(\{X_n\}_n\) are simple i.i.d. with \(\text{image}(X) = \{1, \dots, r\}\) and \(p_k := \bb{P}[X_n = k]\). For \(\omega \in \Omega\), let \(p_n(\omega) = \bb{P}[(X_1(\omega)] \cdots \bb{P}[X_n(\omega)]\) be the probability that a sequence of \(n\) trials would produce the particular sequence \(X_1(\omega), \dots, X_n(\omega)\). Prove the following: 
+    \begin{enumerate}[(a)]
+        \itemsep0em
+        \item \emph{Cross-Entropy:} With high probability, 
+        \[
+            \lim_{n \to \infty} \left[ - \frac{1}{n} \log p_n(\omega) \right] = - \sum_{i=1}^r p_i \log p_i \equiv H
+        \]
+        In information theory \(\{1, \dots, r\}\) are the letters of an \emph{alphabet}, the \(\{X_n\}_n\) are successive letters produced by an information \emph{source}, and \(H\) is the \emph{entropy} of the source. 
+        \item \emph{Asymptotic Equipartition Property:} For large enough \(n\) there is a probability exceeding \(1 - \varepsilon\) that the probability \(p_n(\omega)\) of the observed \(n\)-long sequence, or \emph{message}, is in the range \(\exp{-n(h \pm \varepsilon)}\).
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+    TODO. 
+\end{proof}
+
+
+\begin{problem}{The R\'enyi-Lamperti Lemma}*
+    TODO. 
+\end{problem}
 
 \end{document}
 
