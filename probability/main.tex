@@ -15,7 +15,10 @@
 
 \vspace{2ex}
 
-Problems are largely derived from \emph{Probability and Measure} by Billingsley (BLN).
+Problems are largely derived from \emph{Probability and Measure} by Billingsley (BLN). 
+\stdvspace
+
+Convention: \emph{independence} will be taken to imply \emph{pairwise-independence} unless otherwise stated. The notation \(\ev{V}_n\) will denote the average of \(V_1, \dots, V_n\), and \(\ev{V} \equiv \lim_n \ev{V}_n\). 
 
 \section{Probability}
 
@@ -46,14 +49,14 @@ Problems are largely derived from \emph{Probability and Measure} by Billingsley 
     [BLN Thm 4.3/4.4] Prove the following:
     \begin{enumerate}[(a)]
         \itemsep0em
-        \item \emph{First Borel-Cantelli Lemma:} If \(\sum_n \bb{P}(A_n)\) converges, then \(\bb{P}(\limsup_n A_n) = 0\).
-        \item \emph{Second Borel-Cantelli Lemma:} If \(\{A_n\}_n\) are independent and \(\sum_n \bb{P}(A_n)\) diverges, then \(\bb{P}(\limsup_n A_n) = 1\).
+        \item \emph{First Borel-Cantelli Lemma:} If \(\sum_n \bb{P}[A_n]\) converges, then \(\bb{P}[\limsup_n A_n] = 0\).
+        \item \emph{Second Borel-Cantelli Lemma:} If \(\{A_n\}_n\) are independent and \(\sum_n \bb{P}[A_n]\) diverges, then \(\bb{P}[\limsup_n A_n] = 1\).
     \end{enumerate}
 \end{problem}
 
 
 \begin{proof}
-    The first Borel-Cantelli lemma is proved (for general measure spaces, even) earlier in the section on measures. For the second Borel-Cantelli lemma, we can show that \((\limsup_n A_n)^c\) occurs with probability zero. Effectively,
+    The first Borel-Cantelli lemma is proved (for general measure spaces, even) in in the \emph{Measures} section of \texttt{real-analysis}. For the second Borel-Cantelli lemma, we can show that \((\limsup_n A_n)^c\) occurs with probability zero. Effectively,
     \[
         \bb{P}\left[\limsup_{n \to \infty} A_n\right] = 1
         \iff \bb{P}\left[ \left(\bigcap_{n=1}^\infty \bigcup_{k=n}^\infty A_k\right)^c \right] = 0
@@ -64,7 +67,7 @@ Problems are largely derived from \emph{Probability and Measure} by Billingsley 
     \[
         \bb{P}\left[ \bigcap_{k =n}^\infty A_k^c \right]
         = \prod_{k=n}^\infty \bb{P}[A_k^c]
-        = \prod_{k=n}^\infty (1 - \bb{P}(A_k))
+        = \prod_{k=n}^\infty (1 - \bb{P}[A_k])
         \leq \prod_{k=n}^\infty \exp(-\bb{P}[A_k])
         = \exp\left( -\sum_{k=n}^\infty \bb{P}[A_k] \right)
     \]
@@ -80,10 +83,19 @@ Problems are largely derived from \emph{Probability and Measure} by Billingsley 
     then \(\bb{P}(A)\) is either \(0\) or \(1\).
 \end{problem}
 
+\begin{proof}
+    It is sufficient to prove that \(\bb{P}[A] = \bb{P}[A]^2\), which would follow from \(A \perp A\), i.e. \(A\) being independent of itself. Note that for each \(n\), \(A \in \sigma(\{A_n, A_{n+1}, \dots\})\) so that \(A_1, \dots, A_{n-1}, A\) are independent, and in particular \(A \perp \sigma(\{A_1, A_2, \dots \})\). However, \(A \in \cl{T} \subseteq \sigma(\{A_1, A_2, \dots, \})\), so \(A\) is independent of itself. The claim follows. 
+\end{proof}
+
 
 \begin{problem}{Monotonicity of \(L^p\) for Simple Random Variables}*
     [BLN Eq 5.33.] Prove that if the \(L^p\) norm of a simple random variable \(X\) is \(\|X\|_p := \sqrt[p]{\bb{E}[|X|^p]}\), then for any \(0 < \alpha \leq \beta\), \(\|X\|_\alpha \leq \|X\|_\beta\).
 \end{problem}
+
+
+\begin{proof}
+    It will directly follow from H\"older's inequality: note that since \(\bb{P}(\Omega) = 1\), we have \(\|Y\|_1 \leq \|Y\|_p\) for \(p \geq 1\). Choose \(Y = X^a\) and \(p = b/a\), and the result follows.
+\end{proof}
 
 
 \begin{problem}{Cantelli's Inequality}*
@@ -101,7 +113,7 @@ Problems are largely derived from \emph{Probability and Measure} by Billingsley 
 \end{problem}
 
 \begin{proof}
-    Without loss of generality, let \(\mu = 0\). Then by Chebyshev's inequality,
+    Without loss of generality, let \(\mu = 0\). Then by Markov's inequality,
     \begin{align*}
         \bb{P}[X \geq \alpha]
         &= \bb{P}[X + c \geq \alpha + c]
@@ -127,9 +139,9 @@ Problems are largely derived from \emph{Probability and Measure} by Billingsley 
     [BLN Thm 6.1, 6.2.] Prove the following:
     \begin{enumerate}[(a)]
         \itemsep0em
-        \item \emph{The Strong Law:} If \(\{X_n\}_n\) are simple i.i.d. with expectation \(\mu < \infty\), then
+        \item \emph{The Strong Law:} If \(\{X_n\}_n\) are simple i.i.d. with expectation \(\mu\), then
         \[
-            \bb{P}\left[\ev{X} \to \mu\right]
+            \bb{P}\left[\ev{X} = \mu\right]
             \equiv \bb{P}\left[ \lim_{n \to \infty} \frac{1}{n} \sum_{k=1}^n X_k = \mu \right]
             = 1
         \]
@@ -137,9 +149,57 @@ Problems are largely derived from \emph{Probability and Measure} by Billingsley 
         \[
             \lim_{n \to \infty} \bb{P}_n \left[ \left| \frac{\ev{X_n} - \mu_n}{v_n} \right| \geq \varepsilon \right] = 0
         \]
+        Note that \((\Omega_n, \fr{M}_n, \bb{P}_n) = (\Omega, \fr{M}, \bb{P})\), \(X_{nk} \sim X\), and \(v_n = n\) reduces to the corresponding weak law for the strong law above. 
     \end{enumerate}
 \end{problem}
 
+\begin{proof}
+    \emph{Part (a).} Let \(S_n = \sum_{k=1}^n X_k\), and without loss of generality let \(\mu = 0\). Observe, 
+    \[
+        \Omega \setminus \left\{\lim_{n \to \infty} n^{-1} S_n = 0\right\} 
+        = \bigcup_{\varepsilon \in \bb{Q}_+} \left\{\limsup_{n \to \infty} |n^{-1} S_n| \geq \varepsilon \right\}
+    \]
+    It therefore suffices to show that \(\sum_n \bb{P}[|n^{-1} S_n| \geq \varepsilon] = 0\), since then by the first Borel-Cantelli Lemma we show the complement above occurs with high probability. The idea is that we can apply Markov's inequality using the fourth moment: we need an even moment to eliminate the absolute value, and we cannot use the second moment since we need to show the individual probabilities are \(\Theta(n^{-2})\) for the series to converge. Hence,
+    \begin{align*}
+        \bb{P}[|S_n| \geq n \varepsilon]
+        &\leq \frac{1}{n^4 \varepsilon^4} \int_{\Omega} S_n^4 \, \mr{d}\bb{P} 
+        = \frac{1}{n^4 \varepsilon^4} \int_{\Omega} \sum_{\alpha=1}^n \sum_{\beta=1}^n \sum_{\gamma=1}^n \sum_{\zeta=1}^n X_\alpha X_\beta X_\gamma X_\zeta \, \mr{d}\bb{P} \\
+        &= \frac{1}{n^4 \varepsilon^4} (n \bb{E}[X^4] + 3n(n-1) \bb{E}[X_\alpha^2 X_\beta^2])
+        \leq \frac{K}{n^2 \varepsilon^4}
+    \end{align*}
+    for some constant \(K\) and \(n\) large enough (note that the expectations finitely exist since \(X\) is simple). As a result, \(\bb{P}[|S_n| \geq n \varepsilon]\) converges in sum, completing the proof. 
+\end{proof}
+
+\begin{proof}
+    \emph{Part (b).} Without loss of generality, let \(\mu_n = 0\) and \(v_n > 0\). By Markov's inequality, 
+    \[
+        \bb{P}_n[|X_n| \leq v_n \varepsilon]
+        \leq \frac{\sigma_n^2}{v_n^2} \frac{1}{\varepsilon^2} \stackrel{n \to \infty}{\longrightarrow} 0
+    \]
+    thus proving the weak law. 
+\end{proof}
+
+
+\begin{problem}{Poisson's Theorem}*
+    [BLN P6.5.] If \(\{A_n\}_n\) are independent,
+    \[
+        \lim_{n \to \infty} \bb{P}\left[ |\ev{\mb{1}_A}_n - \ev{\bb{P}[A]}_n | \geq \varepsilon \right]
+        = \lim_{n \to \infty} \bb{P}\left[ \left| \frac{1}{n} \sum_{k=1}^n \mb{1}_{A_k} - \frac{1}{n} \sum_{k=1}^n \bb{P}(A_k) \right| \geq \varepsilon \right] 
+        = 0
+    \]
+    In other words, a sequence of independent but distinct Bernoulli trials behaves, on average, like a Bernoulli of its mean parameter.
+\end{problem}
+
+\begin{proof}
+    Let \(X_k := \mb{1}_{A_k} - \bb{P}[A_k]\), so that \(\bb{E}[X_k] = 0\). Define \(S_n := \sum_{k=1}^n X_k\). It suffices to show that \(\bb{P}[|S_n| \geq n \varepsilon] \to 0\) as \(n \to \infty\). By Markov's inequality, 
+    \begin{align*}
+        \bb{P}[|S_n| \geq n \varepsilon] 
+        &\leq \frac{1}{n^4 \varepsilon^4} \int_{\Omega} S_n^4 \, \mr{d}\bb{P}
+        = \frac{1}{n^4 \varepsilon^4} \int_\Omega \sum_{\alpha,\beta,\gamma,\zeta} X_\alpha X_\beta X_\gamma X_\zeta \, \mr{d}\bb{P}
+        \leq \frac{K}{n^2 \varepsilon^4} 
+    \end{align*}
+    for some constant \(K\) large enough, so \(\bb{P}[|S_n| \geq n \varepsilon] \to 0\) as desired. 
+\end{proof}
 
 \end{document}
 
