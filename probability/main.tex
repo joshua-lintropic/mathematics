@@ -88,7 +88,7 @@ Convention: \emph{independence} will be taken to imply \emph{pairwise-independen
 \end{proof}
 
 
-\begin{problem}{Monotonicity of \(L^p\) for Simple Random Variables}*
+\begin{problem}{Monotonicity of \(L^p\)-norm for Simple Random Variables}*
     [BLN Eq 5.33.] Prove that if the \(L^p\) norm of a simple random variable \(X\) is \(\|X\|_p := \sqrt[p]{\bb{E}[|X|^p]}\), then for any \(0 < \alpha \leq \beta\), \(\|X\|_\alpha \leq \|X\|_\beta\).
 \end{problem}
 
@@ -199,6 +199,30 @@ Convention: \emph{independence} will be taken to imply \emph{pairwise-independen
         \leq \frac{K}{n^2 \varepsilon^4} 
     \end{align*}
     for some constant \(K\) large enough, so \(\bb{P}[|S_n| \geq n \varepsilon] \to 0\) as desired. 
+\end{proof}
+
+
+\begin{problem}{Cantelli's Theorem}*
+    If \(\{X_n\}_n\) are independent with zero mean and uniformly bounded fourth moments (i.e., \(\bb{E}[X_n] = 0\) and \(\sup_n \bb{E}[X_n^4] < \infty\)), then \(\ev{X} = 0\) almost surely. Note, in particular, that the \(X_n\) need not be identically distributed. 
+\end{problem}
+
+\begin{proof}
+    Observe that 
+    \[
+        \left\{ \lim_{n \to \infty} \frac{1}{n} \sum_{k=1}^n X_k = 0 \right\}
+        = \Omega - \bigcup_{\varepsilon \in \bb{Q}} \left\{ \left| \limsup_{n \to \infty} \frac{1}{n} \sum_{k=1}^n X_k \right| \geq \varepsilon \right\}
+        = \Omega - \bigcup_{\varepsilon \in \bb{Q}} \left\{ \left| \frac{1}{n} \sum_{k=1}^n X_k \right| \geq \varepsilon \text{ i.o.} \right\}
+    \]
+    Hence it suffices to show that if \(S_n := \sum_{k=1}^n X_k\), \(\sum_n \bb{P}[|S_n| \geq n \varepsilon]\) converges. By Markov's inequality, 
+    \begin{align*}
+        \bb{P}[|S_n| \geq n \varepsilon] 
+        &= \frac{1}{n^4 \varepsilon^4} \int_{\Omega} \sum_{\alpha, \beta, \gamma, \zeta} X_\alpha X_\beta X_\gamma X_\zeta \, \mr{d}\bb{P} 
+        \leq \frac{1}{n^4 \varepsilon^4} \left(\sum_\alpha \bb{E}[X_\alpha^4] + \sum_{\alpha, \beta} \bb{E}[X_\alpha^2 X_\beta^2] \right) \\
+        &\leq \frac{1}{n^4 \varepsilon^4} \left(n \sup_\alpha \bb{E}[X_\alpha^4] + 3n(n-1) \sup_{\alpha, \beta} \sqrt{\bb{E}[|X_\alpha|] \bb{E}[|X_\beta|]} \right) \\
+        &\leq \frac{1}{n^4 \varepsilon^4} \left(n \sup_\alpha \bb{E}[X_\alpha^4] + 3n(n-1) \sup_\alpha \bb{E}[|X_\alpha|] \right) \\
+        &\leq \frac{1}{n^4 \varepsilon^4} \left(n \sup_\alpha \bb{E}[X_\alpha^4] + 3n(n-1) \sup_\alpha \sqrt[4]{\bb{E}[X_\alpha^4]} \right) 
+        \leq \frac{K}{n^2 \varepsilon^4}
+    \end{align*}
 \end{proof}
 
 \end{document}
