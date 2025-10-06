@@ -1,0 +1,237 @@
+\input{preamble}
+\input{format}
+\input{commands}
+
+\begin{document}
+
+\begin{Large}
+    \textsf{\textbf{Princeton Lectures in Analysis: Functional Analysis}}
+\end{Large}
+
+\vspace{1ex}
+
+\textsf{\textbf{Student:}} Joshua Lin \\
+\textsf{\textbf{Lecturer:}} Jacob Shapiro
+
+\vspace{2ex}
+
+\section{Topological Vector Spaces}
+
+\begin{problem}{Complex Euclidean Space is a Topological Vector Space}*
+    [MAT520 P1.1.] Prove that \(\bb{C}^n\) with its Euclidean topology is a topological vector space, i.e., show that vector addition and scalar multiplication are continuous with respect to the Euclidean topology. 
+\end{problem}
+
+\begin{proof}
+    To show that vector addition is continuous, take any \(z, w \in \bb{C}^n\), and fix some \(\varepsilon > 0\). Take \(\delta = \varepsilon / 2\), and choose \(x \in B_{\delta}(z), y \in B_{\delta}(y)\). Then, 
+    \[
+        |(x + y) - (z + w)|
+        \leq |x - z| + |y - w|
+        < 2 \delta 
+        = \varepsilon
+    \]
+    Thus \(B_\delta(z) + B_\delta(w) \subseteq B_\varepsilon(z+w)\), and vector addition is continuous. 
+    \stdvspace
+
+    To show that scalar multiplication is continuous, fix any \(\alpha \in \bb{C} \setminus \{0\}, x \in \bb{C}\). By definition, we must show that for any \(U \in \oname{Nbhd}(\alpha x)\), there exists some \(r > 0\) and \(V \in \oname{Nbhd}(x)\), such that \(\beta V \subseteq U\) whenever \(|\beta - \alpha| < r\). Since the case of \(x = 0\) is trivial, suppose \(x \neq 0\). It suffices to show that if \(|\beta - \alpha| < r\) and \(|z - x| < \delta\) for some \(r, \delta > 0\) yet to be chosen, then \(|\beta z - \alpha x| < \varepsilon\). But, 
+    \[
+        |\beta z - \alpha x| = |\beta(x + z - x) - \alpha x|
+        \leq |\beta - \alpha| |x| + |\beta| |z - x|
+        \leq r |x| + (|\alpha| + r) \delta
+    \]
+    Hence if \(r = \varepsilon / 2|x|\) and \(\delta = \varepsilon / 2 (|\alpha| + r)\), we obtain the desired bound. 
+\end{proof}
+
+\begin{problem}{Counterexample: TVS But Not \(T_1\)}*
+    [MAT520 P1.2.] Provide an example for a topological vector space that is not \(T_1\). 
+\end{problem}
+
+\begin{proof}
+    Equip \(\bb{C}\) with the trivial topology, which is not \(T_1\). Observe that the only non-empty open set is \(\bb{C}\) itself, and so it can be easily shown that addition and scalar multiplication are continuous. 
+\end{proof}
+
+\begin{problem}{French Metro Metric is not a Topological Vector Space}*
+    [MAT520 P1.3.] Prove that \(\bb{C}\) with the French metro metric is \textit{not} homeomorphic to \(\bb{C}\) with the Euclidean metric. Conclude (why?) that \(\bb{C}\) with the French metro metric is not a TVS. 
+\end{problem}
+
+\begin{proof}
+    Let \(\bb{C}_E\) and \(\bb{C}_F\) be the complex plane with topologies induced by the Euclidean and French metro metrics, respectively. Suppose for contradiction that \(\bb{C}_E \cong \bb{C}_F\). Fix \(z \in \bb{C}_F\), and let \(w = f^{-1}(z) \in \bb{C}_E\) where \(f\) is a homeomorphism. For some \(\delta > 0\), note \(f(B_\delta(w) \setminus \{w\})\) is a punctured neighborhood of \(z\) in \(\bb{C}_F\), which cannot be path connected. But \(B_\delta(w) \setminus \{w\} \subseteq \bb{C}_E\) is path connected, and so since path connectedness is a topological property, this is a contradiction. 
+    \stdvspace 
+
+    As a result, \(\bb{C}_F\) cannot be a TVS: two vector spaces of identical dimensions over the same field are isomorphic, and every isomorphism of \(\bb{C}_E\) onto an \(n\)-dimensional TVS over \(\bb{C}\) is a homeomorphism [RCA Thm 1.21], and thus any complex one-dimensional TVS over the field \(\bb{C}\) would be homeomorphic to \(\bb{C}_E\). 
+\end{proof}
+
+\begin{problem}{TVS Induced by Function Metric}*
+    [MAT520 P1.4.] Let \(C := \{f : [0,1] \to \mathbb{C} \text{ continuous}\} \) and define
+    \[
+        d(f,g) := \int_{0}^{1} \frac{|f(x)-g(x)|}{1 + |f(x)-g(x)|}\, \mr{d}x
+    \]
+    Show that \(d\) is a metric on \(C\), show that \(C\) is a vector space (with pointwise addition and scalar multiplication), and show that the topology which \(d\) induces on \(C\) makes it into a TVS. Show that this TVS has a countable local base.
+\end{problem}
+
+\begin{proof}
+    First we show that \(d\) is a metric on \(C\). 
+    \begin{itemize}
+        \itemsep0em
+        \item \emph{Positive-Definite.} It's clear that \(d(f, g) \geq 0\) always. Note that \(d(f,g) = 0\) when \(f = g\). Now suppose \(f \neq g\), and let \(h := |f - g| \in C\). By assumption there exists some \(x_0 \in [0,1]\) such that \(y_0 := h(x_0) > 0\). By continuity, for any \(\varepsilon > 0\) there exists some \(\delta' > 0\) such that whenever \(|x - x_0| < \delta'\), we have that \(|h(x) - y_0| < \varepsilon\). Equivalently, \(y_0 - \varepsilon < h(x) < y_0 + \varepsilon\). So, if we choose \(\varepsilon < y_0\) and define \(\delta := \min\{\delta', \min\{x_0, 1 - x_0\}\}\), we have that 
+        \[
+            d(f, g)
+            \geq \int_{x_0 - \delta}^{x_0 + \delta} \frac{h(x)}{1 + h(x)} \, \mr{d}x 
+            \geq \int_{x_0 - \delta}^{x_0 + \delta} \frac{y_0 - \varepsilon}{1 + y_0 + \varepsilon} \, \mr{d}x
+            = \frac{2\delta (y_0 - \varepsilon)}{1 + y_0 + \varepsilon}
+            > 0
+        \]
+        so that \(d(f, g) > 0\) whenever \(f \neq g\). 
+        \item \emph{Symmetric.} It's clear that \(d(f, g) = d(g, f)\). 
+        \item \emph{Triangle-Inequality.} It suffices to show that 
+        \[
+            \frac{|x - y|}{1 + |x - y|} \leq \frac{|x - z|}{1 + |x - z|} + \frac{|z - y|}{1 + |z - y|}
+        \]
+        which would follow immediately if \(\phi(t) := t(1+t)^{-1}\) were sub-additive, since \(\phi\) is monotonically increasing in \(t\). As such, observe that
+        \[
+            \phi(a) + \phi(b) - \phi(a + b)
+            = 1 - \frac{1}{1+a} - \frac{1}{1+b} + \frac{1}{1+a+b}
+            = \frac{ab(a+b+2)}{(1+a)(1+b)(1+a+b)}
+            \geq 0
+        \]
+        so \(\phi\) is indeed sub-additive, so the triangle inequality holds. 
+    \end{itemize}
+
+    Next, it's clear that \(C\) is a vector space over \(\bb{C}\), so let us show it is a TVS. 
+    \begin{itemize}
+        \itemsep0em
+        \item \emph{Addition.} Fix any \(\varepsilon > 0\) and \(f_0, g_0 \in C\). Let \(U := \{h \in C \mid d(h, f_0 + g_0) < \varepsilon\} \in \oname{Nbhd}(f_0 + g_0)\). We must show that there exists neighborhoods \(V \in \oname{Nbhd}(f_0), W \in \oname{Nbhd}(g_0)\) such that \(V + W \subseteq U\). Choose \(V = \{f \in C \mid d(f, f_0) < \delta\}\) and \(W = \{g \in C \mid d(g, g_0) < \delta\}\) for \(\delta = \varepsilon / 2\). Using monotonicity and sub-additivity of \(\phi\) once again, 
+        \begin{align*}
+            d(f + g, f_0 + g_0) 
+            &= \int_0^1 \phi(|f+g - f_0 - g_0|) \, \mr{d}x
+            \leq \int_0^1 \phi(|f-f_0| + |g - g_0|) \, \mr{d}x \\
+            &\leq \int_0^1 \phi(|f - f_0|) \, \mr{d}x + \int_0^1 \phi(|g - g_0|) \, \mr{d}x
+            = d(f, f_0) + d(g, g_0)
+            < \varepsilon
+        \end{align*}
+        so that \(f+g \in U\). Hence \(V + W \subseteq U\). 
+        \item \emph{Scalar Multiplication.} Fix \(f_0 \in C, \alpha \in \bb{C} \setminus \{0\}\). Let \(U := \{h \in C \mid d(h, \alpha f_0) < \varepsilon\}\) and \(V := \{f \in C \mid d(f, f_0) < \delta\}\) for some \(\delta > 0\) yet to be chosen. We must show that if \(|\beta - \alpha| < r\) for some \(r > 0\) yet to be chosen, then \(\beta V \subseteq U\). TODO. 
+    \end{itemize}
+\end{proof}
+
+\newpage
+\section{Banach Spaces}
+
+\begin{problem}{Equivalence of Complex Norms}*
+    [MAT520 P1.12.] On a normed space \(X\), two norms are \(\|\cdot\|_1 \|\cdot\|_2\) are \emph{equivalent} if and only if there exists \(a, b \in (0, \infty)\) such that 
+    \[
+        a\|x\|_1 \leq \|x\|_2 \leq b\|x\|_1 \quad (x \in X)
+    \]
+    Prove all norms on \(\bb{C}^n\) are equivalent. Conclude all norm topologies on \(\bb{C}^n\) are homeomorphic. 
+\end{problem}
+
+\begin{proof}
+    It suffices to show that all norms are equivalent to the Euclidean norm, \(\|\cdot\|_E\). Choose some other norm \(\|\cdot\|_O\) on \(\bb{C}^n\), and define 
+    \[
+        K := \{w \in \bb{C}^n \mid \|w\|_E = 1\}, \quad 
+        a := \inf_{w \in K} \|w\|_O, \quad 
+        b := \sup_{w \in K} \|w\|_O
+    \]
+    Note that the desired bounds are satisfied:
+    \[
+        a \|z\|_E 
+        \leq \left\|\frac{z}{\|z\|_E}\right\|_O \cdot \|z\|_E
+        = \|z\|_O
+        = \left\|\frac{z}{\|z\|_E}\right\|_O \cdot \|z\|_E
+        \leq b \|z\|_E
+    \]
+    so it remains to be shown that \(a, b \in (0, \infty)\). Observe that \(K\) is compact by the Heine-Borel theorem since it is closed and bounded. We claim that the map \(\phi : K \to \bb{R}\) given by \(z \mapsto \|z\|_O\) is continuous, from which it would follow that it attains a minimum and maximum. By positive-definiteness and finiteness of norms, we would conclude \(a, b \in (0, \infty)\) and hence equivalence of all norms on \(\bb{C}^n\). Begin by observing that 
+    \[
+        \|x\|_O = \left\| \sum_{i=1}^n x_i \hat{e}_i \right\|_O 
+        \leq \sum_{i=1}^n |x_i| \|\hat{e}_i\|_O 
+        \leq \|x\|_\infty \sum_{i=1}^n \|\hat{e}_i\|_O 
+        =: M\|x\|_\infty
+    \]
+    where \(0 < M < \infty\). Now fix any \(\varepsilon > 0\), and suppose \(\|z - w\|_E < \delta\) for \(w \in \bb{C}^n\) and some \(\delta > 0\) yet to be chosen. Then, by the (reverse) triangle inequality, 
+    \[
+        |\phi(z) - \phi(w)|
+        \leq \left| \|z\|_O - \|w\|_O \right|
+        \leq \|z - w\|_O 
+        \leq M \|z - w\|_\infty
+        \leq M \|z - w\|_E 
+        < M \delta 
+    \]
+    so that if \(\delta := M^{-1} \varepsilon\), we have our \(\delta\) of continuity. Hence all norms on \(\bb{C}^n\) are equivalent. Note that the identity map \(\oname{id} : \bb{C}^n \to \bb{C}^n\) is a homeomorphism between any two normed spaces with equivalent norms, so actually all normed spaces are homeomorphic on \(\bb{C}^n\). 
+\end{proof}
+
+\begin{problem}{Boundedness Equals Continuity for Linear Maps}*
+    [MAT520 P1.15.] Let \(A : X \to Y\) be a linear map between Banach spaces \(X\) and \(Y\). Prove that the following statements are equivalent: 
+    \begin{enumerate}
+        \itemsep0em
+        \item \(A\) is bounded, in the sense that \(\|Ax\| \leq M\|x\|\) for some \(M \in \bb{R}\) and all \(x \in X\). 
+        \item \(A\) is continuous according to the Banach norms. 
+        \item \(A\) is continuous at zero according to the Banach norms. 
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+    \((1) \implies (2)\). Suppose \(A\) is bounded with bound \(M\), and fix \(\varepsilon > 0\). Then if \(\|x - x_0\| \leq \varepsilon\), 
+    \[
+        \|Ax - Ax_0\|
+        \leq \|A(x - x_0)\|
+        \leq M \|x - x_0\|
+        = M \delta < \varepsilon
+    \]
+    whenever \(\delta < M^{-1} \varepsilon\), so \(A\) is continuous. 
+    \stdvspace
+
+    \((2) \implies (3)\). If \(A\) is continuous, then it is certainly continuous at \(0 \in X\). 
+    \stdvspace
+
+    \((3) \implies (1)\). Suppose \(A\) is continuous at \(0 \in X\). For \(\|x\| \leq \delta\), we have that \(\|Ax\| \leq 1\). Thus, 
+    \[
+        \left\| \frac{A(\delta x)}{\|x\|} \right\| \leq 1
+        \implies 
+        \|Ax\| \leq \frac{1}{\delta} \|x\|
+        \quad (x \in X \setminus \{0\})
+    \]
+    so we have a \(\delta^{-1}\) bound on \(A\).
+\end{proof}
+
+\begin{problem}{Equivalent Condition to Completeness}*
+    [MAT520 P1.19.] Let \(X\) be a normed space. Show that the following conditions are equivalent: 
+    \begin{enumerate}
+        \itemsep0em
+        \item \(X\) is complete. 
+        \item For any \(\{x_n\}_n \subseteq X\), 
+        \[
+            \sum_{n=1}^\infty \|x_n\| < \infty
+            \implies 
+            \sum_{n=1}^\infty x_n = x \in X
+        \]
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+    For the forward direction, suppose \(X\) is complete. Let \(\{x_n\}_n \subseteq X\) be a sequence satisfying \(\sum_n \|x_n\| < \infty\). Note that the tail sequences \(s_N := \sum_{n=1}^N x_n\) are Cauchy, since for \(n \leq m\), 
+    \[
+        \|s_n - s_m\|
+        = \left\| \sum_{k=n+1}^m x_k \right\|
+        \leq \sum_{k=n+1}^\infty \|x_k\|
+        \leq \varepsilon
+    \]
+    whenever \(n\) is large enough, as it is a tail sum. Hence by completeness, \(s_N \to x \in X\), as desired. 
+    \stdvspace
+
+    For the reverse direction, suppose that \(\sum_n \|x_n\| < \infty \implies \sum_n x_n \in X\). Let \(\{x_n\}_n\) be a Cauchy sequence. For each \(k \in \bb{N}\), choose \(n_k\) such that \(\|x_{n_k} - x_n\| \leq 2^{-k}\) whenever \(n \geq n_k\), and without loss of generality let \(n_k\) be increasing. Then,
+    \[
+        \sum_{k=1}^\infty \|x_{n_{k+1}} - x_{n_k}\|
+        \leq \sum_{k=1}^\infty 2^{-k} 
+        = 1 
+        < \infty
+        \implies 
+        \lim_{k \to \infty} x_{n_k} = \sum_{k=1}^\infty (x_{n_{k+1}} - x_{n_k}) 
+        \equiv x \in X
+    \]
+    and so \(\{x_{n_k}\}_k\) is actually a convergent subsequence of \(\{x_n\}_n\). But for \(n, n_k\) large enough, we have 
+    \[
+        \|x_n - x\| \leq \|x_{n_k} - x_n\| + \|x_{n_k} - x\| \leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+    \]
+    which is a simple restatement of the fact that a Cauchy sequence always converges to an (existing) limit of a subsequence. Hence \(x_n \to x\) and so \(X\) is complete. 
+\end{proof}
+
+\end{document}

@@ -1,0 +1,265 @@
+\input{preamble}
+\input{format}
+\input{commands}
+
+\begin{document}
+
+\begin{Large}
+    \textsf{\textbf{Probability Theory (Princeton)}}
+\end{Large}
+
+\vspace{1ex}
+
+\textsf{\textbf{Student:}} Joshua Lin \\
+\textsf{\textbf{Lecturer:}} Allan Sly
+
+\vspace{2ex}
+
+Problems are largely derived from \emph{Probability and Measure} by Billingsley (BLN). 
+\stdvspace
+
+Convention: \emph{independence} will be taken to imply \emph{pairwise-independence} unless otherwise stated. The notation \(\ev{V}_n\) will denote the average of \(V_1, \dots, V_n\), and \(\ev{V} \equiv \lim_n \ev{V}_n\). 
+
+\section{Probability}
+
+
+\begin{problem}{Borel-Cantelli Lemmas}*
+    [BLN Thm 4.3/4.4] Prove the following:
+    \begin{enumerate}[(a)]
+        \itemsep0em
+        \item \emph{First Borel-Cantelli Lemma:} If \(\sum_n \bb{P}[A_n]\) converges, then \(\bb{P}[\limsup_n A_n] = 0\).
+        \item \emph{Second Borel-Cantelli Lemma:} If \(\{A_n\}_n\) are independent and \(\sum_n \bb{P}[A_n]\) diverges, then \(\bb{P}[\limsup_n A_n] = 1\).
+    \end{enumerate}
+\end{problem}
+
+
+\begin{proof}
+    The first Borel-Cantelli lemma is proved (for general measure spaces, even) in in the \emph{Measures} section of \texttt{real-analysis}. For the second Borel-Cantelli lemma, we can show that \((\limsup_n A_n)^c\) occurs with probability zero. Effectively,
+    \[
+        \bb{P}\left[\limsup_{n \to \infty} A_n\right] = 1
+        \iff \bb{P}\left[ \left(\bigcap_{n=1}^\infty \bigcup_{k=n}^\infty A_k\right)^c \right] = 0
+        \iff \bb{P}\left[ \bigcap_{k=n}^\infty A_k^c \right] = 0
+        \quad (n \in \bb{N})
+    \]
+    By independence,
+    \[
+        \bb{P}\left[ \bigcap_{k =n}^\infty A_k^c \right]
+        = \prod_{k=n}^\infty \bb{P}[A_k^c]
+        = \prod_{k=n}^\infty (1 - \bb{P}[A_k])
+        \leq \prod_{k=n}^\infty \exp(-\bb{P}[A_k])
+        = \exp\left( -\sum_{k=n}^\infty \bb{P}[A_k] \right)
+    \]
+    Since \(\sum_k \bb{P}[A_k] = +\infty\), the final expression vanishes, as desired. Note that there is no measure-theoretic generalization of the second lemma, due to the requirement of independence.
+\end{proof}
+
+
+\begin{problem}{Kolgomorov's Zero-One Law}*
+    [BLN Thm 4.5.] If \(\{A_n\}_n\) is an independent sequence of events, and if \(A\) is an event in the tail \(\sigma\)-field defined by
+    \[
+        \cl{T} = \bigcap_{n=1}^\infty \sigma \left( \{A_k\}_{k=n}^\infty \right)
+    \]
+    then \(\bb{P}(A)\) is either \(0\) or \(1\).
+\end{problem}
+
+\begin{proof}
+    It is sufficient to prove that \(\bb{P}[A] = \bb{P}[A]^2\), which would follow from \(A \perp A\), i.e. \(A\) being independent of itself. Note that for each \(n\), \(A \in \sigma(\{A_n, A_{n+1}, \dots\})\) so that \(A_1, \dots, A_{n-1}, A\) are independent, and in particular \(A \perp \sigma(\{A_1, A_2, \dots \})\). However, \(A \in \cl{T} \subseteq \sigma(\{A_1, A_2, \dots, \})\), so \(A\) is independent of itself. The claim follows. 
+\end{proof}
+
+
+
+\newpage
+\section{Simple Random Variables}
+
+
+\begin{problem}{Monotonicity of \(L^p\)-norm for Simple Random Variables}*
+    [BLN Eq 5.33.] Prove that if the \(L^p\) norm of a simple random variable \(X\) is \(\|X\|_p := \sqrt[p]{\bb{E}[|X|^p]}\), then for any \(0 < \alpha \leq \beta\), \(\|X\|_\alpha \leq \|X\|_\beta\).
+\end{problem}
+
+
+\begin{proof}
+    It will directly follow from H\"older's inequality: note that since \(\bb{P}(\Omega) = 1\), we have \(\|Y\|_1 \leq \|Y\|_p\) for \(p \geq 1\). Choose \(Y = X^a\) and \(p = b/a\), and the result follows.
+\end{proof}
+
+
+\begin{problem}{Cantelli's Inequality}*
+    [BLN P5.5.] Suppose \(X\) is a random variable with mean \(\mu\) and variance \(\sigma^2\).
+    \begin{enumerate}[(a)]
+        \itemsep0em
+        \item Prove \emph{Cantelli's inequality},
+        \[
+            \bb{P}[X - \mu \geq \alpha] \leq \frac{\sigma^2}{\sigma^2 + \alpha^2}
+            \qquad (\alpha \geq 0)
+        \]
+        \item Prove \(\bb{P}[|X - \mu| \geq \alpha] \leq 2\sigma^2 / (\sigma^2 + \alpha^2)\). When is this tighter than Chebyshev's inequality?
+        \item By considering a particular simple random variable, show Cantelli's inequality is sharp.
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+    Without loss of generality, let \(\mu = 0\). Then by Markov's inequality,
+    \begin{align*}
+        \bb{P}[X \geq \alpha]
+        &= \bb{P}[X + c \geq \alpha + c]
+        \leq \bb{P}[|X + c| \geq \alpha + c]
+        \leq \frac{1}{(\alpha + c)^2} \int_{\Omega} (X + c)^2 \, \mr{d}\bb{P}
+        = \frac{\sigma^2 + c^2}{(\alpha + c)^2}
+    \end{align*}
+    Optimizing the bound with respect to \(c\), we find the minimizer to be \(c = \alpha^{-1} \sigma^2\). Substituting yields Cantelli's inequality. From then it follows that
+    \[
+        \bb{P}[|X - \mu| \geq \alpha]
+        = \bb{P}[X - \mu \geq \alpha] + \bb{P}[-(X - \mu) \geq \alpha]
+        \leq \frac{2\sigma^2}{\sigma^2 + \alpha^2}
+    \]
+    Finally, to show Cantelli's inequality is sharp, let \(X\) have the Rademacher distribution. If \(\alpha = 1\),
+    \[
+        \bb{P}[X \geq \alpha] = \frac{1}{2} = \frac{\sigma^2}{\sigma^2 + \alpha^2}
+    \]
+    so equality is attained.
+\end{proof}
+
+
+\begin{problem}{The (Simple) Law of Large Numbers}*
+    [BLN Thm 6.1, 6.2.] Prove the following:
+    \begin{enumerate}[(a)]
+        \itemsep0em
+        \item \emph{The Strong Law:} If \(\{X_n\}_n\) are simple i.i.d. with expectation \(\mu\), then
+        \[
+            \bb{P}\left[\ev{X} = \mu\right]
+            \equiv \bb{P}\left[ \lim_{n \to \infty} \frac{1}{n} \sum_{k=1}^n X_k = \mu \right]
+            = 1
+        \]
+        \item \emph{The Weak Law:} Let \((\Omega_n, \fr{M}_n, \bb{P}_n)\) be a sequence of real probability spaces. If \(\{X_{nk}\}_{k=1}^{r_n}\) are simple and independent in \(k\) for each \(n\), and \(\{v_n\}_n\) satisfies \(\sigma_n / v_n \to 0\), then
+        \[
+            \lim_{n \to \infty} \bb{P}_n \left[ \left| \frac{\ev{X_n} - \mu_n}{v_n} \right| \geq \varepsilon \right] = 0
+        \]
+        Note that \((\Omega_n, \fr{M}_n, \bb{P}_n) = (\Omega, \fr{M}, \bb{P})\), \(X_{nk} \sim X\), and \(v_n = n\) reduces to the corresponding weak law for the strong law above. 
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+    \emph{Part (a).} Let \(S_n = \sum_{k=1}^n X_k\), and without loss of generality let \(\mu = 0\). Observe, 
+    \[
+        \Omega \setminus \left\{\lim_{n \to \infty} n^{-1} S_n = 0\right\} 
+        = \bigcup_{\varepsilon \in \bb{Q}_+} \left\{\limsup_{n \to \infty} |n^{-1} S_n| \geq \varepsilon \right\}
+    \]
+    It therefore suffices to show that \(\sum_n \bb{P}[|n^{-1} S_n| \geq \varepsilon] = 0\), since then by the first Borel-Cantelli Lemma we show the complement above occurs almost surely. The idea is that we can apply Markov's inequality using the fourth moment: we need an even moment to eliminate the absolute value, and we cannot use the second moment since we need to show the individual probabilities are \(\Theta(n^{-2})\) for the series to converge. Hence,
+    \begin{align*}
+        \bb{P}[|S_n| \geq n \varepsilon]
+        &\leq \frac{1}{n^4 \varepsilon^4} \int_{\Omega} S_n^4 \, \mr{d}\bb{P} 
+        = \frac{1}{n^4 \varepsilon^4} \int_{\Omega} \sum_{\alpha=1}^n \sum_{\beta=1}^n \sum_{\gamma=1}^n \sum_{\zeta=1}^n X_\alpha X_\beta X_\gamma X_\zeta \, \mr{d}\bb{P} \\
+        &= \frac{1}{n^4 \varepsilon^4} (n \bb{E}[X^4] + 3n(n-1) \bb{E}[X_\alpha^2 X_\beta^2])
+        \leq \frac{K}{n^2 \varepsilon^4}
+    \end{align*}
+    for some constant \(K\) and \(n\) large enough (note that the expectations finitely exist since \(X\) is simple). As a result, \(\bb{P}[|S_n| \geq n \varepsilon]\) converges in sum, completing the proof. 
+\end{proof}
+
+\begin{proof}
+    \emph{Part (b).} Without loss of generality, let \(\mu_n = 0\) and \(v_n > 0\). By Markov's inequality, 
+    \[
+        \bb{P}_n[|X_n| \leq v_n \varepsilon]
+        \leq \frac{\sigma_n^2}{v_n^2} \frac{1}{\varepsilon^2} \stackrel{n \to \infty}{\longrightarrow} 0
+    \]
+    thus proving the weak law. 
+\end{proof}
+
+
+\begin{problem}{Poisson's Theorem}*
+    [BLN P6.5.] If \(\{A_n\}_n\) are independent,
+    \[
+        \lim_{n \to \infty} \bb{P}\left[ |\ev{\mb{1}_A}_n - \ev{\bb{P}[A]}_n | \geq \varepsilon \right]
+        = \lim_{n \to \infty} \bb{P}\left[ \left| \frac{1}{n} \sum_{k=1}^n \mb{1}_{A_k} - \frac{1}{n} \sum_{k=1}^n \bb{P}(A_k) \right| \geq \varepsilon \right] 
+        = 0
+    \]
+    In other words, a sequence of independent but distinct Bernoulli trials behaves, on average, like a Bernoulli of its mean parameter.
+\end{problem}
+
+\begin{proof}
+    Let \(X_k := \mb{1}_{A_k} - \bb{P}[A_k]\), so that \(\bb{E}[X_k] = 0\). Define \(S_n := \sum_{k=1}^n X_k\). It suffices to show that \(\bb{P}[|S_n| \geq n \varepsilon] \to 0\) as \(n \to \infty\). By Markov's inequality, 
+    \begin{align*}
+        \bb{P}[|S_n| \geq n \varepsilon] 
+        &\leq \frac{1}{n^4 \varepsilon^4} \int_{\Omega} S_n^4 \, \mr{d}\bb{P}
+        = \frac{1}{n^4 \varepsilon^4} \int_\Omega \sum_{\alpha,\beta,\gamma,\zeta} X_\alpha X_\beta X_\gamma X_\zeta \, \mr{d}\bb{P}
+        \leq \frac{K}{n^2 \varepsilon^4} 
+    \end{align*}
+    for some constant \(K\) large enough, so \(\bb{P}[|S_n| \geq n \varepsilon] \to 0\) as desired. 
+\end{proof}
+
+
+\begin{problem}{Cantelli's Theorem}*
+    [BLN P6.6.] If \(\{X_n\}_n\) are independent with zero mean and uniformly bounded fourth moments, then \(\ev{X} = 0\) almost surely. In particular, the \(X_n\) need not be identically distributed. 
+\end{problem}
+
+\begin{proof}
+    Observe that 
+    \[
+        \left\{ \lim_{n \to \infty} \frac{1}{n} \sum_{k=1}^n X_k = 0 \right\}
+        = \Omega - \bigcup_{\varepsilon \in \bb{Q}} \left\{ \left| \limsup_{n \to \infty} \frac{1}{n} \sum_{k=1}^n X_k \right| \geq \varepsilon \right\}
+        = \Omega - \bigcup_{\varepsilon \in \bb{Q}} \left\{ \left| \frac{1}{n} \sum_{k=1}^n X_k \right| \geq \varepsilon \text{ i.o.} \right\}
+    \]
+    If \(S_n := \sum_{k=1}^n X_k\), it suffices by the first Borel-Cantelli lemma to show that \(\sum_n \bb{P}[|S_n| \geq n \varepsilon]\) converges. By Markov's inequality, 
+    \begin{align*}
+        \bb{P}[|S_n| \geq n \varepsilon] 
+        &= \frac{1}{n^4 \varepsilon^4} \int_{\Omega} \sum_{\alpha, \beta, \gamma, \zeta} X_\alpha X_\beta X_\gamma X_\zeta \, \mr{d}\bb{P} 
+        \leq \frac{1}{n^4 \varepsilon^4} \left(\sum_\alpha \bb{E}[X_\alpha^4] + \sum_{\alpha, \beta} \bb{E}[X_\alpha^2 X_\beta^2] \right) \\
+        &\leq \frac{1}{n^4 \varepsilon^4} \left(n \sup_\alpha \bb{E}[X_\alpha^4] + 3n(n-1) \sup_{\alpha, \beta} \sqrt{\bb{E}[|X_\alpha|] \bb{E}[|X_\beta|]} \right) \\
+        &\leq \frac{1}{n^4 \varepsilon^4} \left(n \sup_\alpha \bb{E}[X_\alpha^4] + 3n(n-1) \sup_\alpha \bb{E}[|X_\alpha|] \right) \\
+        &\leq \frac{1}{n^4 \varepsilon^4} \left(n \sup_\alpha \bb{E}[X_\alpha^4] + 3n(n-1) \sup_\alpha \sqrt[4]{\bb{E}[X_\alpha^4]} \right) 
+        \leq \frac{K}{n^2 \varepsilon^4}
+    \end{align*}
+    where to arrive at the penultimate step, we use monotonicity of the \(L^p\)-norm on random variables. Note that implicitly, we invoke independence to eliminate odd powers in \(\sum X_\alpha X_\beta X_\gamma X_\zeta\). 
+\end{proof}
+
+
+\begin{problem}{The Square Subsequence Lemma}*
+    [BLN P6.7.] Suppose \(n^{-2} S_{n^2} \to 0\) almost surely and the \(X_n\) are uniformly bounded. Show \(\ev{X} = 0\) almost surely. Notably, the \(X_n\) need not be identically distributed or independent. 
+\end{problem}
+
+\begin{proof}
+    It suffices to show that \(\limsup_m m^{-1} |S_m| = 0\) almost surely. Fix \(m\), and let \(n\) be the largest number satisfying \(n^2 \leq m < (n+1)^2\). Define \(R_{n,m} := \sum_{k=n^2+1}^m X_k\) so that \(S_m = S_{n^2} + R_{n,m}\). Let \(B\) be the uniform bound on \(\{X_k\}_k\), so that \(|R_{n,m}| \leq (m-n) K \leq (2n+1) K \leq 3nK\). It follows: 
+    \[
+        \frac{|S_m|}{m} \leq \frac{|S_{n^2}|}{n^2} + \frac{|R_{n,m}|}{n^2} \leq \frac{|S_{n^2}|}{n^2} + \frac{3B}{n}
+    \]
+    Taking the limit superior of both sides, 
+    \[
+        \limsup_{m \to \infty} \frac{|S_m|}{m} 
+        \leq \limsup_{n \to \infty} \left( \frac{|S_{n^2}|}{n^2} + \frac{3B}{n} \right)
+        \leq \limsup_{n \to \infty} \frac{|S_{n^2}|}{n^2} + \limsup_{n \to \infty} \frac{3B}{n}
+        = 0
+    \]
+    almost surely. Hence \(\ev{X} = \lim_m m^{-1} |S_m| = 0\) almost surely. 
+\end{proof}
+
+
+
+\begin{problem}{Shannon's Theorem}*
+    [BLN P6.14.] Suppose that \(\{X_n\}_n\) are simple i.i.d. with \(\text{image}(X) = \{1, \dots, r\}\) and \(p_k := \bb{P}[X_n = k]\). For \(\omega \in \Omega\), let \(P_n(\omega) = \bb{P}[(X_1(\omega)] \cdots \bb{P}[X_n(\omega)]\) be the probability that a sequence of \(n\) trials would produce the particular sequence \(X_1(\omega), \dots, X_n(\omega)\). Prove the following: 
+    \begin{enumerate}[(a)]
+        \itemsep0em
+        \item \emph{Entropy:} With high probability, 
+        \[
+            \lim_{n \to \infty} \left[ - \frac{1}{n} \log P_n(\omega) \right] 
+            = - \sum_{i=1}^r p_i \log p_i 
+            \equiv H
+        \]
+        In information theory \(\{1, \dots, r\}\) are the letters of an \emph{alphabet}, the \(\{X_n\}_n\) are successive letters produced by an information \emph{source}, and \(H\) is the \emph{entropy} of the source. 
+        \item \emph{Asymptotic Equipartition Property:} For large enough \(n\) there is a probability exceeding \(1 - \varepsilon\) that the probability \(P_n(\omega)\) of the observed \(n\)-long sequence, or \emph{message}, is in the range \(\exp{-n(H \pm \varepsilon)}\).
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+    For the entropy definition, let \(Y_k(\omega) = - \log \bb{P}[X_k(\omega)]\), so the \(\{Y_k\}_k\) are i.i.d. Note that \(\bb{E}[Y] = H\), so the result follows from the Strong Law of Large Numbers. TODO: second part. 
+\end{proof}
+
+
+\begin{problem}{The R\'enyi-Lamperti Lemma}*
+    TODO. 
+\end{problem}
+
+
+
+\newpage
+\section{Markov Chains}
+
+
+\end{document}
+
