@@ -15,26 +15,26 @@
 
 \vspace{2ex}
 
-Problems are largely derived from \emph{Probability and Measure} by Billingsley (BLN). 
+Problems are largely derived from \textit{Probability and Measure} by Billingsley (BLN) and \textit{Mathematical Statistics} by Jun Shao (JNS).
 \stdvspace
 
-Convention: \emph{independence} will be taken to imply \emph{pairwise-independence} unless otherwise stated. The notation \(\ev{V}_n\) will denote the average of \(V_1, \dots, V_n\), and \(\ev{V} \equiv \lim_n \ev{V}_n\). 
+Convention: \textit{independence} will be taken to imply \textit{pairwise-independence} unless otherwise stated. The notation \(\ev{V}_n\) will denote the average of \(V_1, \dots, V_n\), and \(\ev{V} \equiv \lim_n \ev{V}_n\). \(\lambda\) will denote the Lebesgue measure on the appropriate domain.
 
 \section{Probability}
 
 
-\begin{problem}{Borel-Cantelli Lemmas}*
-    [BLN Thm 4.3/4.4] Prove the following:
+\begin{problem}{Borel-Cantelli Lemmas}{borel_cantelli}
+    [BLN Thm 4.3/4.4.] Prove the following:
     \begin{enumerate}[(a)]
         \itemsep0em
-        \item \emph{First Borel-Cantelli Lemma:} If \(\sum_n \bb{P}[A_n]\) converges, then \(\bb{P}[\limsup_n A_n] = 0\).
-        \item \emph{Second Borel-Cantelli Lemma:} If \(\{A_n\}_n\) are independent and \(\sum_n \bb{P}[A_n]\) diverges, then \(\bb{P}[\limsup_n A_n] = 1\).
+        \item \textit{First Borel-Cantelli Lemma:} If \(\sum_n \bb{P}[A_n]\) converges, then \(\bb{P}[\limsup_n A_n] = 0\).
+        \item \textit{Second Borel-Cantelli Lemma:} If \(\{A_n\}_n\) are independent and \(\sum_n \bb{P}[A_n]\) diverges, then \(\bb{P}[\limsup_n A_n] = 1\).
     \end{enumerate}
 \end{problem}
 
 
 \begin{proof}
-    The first Borel-Cantelli lemma is proved (for general measure spaces, even) in in the \emph{Measures} section of \texttt{real-analysis}. For the second Borel-Cantelli lemma, we can show that \((\limsup_n A_n)^c\) occurs with probability zero. Effectively,
+    The first Borel-Cantelli lemma is proved (for general measure spaces, even) in in the \textit{Measures} section of \texttt{real-analysis}. For the second Borel-Cantelli lemma, we can show that \((\limsup_n A_n)^c\) occurs with probability zero. Effectively,
     \[
         \bb{P}\left[\limsup_{n \to \infty} A_n\right] = 1
         \iff \bb{P}\left[ \left(\bigcap_{n=1}^\infty \bigcup_{k=n}^\infty A_k\right)^c \right] = 0
@@ -53,7 +53,7 @@ Convention: \emph{independence} will be taken to imply \emph{pairwise-independen
 \end{proof}
 
 
-\begin{problem}{Kolgomorov's Zero-One Law}*
+\begin{problem}{Kolgomorov's Zero-One Law}{kolgomorov_zero_one}
     [BLN Thm 4.5.] If \(\{A_n\}_n\) is an independent sequence of events, and if \(A\) is an event in the tail \(\sigma\)-field defined by
     \[
         \cl{T} = \bigcap_{n=1}^\infty \sigma \left( \{A_k\}_{k=n}^\infty \right)
@@ -66,12 +66,7 @@ Convention: \emph{independence} will be taken to imply \emph{pairwise-independen
 \end{proof}
 
 
-
-\newpage
-\section{Simple Random Variables}
-
-
-\begin{problem}{Monotonicity of \(L^p\)-norm for Simple Random Variables}*
+\begin{problem}{Monotonicity of \(L^p\)-norm for Simple Random Variables}{lp_monotonicity}
     [BLN Eq 5.33.] Prove that if the \(L^p\) norm of a simple random variable \(X\) is \(\|X\|_p := \sqrt[p]{\bb{E}[|X|^p]}\), then for any \(0 < \alpha \leq \beta\), \(\|X\|_\alpha \leq \|X\|_\beta\).
 \end{problem}
 
@@ -81,11 +76,11 @@ Convention: \emph{independence} will be taken to imply \emph{pairwise-independen
 \end{proof}
 
 
-\begin{problem}{Cantelli's Inequality}*
+\begin{problem}{Cantelli's Inequality}{cantelli_inequality}
     [BLN P5.5.] Suppose \(X\) is a random variable with mean \(\mu\) and variance \(\sigma^2\).
     \begin{enumerate}[(a)]
         \itemsep0em
-        \item Prove \emph{Cantelli's inequality},
+        \item Prove \textit{Cantelli's inequality},
         \[
             \bb{P}[X - \mu \geq \alpha] \leq \frac{\sigma^2}{\sigma^2 + \alpha^2}
             \qquad (\alpha \geq 0)
@@ -118,17 +113,17 @@ Convention: \emph{independence} will be taken to imply \emph{pairwise-independen
 \end{proof}
 
 
-\begin{problem}{The (Simple) Law of Large Numbers}*
+\begin{problem}{The (Simple) Law of Large Numbers}{law_of_large_numbers}
     [BLN Thm 6.1, 6.2.] Prove the following:
     \begin{enumerate}[(a)]
         \itemsep0em
-        \item \emph{The Strong Law:} If \(\{X_n\}_n\) are simple i.i.d. with expectation \(\mu\), then
+        \item \textit{The Strong Law:} If \(\{X_n\}_n\) are simple i.i.d. with expectation \(\mu\), then
         \[
             \bb{P}\left[\ev{X} = \mu\right]
             \equiv \bb{P}\left[ \lim_{n \to \infty} \frac{1}{n} \sum_{k=1}^n X_k = \mu \right]
             = 1
         \]
-        \item \emph{The Weak Law:} Let \((\Omega_n, \fr{M}_n, \bb{P}_n)\) be a sequence of real probability spaces. If \(\{X_{nk}\}_{k=1}^{r_n}\) are simple and independent in \(k\) for each \(n\), and \(\{v_n\}_n\) satisfies \(\sigma_n / v_n \to 0\), then
+        \item \textit{The Weak Law:} Let \((\Omega_n, \fr{M}_n, \bb{P}_n)\) be a sequence of real probability spaces. If \(\{X_{nk}\}_{k=1}^{r_n}\) are simple and independent in \(k\) for each \(n\), and \(\{v_n\}_n\) satisfies \(\sigma_n / v_n \to 0\), then
         \[
             \lim_{n \to \infty} \bb{P}_n \left[ \left| \frac{\ev{X_n} - \mu_n}{v_n} \right| \geq \varepsilon \right] = 0
         \]
@@ -137,7 +132,7 @@ Convention: \emph{independence} will be taken to imply \emph{pairwise-independen
 \end{problem}
 
 \begin{proof}
-    \emph{Part (a).} Let \(S_n = \sum_{k=1}^n X_k\), and without loss of generality let \(\mu = 0\). Observe, 
+    \textit{Part (a).} Let \(S_n = \sum_{k=1}^n X_k\), and without loss of generality let \(\mu = 0\). Observe, 
     \[
         \Omega \setminus \left\{\lim_{n \to \infty} n^{-1} S_n = 0\right\} 
         = \bigcup_{\varepsilon \in \bb{Q}_+} \left\{\limsup_{n \to \infty} |n^{-1} S_n| \geq \varepsilon \right\}
@@ -154,7 +149,7 @@ Convention: \emph{independence} will be taken to imply \emph{pairwise-independen
 \end{proof}
 
 \begin{proof}
-    \emph{Part (b).} Without loss of generality, let \(\mu_n = 0\) and \(v_n > 0\). By Markov's inequality, 
+    \textit{Part (b).} Without loss of generality, let \(\mu_n = 0\) and \(v_n > 0\). By Markov's inequality, 
     \[
         \bb{P}_n[|X_n| \leq v_n \varepsilon]
         \leq \frac{\sigma_n^2}{v_n^2} \frac{1}{\varepsilon^2} \stackrel{n \to \infty}{\longrightarrow} 0
@@ -163,18 +158,18 @@ Convention: \emph{independence} will be taken to imply \emph{pairwise-independen
 \end{proof}
 
 
-\begin{problem}{Poisson's Theorem}*
+\begin{problem}{Poisson's Theorem}{poisson_theorem}
     [BLN P6.5.] If \(\{A_n\}_n\) are independent,
     \[
-        \lim_{n \to \infty} \bb{P}\left[ |\ev{\mb{1}_A}_n - \ev{\bb{P}[A]}_n | \geq \varepsilon \right]
-        = \lim_{n \to \infty} \bb{P}\left[ \left| \frac{1}{n} \sum_{k=1}^n \mb{1}_{A_k} - \frac{1}{n} \sum_{k=1}^n \bb{P}(A_k) \right| \geq \varepsilon \right] 
+        \lim_{n \to \infty} \bb{P}\left[ |\ev{\ds{1}_A}_n - \ev{\bb{P}[A]}_n | \geq \varepsilon \right]
+        = \lim_{n \to \infty} \bb{P}\left[ \left| \frac{1}{n} \sum_{k=1}^n \ds{1}_{A_k} - \frac{1}{n} \sum_{k=1}^n \bb{P}(A_k) \right| \geq \varepsilon \right] 
         = 0
     \]
     In other words, a sequence of independent but distinct Bernoulli trials behaves, on average, like a Bernoulli of its mean parameter.
 \end{problem}
 
 \begin{proof}
-    Let \(X_k := \mb{1}_{A_k} - \bb{P}[A_k]\), so that \(\bb{E}[X_k] = 0\). Define \(S_n := \sum_{k=1}^n X_k\). It suffices to show that \(\bb{P}[|S_n| \geq n \varepsilon] \to 0\) as \(n \to \infty\). By Markov's inequality, 
+    Let \(X_k := \ds{1}_{A_k} - \bb{P}[A_k]\), so that \(\bb{E}[X_k] = 0\). Define \(S_n := \sum_{k=1}^n X_k\). It suffices to show that \(\bb{P}[|S_n| \geq n \varepsilon] \to 0\) as \(n \to \infty\). By Markov's inequality, 
     \begin{align*}
         \bb{P}[|S_n| \geq n \varepsilon] 
         &\leq \frac{1}{n^4 \varepsilon^4} \int_{\Omega} S_n^4 \, \mr{d}\bb{P}
@@ -185,7 +180,7 @@ Convention: \emph{independence} will be taken to imply \emph{pairwise-independen
 \end{proof}
 
 
-\begin{problem}{Cantelli's Theorem}*
+\begin{problem}{Cantelli's Theorem}{cantelli_theorem}
     [BLN P6.6.] If \(\{X_n\}_n\) are independent with zero mean and uniformly bounded fourth moments, then \(\ev{X} = 0\) almost surely. In particular, the \(X_n\) need not be identically distributed. 
 \end{problem}
 
@@ -210,7 +205,7 @@ Convention: \emph{independence} will be taken to imply \emph{pairwise-independen
 \end{proof}
 
 
-\begin{problem}{The Square Subsequence Lemma}*
+\begin{problem}{The Square Subsequence Lemma}{square_subsequence_lemma}
     [BLN P6.7.] Suppose \(n^{-2} S_{n^2} \to 0\) almost surely and the \(X_n\) are uniformly bounded. Show \(\ev{X} = 0\) almost surely. Notably, the \(X_n\) need not be identically distributed or independent. 
 \end{problem}
 
@@ -231,18 +226,18 @@ Convention: \emph{independence} will be taken to imply \emph{pairwise-independen
 
 
 
-\begin{problem}{Shannon's Theorem}*
+\begin{problem}{Shannon's Theorem}{shannons_theorem}
     [BLN P6.14.] Suppose that \(\{X_n\}_n\) are simple i.i.d. with \(\text{image}(X) = \{1, \dots, r\}\) and \(p_k := \bb{P}[X_n = k]\). For \(\omega \in \Omega\), let \(P_n(\omega) = \bb{P}[(X_1(\omega)] \cdots \bb{P}[X_n(\omega)]\) be the probability that a sequence of \(n\) trials would produce the particular sequence \(X_1(\omega), \dots, X_n(\omega)\). Prove the following: 
     \begin{enumerate}[(a)]
         \itemsep0em
-        \item \emph{Entropy:} With high probability, 
+        \item \textit{Entropy:} With probability \(1\), 
         \[
             \lim_{n \to \infty} \left[ - \frac{1}{n} \log P_n(\omega) \right] 
             = - \sum_{i=1}^r p_i \log p_i 
             \equiv H
         \]
-        In information theory \(\{1, \dots, r\}\) are the letters of an \emph{alphabet}, the \(\{X_n\}_n\) are successive letters produced by an information \emph{source}, and \(H\) is the \emph{entropy} of the source. 
-        \item \emph{Asymptotic Equipartition Property:} For large enough \(n\) there is a probability exceeding \(1 - \varepsilon\) that the probability \(P_n(\omega)\) of the observed \(n\)-long sequence, or \emph{message}, is in the range \(\exp{-n(H \pm \varepsilon)}\).
+        In information theory \(\{1, \dots, r\}\) are the letters of an \textit{alphabet}, the \(\{X_n\}_n\) are successive letters produced by an information \textit{source}, and \(H\) is the \textit{entropy} of the source. 
+        \item \textit{Asymptotic Equipartition Property:} For large enough \(n\) there is a probability exceeding \(1 - \varepsilon\) that the probability \(P_n(\omega)\) of the observed \(n\)-long sequence, or \textit{message}, is in the range \(\exp{-n(H \pm \varepsilon)}\).
     \end{enumerate}
 \end{problem}
 
@@ -251,11 +246,69 @@ Convention: \emph{independence} will be taken to imply \emph{pairwise-independen
 \end{proof}
 
 
-\begin{problem}{The R\'enyi-Lamperti Lemma}*
+\begin{problem}{The R\'enyi-Lamperti Lemma}{renyi_lamperti_lemma}
     TODO. 
 \end{problem}
 
+\newpage
+\section{Distributions}
 
+\begin{problem}{Change of Variables for Densities}{change_of_variables_densities}
+    [JNS Prop. 1.8.] Let \(X : \Omega \to \bb{R}^n\) have Lebesgue p.d.f. \(f_X\), and suppose \(Y = g \circ X\) for a Borel function \(g : (\bb{R}^n, \cl{B}(\bb{R}^n)) \to (\bb{R}^n, \cl{B}(\bb{R}^n))\). Suppose \(\{U_j\}_{j=1}^m \subseteq \cl{B}(\bb{R}^n)\) is a disjoint open partition of \(\bb{R}^n\) up to measure zero, and that \(g_j := g|_{U_j}\) is a \(\cl{C}^1\) diffeomorphism onto its image. Then \(Y\) has Lebesgue p.d.f.
+    \[
+        f_Y 
+        = \sum_{j=1}^m |\oname{Det}(Dh_j)| (f_X \circ h_j) \ds{1}_{g(U_j)} 
+    \]
+    where \(h_j : g(U_j) \to U_j\) is the inverse of \(g_j\) from the Inverse Function Theorem.
+\end{problem}
+
+\begin{proof}
+    Let \((\Omega, \bb{P})\) be a measurable space and \(E \in \cl{B}(\bb{R}^n)\). Then
+    \begin{align*}
+        \bb{P}(Y \in E)
+        &= \bb{P}(g(X) \in E)
+        = \bb{P}(X \in g^{-1}(E)) 
+        = \bb{P}\left(X \in \bigcup_{j=1}^m (U_j \cap g^{-1}(E))\right) \\
+        &= \bb{P}\left(X \in \bigcup_{j=1}^m g_j^{-1}(E)\right) 
+        = \bb{P}\left( X \in \bigcup_{j=1}^m h_j(E \cap g(U_j)) \right) = \sum_{j=1}^m \bb{P}(X \in h_j(E \cap g(U_j))) \\
+        &= \sum_{j=1}^m \int_{h_j(E \cap g(U_j))} f_X \, \mr{d}\lambda
+        = \sum_{j=1}^m \int_{E} |\oname{Det}(Dh_j)| (f_X \circ h_j) \ds{1}_{g(U_j)} \, \mr{d}\lambda \\
+        &= \int_{E} \sum_{j=1}^m |\oname{Det}(h_j)| (f_X \circ h_j) \ds{1}_{g(U_j)} \, \mr{d}\lambda 
+        \equiv \int_{E} f_Y \, \mr{d}\lambda
+    \end{align*}
+    By uniqueness of the Radon-Nikodym derivative, \(f_Y\) is the Lebesgue p.d.f. of \(Y\).
+\end{proof}
+
+\begin{problem}{Sum and Quotient Rules}{sum_and_quotient_rules}
+    [JNS Ex. 1.15.] Let \(X = (X_1, X_2)\) have a joint Lebesgue p.d.f. \(f_X\). Then the Lebesgue p.d.f.s of \(Y = X_1 + X_2\) and \(Z = X_1 / X_2\) are given by
+    \begin{align*}
+        & f_Y(y) = \int_{\bb{R}} f_X(x, y - x) \, \mr{d}x
+        = \int_{\bb{R}} f_{X_1}(x) f_{X_2}(y - x) \, \mr{d}x \\
+        & f_Z(z) = \int_{\bb{R}} |y| f_X(zy, y) \, \mr{d}y
+        = \int_{\bb{R}} |y| f_{X_1}(zy) f_{X_2}(y) \, \mr{d}y
+    \end{align*}
+    where the second equalities hold if \(X_2 \neq 0\) a.s.
+\end{problem}
+
+\begin{proof}
+\end{proof}
+
+\begin{problem}{Cauchy Distribution}{cauchy_distribution}
+    [JNS Ex. 1.15.] If \(X\) and \(Y\) are independent standard normal random variables, then \(Z = X / Y\) has Lebesgue p.d.f.
+    \[
+        f_Z(z) = \frac{1}{\pi(1 + z^2)}
+    \]
+    which is the standard Cauchy distribution, and \(Z\) has undefined mean and variance.
+\end{problem}
+
+\begin{problem}{$t$-distribution and $F$-distribution}{t_and_f_distributions}
+    [JNS Ex. 1.16.] If \(X\) and \(Y\) are independent \(\chi^2\) random variables with \(m\) and \(n\) degrees of freedom, respectively, then
+    \begin{enumerate}[(a)]
+        \itemsep0em
+        \item \(T = Z / \sqrt{X/m}\) has the t-distribution with \(m\) degrees of freedom, where \(Z\) is a standard normal random variable independent of \(X\). 
+        \item \(F = (X/m) / (Y/n)\) has the \(F\)-distribution with \((m,n)\) degrees of freedom.
+    \end{enumerate}
+\end{problem}
 
 \newpage
 \section{Markov Chains}
